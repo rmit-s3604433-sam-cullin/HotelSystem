@@ -1,2 +1,2 @@
-# HotelSystem
+# Hotel System
 Process and Tools
