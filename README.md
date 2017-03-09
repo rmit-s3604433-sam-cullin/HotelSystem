@@ -1,2 +1,2 @@
-# HotelSystem
+# BookingSystem
 Process and Tools
