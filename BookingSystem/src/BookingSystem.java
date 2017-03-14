@@ -10,8 +10,8 @@ public class BookingSystem {
 		System.out.println("=====================================");
 		System.out.println("   John Electrician Booking System");
 		System.out.println("=====================================");
-		System.out.println("1. Customer");
-		System.out.println("2. Administrator");
+		System.out.println("1. Login");
+		System.out.println("2. Register");
 		System.out.println("=====================================");
 		System.out.println("\tAdmin/Customer Login");
 		System.out.println("=====================================");
