@@ -1,10 +1,13 @@
+package system;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
+import dataManagers.DataBase;
 public class BookingSystem {
 
 	final static Scanner scan = new Scanner(System.in);
-	
+	public final static DataBase database = new DataBase();
 	public static void main(String[] args) {
 		
 		String username;
@@ -48,13 +51,7 @@ public class BookingSystem {
 	}
 	
 	public static void printMenu() {
-		System.out.println("======================================");
-		System.out.println("   Johns Electrician Booking System");
-		System.out.println("======================================");
-		System.out.println("1. Login");
-		System.out.println("2. Register");
-		System.out.println("3. Quit");
-		System.out.println("======================================");
+		
 	}
 
 }

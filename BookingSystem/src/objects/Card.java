@@ -1,6 +1,6 @@
 package objects;
 
-public class Card implements interfaces.Card{
+public class Card {
 	private String cardNumber;
 	private String cardPin;
 	
@@ -11,7 +11,6 @@ public class Card implements interfaces.Card{
 	}
 
 
-	@Override
 	public void print() {
 		// TODO Auto-generated method stub
 		

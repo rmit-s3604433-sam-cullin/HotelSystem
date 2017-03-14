@@ -1,7 +1,7 @@
 package objects;
 import java.util.Date;
 
-public class Person implements interfaces.Person {
+public class Person{
 	private String name;
 	private String email;
 	private String number;
@@ -45,6 +45,9 @@ public class Person implements interfaces.Person {
 	}
 	public void setbDay(Date bDay) {
 		this.bDay = bDay;
+	}
+	public void print(){
+		
 	}
 
 }

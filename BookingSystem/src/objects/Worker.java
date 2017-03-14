@@ -1,7 +1,7 @@
 package objects;
 import java.util.Date;
 
-public class Worker  extends Person implements interfaces.Worker{
+public class Worker  extends Person{
 	
 	private String position;
 	private String blerb;
@@ -11,12 +11,10 @@ public class Worker  extends Person implements interfaces.Worker{
 		this.position = position;
 	}
 
-	@Override
 	public void acceptWork() {
 		// TODO Auto-generated method stub
 		
 	}
-
 	@Override
 	public void print() {
 		// TODO Auto-generated method stub
