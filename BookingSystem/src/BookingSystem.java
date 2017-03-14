@@ -6,11 +6,13 @@ public class BookingSystem {
 	final static Scanner scan = new Scanner(System.in);
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		String username;
 		int val = 0;
 		boolean done = false;
+		
 		while (!done) {
-			printLogin();
+			printMenu();
 			try {
 				System.out.println("Choose an option: ");
 				val = scan.nextInt();
@@ -25,7 +27,9 @@ public class BookingSystem {
 					done = false;
 					break;
 				case 1:
-					System.out.println("You entered Login");
+					System.out.println("Please enter your username: ");
+					// i.e
+					// username = scan.nextLine();
 					done = false;
 					break;
 				case 2:
@@ -43,7 +47,7 @@ public class BookingSystem {
 		System.out.println("\nProgram has been terminated.");
 	}
 	
-	public static void printLogin() {
+	public static void printMenu() {
 		System.out.println("=====================================");
 		System.out.println("   John Electrician Booking System");
 		System.out.println("=====================================");
