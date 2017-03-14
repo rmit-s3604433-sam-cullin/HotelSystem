@@ -11,14 +11,14 @@ public class BookingSystem {
 		boolean done = false;
 		while (!done) {
 			printLogin();
-				try {
-					System.out.println("Choose an option: ");
-					val = scan.nextInt();
-				} catch(InputMismatchException exception) {
-					System.out.println("Input is not an integer");
-					scan.nextLine();
-					val = -1;
-				}
+			try {
+				System.out.println("Choose an option: ");
+				val = scan.nextInt();
+			} catch(InputMismatchException exception) {
+				System.out.println("Input is not an integer");
+				scan.nextLine();
+				val = -1;
+			}
 
 			switch ( val ) {
 				case -1:
