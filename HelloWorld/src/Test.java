@@ -28,16 +28,18 @@ public class Test {
 			System.out.println("Your name is: " + name);
 			System.out.println("Please enter Username: ");
 			String username = scanner.nextLine();
-			if (username.contains(" ")) {
+			while(username.contains(" ")) {
 				System.out.println("Invalid : Username can't have spaces.");
-				System.exit(0);
+				System.out.println("Please re-enter Username: ");
+				username = scanner.nextLine();
 			}
 			System.out.println("Your username is: " + username);
 			System.out.println("Please enter Password: ");
-			String password = scanner.next();
-			if (password.contains(" ")) {
+			String password = scanner.nextLine();
+			while(password.contains(" ")) {
 				System.out.println("Invalid : Password can't have spaces.");
-				System.exit(0);
+				System.out.println("Please re-enter Password: ");
+				password = scanner.next();
 			}
 			System.out.println("Your password is: " + password);
 			System.out.println("Please enter Address: ");
@@ -72,29 +74,26 @@ public class Test {
 			System.out.println("\nRegistration Successful!");
 		}
 		else {
-			
-			System.out.println("Please enter username:");
-			String username1 = scanner.next();
-			System.out.println("Please enter password:");
-			String password1 = scanner.next();
 			try (BufferedReader reader = new BufferedReader(new FileReader("C:/Users/Nic/git/HotelSystem/HelloWorld/business.txt"))) {
-					String[] tokens = reader.readLine().split(",");
-					if (tokens[5].equals(username1)) {
-						if (tokens[6].equals(password1)) {
-						System.out.println("Login Successul !");
-						}
-						else {
-							System.out.println("Invalid Password.");
-						
-						}
-					}
-					else {
-						System.out.println("Invalid Username.");
-					}
+				String[] tokens = reader.readLine().split(",");
+				System.out.println("Please enter username: ");
+				String username1 = scanner.next();
+				while (!tokens[5].equals(username1)) {
+					System.out.println("Invalid Username.");
+					System.out.println("Please re-enter Username: ");
+					username1 = scanner.next();
+				}
+				System.out.println("Please enter password:");
+				String password1 = scanner.next();
+				while (!tokens[6].equals(password1)) {
+					System.out.println("Invalid Password.");
+					System.out.println("Please re-enter Password: ");
+					password1 = scanner.next();
+				}
+				System.out.println("\nLogin Successful !");
 			}
 		}
 		scanner.close();
-	
 	}
-			
 }
+			
