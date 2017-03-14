@@ -13,7 +13,7 @@ public class BookingSystem {
 		System.out.println("1. Login");
 		System.out.println("2. Register");
 		System.out.println("=====================================");
-		System.out.println("\tAdmin/Customer Login");
+		System.out.println("\tLogin");
 		System.out.println("=====================================");
 		System.out.println("Please enter username: username00125");
 		System.out.println("Please enter password: tgj*usLf");
