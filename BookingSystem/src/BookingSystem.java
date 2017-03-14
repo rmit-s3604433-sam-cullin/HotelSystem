@@ -49,7 +49,7 @@ public class BookingSystem {
 	
 	public static void printMenu() {
 		System.out.println("=====================================");
-		System.out.println("   John Electrician Booking System");
+		System.out.println("   Johns Electrician Booking System");
 		System.out.println("=====================================");
 		System.out.println("1. Login");
 		System.out.println("2. Register");
