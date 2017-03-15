@@ -23,7 +23,7 @@ public class Employee {
 		String econtact = scanner.next();
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter("C:/Users/Nic/git/HotelSystem/HelloWorld/employee.txt", true));
+			writer = new BufferedWriter(new FileWriter("C:/Users/Nic/git/HotelSystem/src/employee.txt", true));
 
 			writer.write(name + ",");
 			writer.write(age + ",");
@@ -47,7 +47,7 @@ public class Employee {
 		int input = scanner.nextInt();
 		
 		if(input == 1) { 
-			BufferedReader reader = new BufferedReader(new FileReader("C:/Users/Nic/git/HotelSystem/HelloWorld/employee.txt"));
+			BufferedReader reader = new BufferedReader(new FileReader("C:/Users/Nic/git/HotelSystem/src/employee.txt"));
 			while(true) {
 				String line = reader.readLine();
 				if(line == null) {

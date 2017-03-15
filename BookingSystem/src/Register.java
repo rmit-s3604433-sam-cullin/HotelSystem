@@ -1,4 +1,5 @@
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -7,8 +8,9 @@ public class Register {
 	
 	final static Scanner scan = new Scanner(System.in);
 	
-	public void register() {
+	public void register() throws FileNotFoundException, IOException {
 		
+		new BookingSystem();
 		System.out.println("\nPlease enter Name: ");
 		String name = scan.nextLine();
 		System.out.println("\nPlease enter Username: ");
@@ -31,7 +33,7 @@ public class Register {
 		String contact = scan.next();
 		BufferedWriter writer = null;
 		try {
-				writer = new BufferedWriter(new FileWriter("C:/Users/Nic/git/HotelSystem/HelloWorld/customerinfo.txt", true));
+				writer = new BufferedWriter(new FileWriter("C:/Users/Nic/git/HotelSystem5/BookingSystem/src/customerinfo.txt", true));
 	
 		writer.write(name + ",");
 		writer.write(username + ",");
@@ -50,5 +52,6 @@ public class Register {
 			}
 		}
 		System.out.println("\nRegistration Successful!\n");
+		BookingSystem.main(null);
 	}
 }

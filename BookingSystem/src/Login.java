@@ -11,7 +11,7 @@ public class Login {
 	public void login1() throws FileNotFoundException, IOException {
 		
 		MainMenu object = new MainMenu();
-		try (BufferedReader reader = new BufferedReader(new FileReader("C:/Users/Nic/git/HotelSystem/HelloWorld/business.txt"))) {
+		try (BufferedReader reader = new BufferedReader(new FileReader("C:/Users/Nic/git/HotelSystem5/BookingSystem/src/business.txt"))) {
 			String[] tokens = reader.readLine().split(",");
 			System.out.println("\nPlease enter username: ");
 			String username1 = scan.next();
@@ -34,7 +34,7 @@ public class Login {
 	public void login2() throws FileNotFoundException, IOException {
 			
 			MainMenu customermenu = new MainMenu();
-			try (BufferedReader reader = new BufferedReader(new FileReader("C:/Users/Nic/git/HotelSystem/HelloWorld/customerinfo.txt"))) {
+			try (BufferedReader reader = new BufferedReader(new FileReader("C:/Users/Nic/git/HotelSystem5/BookingSystem/src/customerinfo.txt"))) {
 				String[] tokens = reader.readLine().split(",");
 				System.out.println("\nPlease enter username: ");
 				String username1 = scan.next();
