@@ -98,5 +98,9 @@ public class DataBase{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public int getPersonType(Person person){
+		
+		return 0;
+	}
 
 }
