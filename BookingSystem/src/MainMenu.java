@@ -7,7 +7,7 @@ public class MainMenu {
 		
 		boolean done = false;
 		Scanner scanner = new Scanner(System.in);
-		AddEmployee addemployee = new AddEmployee();
+		Employee addemployee = new Employee();
 		
 		while(!done) {
 			System.out.println("======================================");
