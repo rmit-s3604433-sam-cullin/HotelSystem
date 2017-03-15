@@ -17,7 +17,7 @@ public class BookingSystem {
 		while (!done) {
 			printMenu();
 			try {
-				System.out.println("PLease enter your choice: ");
+				System.out.println("Please enter your choice: ");
 				val = scan.nextInt();
 			} catch(InputMismatchException exception) {
 				System.out.println("\nInvalid : Please choose from the following menu.\n");
