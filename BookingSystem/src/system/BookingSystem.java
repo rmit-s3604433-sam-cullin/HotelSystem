@@ -16,13 +16,13 @@ public class BookingSystem {
 		int x = database.getPersonType(person);
 		switch(x){
 			case(1):
-				
+				//User
 				break;
 			case(2):
-				
+				//worker 
 				break;
 			case(3):
-				
+				//admin
 				break;
 			default:
 	
