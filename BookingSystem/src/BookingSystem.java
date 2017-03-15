@@ -11,7 +11,8 @@ public class BookingSystem {
 		
 		int val = 0;
 		boolean done = false;
-		Login login = new Login();
+		Login ownerlogin = new Login();
+		Login customerlogin = new Login();
 		Register register = new Register();
 		
 		while (!done) {
@@ -30,7 +31,27 @@ public class BookingSystem {
 					done = false;
 					break;
 				case 1:
-					login.login();
+					while(!done) {
+						System.out.println("\n======================================");
+						System.out.println("   Johns Electrician Booking System");
+						System.out.println("======================================");
+						System.out.println("1. Business Owner");
+						System.out.println("\n2. Customer");
+						System.out.println("======================================");
+						System.out.println("Please choose a category: ");
+						int choice = scan.nextInt();
+						
+						switch (choice) {
+							case 1:
+								ownerlogin.login1();
+								break;
+							case 2:
+								customerlogin.login2();
+								break;
+							default:
+								System.out.println("\nInvalid : Please choose one of the category stated above.");
+						}
+					}
 					done = true;
 					break;
 				case 2:
@@ -40,7 +61,7 @@ public class BookingSystem {
 				case 3:
 					System.out.println("\nThe system will exit now.");
 					System.out.println("Program has been terminated.");
-					done = true;
+					System.exit(0);
 					break;
 				default:
 					System.out.println("\nInvalid : Please choose from the following menu.\n");

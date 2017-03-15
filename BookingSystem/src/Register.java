@@ -31,7 +31,7 @@ public class Register {
 		String contact = scan.next();
 		BufferedWriter writer = null;
 		try {
-				writer = new BufferedWriter(new FileWriter(".\\customerinfo.txt", true));
+				writer = new BufferedWriter(new FileWriter("C:/Users/Nic/git/HotelSystem/HelloWorld/customerinfo.txt", true));
 	
 		writer.write(name + ",");
 		writer.write(username + ",");
