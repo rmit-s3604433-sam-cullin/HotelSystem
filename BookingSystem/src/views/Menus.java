@@ -1,7 +1,6 @@
 package views;
 
 import java.util.Scanner;
-
 import MainPackage.Booking;
 import MainPackage.Customer;
 import MainPackage.DataBase;
@@ -9,9 +8,16 @@ import MainPackage.Employee;
 import MainPackage.Person;
 
 
-
 public class Menus{
+  
+
+
+
+
+
+
 	DataBase database = new DataBase();
+
 	Scanner scanner = new Scanner(System.in);
 	
 	public void printMainMenu() {
@@ -34,7 +40,9 @@ public class Menus{
 		return null;
 	}
 
+
 	public Employee printAddEmployee() {
+
 		// TODO Auto-generated method stub
 		return null;
 	}
