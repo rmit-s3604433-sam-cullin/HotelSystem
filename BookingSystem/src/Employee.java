@@ -1,6 +1,7 @@
 
 import java.util.Date;
 
+
 public class Employee  extends Person{
 	
 	private String position;
@@ -13,6 +14,8 @@ public class Employee  extends Person{
 		super(name,email,number,ID,bDay);
 		this.position = position;
 	}
+
+
 
 	public void acceptWork() {
 		// TODO Auto-generated method stub
