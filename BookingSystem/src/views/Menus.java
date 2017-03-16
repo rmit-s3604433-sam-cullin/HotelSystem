@@ -3,7 +3,6 @@ package views;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
-
 import MainPackage.Booking;
 import MainPackage.BookingSystem;
 import MainPackage.Customer;
@@ -12,10 +11,18 @@ import MainPackage.Employee;
 import MainPackage.Person;
 
 
-
 public class Menus{
+  
+
+
+
+
+
+
 	DataBase database = new DataBase();
+
 	Scanner scan = new Scanner(System.in);
+
 	
 	
 public void OwnerMenu() throws IOException {
@@ -109,7 +116,9 @@ public void CustomerMenu() throws FileNotFoundException, IOException {
 		return null;
 	}
 
+
 	public Employee printAddEmployee() {
+
 		// TODO Auto-generated method stub
 		return null;
 	}

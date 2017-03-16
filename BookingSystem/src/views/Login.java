@@ -4,15 +4,19 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 
+
 public class Login {
 
 	private JFrame frame;
+
 	private JTextField userIdInput;
 	private JPasswordField passwordInput;
+
 
 	/**
 	 * Launch the application.
@@ -46,6 +50,7 @@ public class Login {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+
 		userIdInput = new JTextField();
 		userIdInput.setBounds(151, 53, 130, 26);
 		frame.getContentPane().add(userIdInput);
@@ -78,5 +83,6 @@ public class Login {
 		JLabel lblNewLabel_3 = new JLabel("New Customer ?");
 		lblNewLabel_3.setBounds(161, 206, 130, 16);
 		frame.getContentPane().add(lblNewLabel_3);
+
 	}
 }
