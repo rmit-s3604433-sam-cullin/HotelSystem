@@ -1,21 +1,33 @@
+package MainPackage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
+import views.Menus;
 public class BookingSystem {
-
+	
 	final static Scanner scan = new Scanner(System.in);
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-		
-		int val = 0;
+		Menus menu = new Menus();
+		DataBase database = new DataBase();
+		Customer temCustomer = new Customer("sam","000","001","1234" );
+		database.addCustomer(temCustomer);
+		for(;1>0;){
+		menu.login();
+		Customer newCustomer = menu.printAddCustomer();
+		database.addCustomer(newCustomer);
+		database.printCustomers();
+		}
+	}
+		/*int val = 0;
 		boolean done = false;
 		Login ownerlogin = new Login();
 		Login customerlogin = new Login();
 		Register register = new Register();
 		
 		while (!done) {
+			
 			printMenu();
 			try {
 				System.out.println("Please enter your choice: ");
@@ -76,5 +88,5 @@ public class BookingSystem {
 		System.out.println("\n2. Register");
 		System.out.println("\n3. Quit");
 		System.out.println("======================================");
-	}
+	}*/
 }

@@ -1,4 +1,4 @@
-
+package objects;
 import java.util.Date;
 
 public class Person{
@@ -7,9 +7,7 @@ public class Person{
 	private String number;
 	private String ID;
 	private Date bDay;
-	public Person(){
-		
-	}
+	
 	public Person(String name,String email,String number,String ID,Date bDay){
 		this.name = name;
 		this.email = email;
