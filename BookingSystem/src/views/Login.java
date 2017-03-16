@@ -4,16 +4,19 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
 import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.JPasswordField;
+
 
 public class Login {
 
 	private JFrame frame;
-	private JTextField textField_2;
-	private JTextField textField_3;
+
+	private JTextField userIdInput;
+	private JPasswordField passwordInput;
+
 
 	/**
 	 * Launch the application.
@@ -47,41 +50,39 @@ public class Login {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(121, 63, 198, 26);
-		frame.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
+
+		userIdInput = new JTextField();
+		userIdInput.setBounds(151, 53, 130, 26);
+		frame.getContentPane().add(userIdInput);
+		userIdInput.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(121, 101, 198, 26);
-		frame.getContentPane().add(textField_3);
-		textField_3.setColumns(10);
-		
-		JButton btnNewButton = new JButton("Login");
-		btnNewButton.setBounds(160, 159, 117, 29);
-		frame.getContentPane().add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("Register");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton_1.setBounds(160, 214, 117, 29);
-		frame.getContentPane().add(btnNewButton_1);
-		
-		JLabel lblNewLabel = new JLabel("UserName:");
-		lblNewLabel.setBounds(30, 68, 72, 16);
+		JLabel lblNewLabel = new JLabel("User ID");
+		lblNewLabel.setBounds(26, 58, 61, 16);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Password:");
-		lblNewLabel_1.setBounds(30, 106, 72, 16);
+		JLabel lblNewLabel_1 = new JLabel("PassWord");
+		lblNewLabel_1.setBounds(26, 115, 61, 16);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Login");
-		lblNewLabel_2.setBounds(187, 35, 61, 16);
+		lblNewLabel_2.setBounds(199, 25, 61, 16);
 		frame.getContentPane().add(lblNewLabel_2);
 		
-	
+		JButton loginButton = new JButton("Login");
+		loginButton.setBounds(151, 165, 130, 29);
+		frame.getContentPane().add(loginButton);
 		
+		JButton registerButton = new JButton("Register");
+		registerButton.setBounds(151, 227, 130, 29);
+		frame.getContentPane().add(registerButton);
+		
+		passwordInput = new JPasswordField();
+		passwordInput.setBounds(151, 110, 130, 26);
+		frame.getContentPane().add(passwordInput);
+		
+		JLabel lblNewLabel_3 = new JLabel("New Customer ?");
+		lblNewLabel_3.setBounds(161, 206, 130, 16);
+		frame.getContentPane().add(lblNewLabel_3);
+
 	}
 }

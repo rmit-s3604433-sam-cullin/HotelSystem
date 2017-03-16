@@ -26,7 +26,7 @@ public class DataBase{
 		//bookings should be added in order of their due dates
 	}
 	public void addCustomer(Customer customer){
-		
+		Customers.add(customer);
 	}
 	public void addWorker(Employee employee){
 		
@@ -72,7 +72,9 @@ public class DataBase{
 	}
 
 	public void printCustomers() {
-		// TODO Auto-generated method stub
+		for(Customer customer: Customers){
+			customer.print();
+		}
 		
 	}
 
@@ -92,12 +94,24 @@ public class DataBase{
 	}
 
 	public Person getPersonByID(String ID) {
-		// TODO Auto-generated method stub
-		return null;
+		Person tempperson = null;
+		for(Person person : Customers){
+			if(person.getID().equals(ID)){
+				tempperson = person;
+			}
+		}
+		return tempperson;
 	}
 	public int getPersonType(Person person){
 		
 		return 0;
+	}
+	public void saveCustomers(){
+		for(Customer customer:Customers){
+			String cusString = customer.toString();
+			
+			
+		}
 	}
 
 }
