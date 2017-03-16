@@ -13,22 +13,13 @@ import MainPackage.Person;
 
 public class Menus{
   
-
-
-
-
-
-
-	DataBase database = new DataBase();
-
-	Scanner scan = new Scanner(System.in);
-
+final static Scanner scan = new Scanner(System.in);
 	
-	
+static DataBase database = BookingSystem.database;
+
 public void OwnerMenu() throws IOException {
 		
 		boolean done = false;
-		Scanner scanner = new Scanner(System.in);
 		Employee newEmployee;
 		new BookingSystem();
 		
@@ -43,7 +34,7 @@ public void OwnerMenu() throws IOException {
 			System.out.println("\n4. Logout");
 			System.out.println("======================================");
 			System.out.println("PLease enter you choice: ");
-			int choice = scanner.nextInt();
+			int choice = scan.nextInt();
 			
 			switch (choice) {
 				case 1 : 
@@ -59,19 +50,17 @@ public void OwnerMenu() throws IOException {
 	}
 public void CustomerMenu() throws FileNotFoundException, IOException {
 		
-		boolean done = false;
-		Scanner scanner = new Scanner(System.in);
 		new BookingSystem();
 		String choice ;
 		do{
-			System.out.println("======================================");
+			System.out.println("\n======================================");
 			System.out.println("   Johns Electrician Booking System");
 			System.out.println("======================================");
 			System.out.println("1. View available date & time");
 			System.out.println("\n2. Logout");
 			System.out.println("======================================");
 			System.out.println("PLease enter you choice: ");
-			choice = scanner.next();
+			choice = scan.next();
 			
 			switch(choice) {
 				case ("1"):
@@ -103,7 +92,10 @@ public void CustomerMenu() throws FileNotFoundException, IOException {
 		System.out.println("\nPlease enter ID: ");
 		id = scan.next();
 		newCustomer = new Customer(name,contact,id,password);
+		database.addCustomer(newCustomer);
+		System.out.println("\nRegistration Successful!\n");
 		return newCustomer;
+		
 	}
 
 	public void printDataManager() {
@@ -123,61 +115,68 @@ public void CustomerMenu() throws FileNotFoundException, IOException {
 		return null;
 	}
 
-	public Person login() {
+	public Person login() throws FileNotFoundException, IOException {
 		int exit = 0;
 		Person person = null;
 		for(;exit < 1;){
-		String x = login1();
-		switch(x){
-			case("1"):
-				person = login2();
-				if(person != null){exit = 1;}
-				break;
-			case("2"):
-				person = printAddCustomer();
-				exit = 1;
-				break;
-			case("3"):
-				exit = 1;
-				break;
-			default:
-				System.out.println("invalid input");
-				break;
-				
-		}
+			String x = login1();
+			switch(x){
+				case("1"):
+					person = login2();
+					if(person != null){
+						CustomerMenu();
+					}
+					break;
+				case("2"):
+					person = printAddCustomer();
+					break;
+				case("3"):
+					exit = 1;
+					break;
+				default:
+					System.out.println("invalid input");
+					break;
+					
+			}
 		}
 		return person;
 	}
 	private String login1(){
 		System.out.println("======================================");
-		System.out.println("   Johns Electrician Booking System");
+		System.out.println("   John's Electrician Booking System");
 		System.out.println("======================================");
 		System.out.println("1. Login");
-		System.out.println("2. Register");
-		System.out.println("3. Quit");
+		System.out.println("\n2. Register");
+		System.out.println("\n3. Quit");
 		System.out.println("======================================");
-		System.out.print("Your Choice: ");
+		System.out.print("Please Enter Your Choice: ");
 		String i = scan.next();
 		return i;
 	}
-	private Person login2(){
+	private Person login2() {
 		Person person = null;
 		String ID;
 		String password;
 		do{
-		System.out.println("Please Enter User ID or 'exit'");
-		 ID = scan.next();
+		System.out.println("\nPlease Enter User ID or 'exit'"); 
+		ID = scan.next();
 		person = database.getPersonByID(ID);
-		System.out.println("Please Enter User Passord for "+ person.getName());
-		password = scan.next();
-		}while(!ID.equals("exit") || !password.equals(person.getPassword()));
-		
-		if(ID.equals("exit")){
-			person = null;
+		if(!ID.equals("exit") && person == null) {
+			System.out.println("Invalid : Please re-enter User ID");
+		}
+		}while(person == null && (!ID.equals("exit")));
+		if(person != null) {
+			do {
+			System.out.println("\nPlease Enter User Password for "+ person.getName() + " or 'exit'");
+			password = scan.next();
+			if(!password.equals("exit") && !password.equals(person.getPassword())) {
+				System.out.println("\nInvalid : Please re-enter User Password");
+			}
+			}while(!password.equals(person.getPassword()) && (!password.equals("exit")));
+			if(password.equals("exit")){
+				person = null;
+			}
 		}
 		return person;
 	}
-
-
-
 }

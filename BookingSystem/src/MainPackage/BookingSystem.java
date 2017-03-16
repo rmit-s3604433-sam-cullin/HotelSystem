@@ -1,16 +1,15 @@
 package MainPackage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 import views.Menus;
 public class BookingSystem {
 	
 	final static Scanner scan = new Scanner(System.in);
-	
+	final static public DataBase database = new DataBase();
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		Menus menu = new Menus();
-		DataBase database = new DataBase();
+		
 		Customer temCustomer = new Customer("sam","000","001","1234" );
 		database.addCustomer(temCustomer);
 		for(;1>0;){
