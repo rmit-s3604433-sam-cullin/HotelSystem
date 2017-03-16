@@ -28,7 +28,7 @@ public class Login {
 			while ((line = buff.readLine()) != null) {
 			    stringbuffer.append(line);
 			}
-			String t[] = Line.split(,);
+
 			File file = new File("C:/Users/Nic/git/HotelSystem5/BookingSystem/src/business.txt");
 			Scanner inputFile = new Scanner(file);
 			inputFile.useDelimiter("[\\r,]");
