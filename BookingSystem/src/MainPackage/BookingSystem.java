@@ -7,17 +7,47 @@ public class BookingSystem {
 	
 	final static Scanner scan = new Scanner(System.in);
 	final static public DataBase database = new DataBase();
+	final static public String customertxt = "/Users/samcullin/git/HotelSystem/BookingSystem/src/customerinfo.txt";
+	final static public String employeetxt = "/User/git/HotelSystem/BookingSystem/src/employeeinfo.txt";
+	
+	
+	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		Menus menu = new Menus();
 		
 		Customer temCustomer = new Customer("sam","000","001","1234" );
 		database.addCustomer(temCustomer);
-		for(;1>0;){
-		menu.login();
-		Customer newCustomer = menu.printAddCustomer();
-		database.addCustomer(newCustomer);
 		database.printCustomers();
+		int exit = 5;
+		do{
+		Person logedinUser = menu.login();
+		int usertype = getUserType(logedinUser);
+		switch(usertype){
+			case(1):
+				menu.CustomerMenu();
+			break;
+			case(2):
+				menu.OwnerMenu();
+			break;
+			case(3):
+			exit =0;
+			break;
+			default:
+				
+		
 		}
+		
+		}while(exit > 0);
+		database.saveCustomers();
+		
+		}
+	
+	static public int getUserType(Person person){
+		int type = 1;
+		if(person == null){
+			type =3;
+		}
+		return type;
 	}
 		/*int val = 0;
 		boolean done = false;

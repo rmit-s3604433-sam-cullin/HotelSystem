@@ -1,5 +1,5 @@
 package MainPackage;
-import java.util.Date;
+
 
 
 public class Customer extends Person{
@@ -24,7 +24,7 @@ public class Customer extends Person{
 	}
 	@Override
 	public String toString(){
-		String userString = this.getName() + "," + this.getContact()+"'"+this.getID()+"'"+this.getPassword();
+		String userString = this.getName() + "," + this.getContact()+","+this.getID()+","+this.getPassword();
 		return userString;
 	}
 	

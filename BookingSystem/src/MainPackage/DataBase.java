@@ -7,10 +7,13 @@ import java.util.LinkedList;
 
 
 public class DataBase{
+	public ReadWrite custRW = new ReadWrite(BookingSystem.customertxt);
+	public ReadWrite emplRW = new ReadWrite(BookingSystem.employeetxt);
+	
+	
 	
 	@SuppressWarnings("unused")
 	static private LinkedList<Booking> Bookings;
-	@SuppressWarnings("unused")
 	static private LinkedList<Customer> Customers;
 	@SuppressWarnings("unused")
 	static private LinkedList<Employee> Employee;
@@ -109,6 +112,7 @@ public class DataBase{
 	public void saveCustomers(){
 		for(Customer customer:Customers){
 			String cusString = customer.toString();
+			custRW.Write(cusString);
 			
 			
 		}

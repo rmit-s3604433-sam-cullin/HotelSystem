@@ -1,6 +1,6 @@
 package MainPackage;
 
-import java.util.Date;
+
 
 
 public class Employee  extends Person{
@@ -11,8 +11,8 @@ public class Employee  extends Person{
 	public Employee(){
 		super();
 	}
-	public Employee(String name,String number,String ID,String position){
-		super(name,number,ID);
+	public Employee(String name,String number,String ID,String password,String position){
+		super(name,number,ID,password);
 		this.position = position;
 	}
 

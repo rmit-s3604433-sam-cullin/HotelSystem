@@ -115,17 +115,15 @@ public void CustomerMenu() throws FileNotFoundException, IOException {
 		return null;
 	}
 
-	public Person login() throws FileNotFoundException, IOException {
+	public Person login(){
 		int exit = 0;
 		Person person = null;
-		for(;exit < 1;){
+		do{
 			String x = login1();
 			switch(x){
 				case("1"):
 					person = login2();
-					if(person != null){
-						CustomerMenu();
-					}
+					exit = 1;
 					break;
 				case("2"):
 					person = printAddCustomer();
@@ -136,9 +134,8 @@ public void CustomerMenu() throws FileNotFoundException, IOException {
 				default:
 					System.out.println("invalid input");
 					break;
-					
 			}
-		}
+			}while(exit == 0);
 		return person;
 	}
 	private String login1(){

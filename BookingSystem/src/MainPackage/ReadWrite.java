@@ -1,13 +1,21 @@
+package MainPackage;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class ReadWrite {
+	
+	private String address;
+	
+	public ReadWrite(String address){
+		this.address = address;
+	}
 
-	public void Write(String data, String location) {
+	public void Write(String data) {
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(location, true));
+			writer = new BufferedWriter(new FileWriter(this.address, true));
 
 			writer.write(data);
 			writer.newLine();
