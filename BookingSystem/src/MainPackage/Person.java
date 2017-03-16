@@ -6,15 +6,17 @@ public class Person{
 	private String name;
 	private String ID;
 	private String number;
+	private String password;
 
 	
 	public Person(){
 		
 	}
-	public Person(String name,String number,String ID){
+	public Person(String name,String number,String ID,String password){
 		this.name = name;
 		this.number = number;
 		this.ID = ID;
+		this.setPassword(password);
 
 	}
 	public String getContact(){
@@ -30,21 +32,22 @@ public class Person{
 		this.name = name;
 	}
 	
-	public String getNumber() {
-		return number;
-	}
-	public void setNumber(String number) {
-		this.number = number;
-	}
 	public String getID() {
 		return ID;
 	}
 	public void setID(String iD) {
 		ID = iD;
 	}
+	
 
 	public void print(){
 		
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }
