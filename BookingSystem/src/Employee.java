@@ -6,6 +6,9 @@ public class Employee  extends Person{
 	private String position;
 	private String blerb;
 	
+	public Employee(){
+		super();
+	}
 	public Employee(String name,String email,String number,String ID,Date bDay,String position){
 		super(name,email,number,ID,bDay);
 		this.position = position;
