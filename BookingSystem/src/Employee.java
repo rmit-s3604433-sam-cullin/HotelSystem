@@ -7,6 +7,10 @@ import java.util.Scanner;
 
 public class Employee {
 
+	private String name ;
+	public String getname() {
+		return name;
+	}
 	public void addemployee() throws IOException {
 		
 		Scanner scanner = new Scanner(System.in);
