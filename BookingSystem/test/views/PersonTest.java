@@ -67,15 +67,15 @@ public class PersonTest {
 		
 		p.setContract(number);
 		assertEquals("Name is not expected",
-				name, p.getContact());
+				number, p.getContact());
 		
 	}
 	
 	public void testGetSetPassword(){
 		
-		p.setPassword(number);
+		p.setPassword(password);
 		assertEquals("Name is not expected",
-				name, p.getPassword());
+				password, p.getPassword());
 		
 	}
 
