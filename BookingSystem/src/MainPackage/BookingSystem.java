@@ -7,8 +7,8 @@ public class BookingSystem {
 	
 	final static Scanner scan = new Scanner(System.in);
 	final static public DataBase database = new DataBase();
-	final static public String customertxt = "/Users/samcullin/git/HotelSystem/BookingSystem/src/customerinfo.txt";
-	final static public String employeetxt = "/User/git/HotelSystem/BookingSystem/src/employeeinfo.txt";
+	final static public String customertxt = "C:/Users/Nic/git/HotelSystem/BookingSystem/src/customerinfo.txt";
+	final static public String employeetxt = "C:/Users/Nic/git/HotelSystem/BookingSystem/src/employeeinfo.txt";
 	
 	
 	
@@ -17,20 +17,23 @@ public class BookingSystem {
 		
 		Customer temCustomer = new Customer("sam","000","001","1234" );
 		database.addCustomer(temCustomer);
-		database.printCustomers();
+		database.printWorkers();
+		/*database.printCustomers();*/
 		int exit = 5;
 		do{
 		Person logedinUser = menu.login();
 		int usertype = getUserType(logedinUser);
 		switch(usertype){
 			case(1):
-				menu.CustomerMenu();
+				menu.OwnerMenu();
 			break;
 			case(2):
 				menu.OwnerMenu();
 			break;
 			case(3):
-			exit =0;
+			System.out.println("\nThe system will exit now.");
+			System.out.println("Program has been terminated.");
+			System.exit(0);
 			break;
 			default:
 				
@@ -39,7 +42,7 @@ public class BookingSystem {
 		
 		}while(exit > 0);
 		database.saveCustomers();
-		
+		database.saveEmployees();
 		}
 	
 	static public int getUserType(Person person){

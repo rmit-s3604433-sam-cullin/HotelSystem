@@ -8,9 +8,8 @@ public class Person{
 	private String number;
 	private String password;
 
-	
 	public Person(){
-		
+	
 	}
 	public Person(String name,String number,String ID,String password){
 		this.name = name;
@@ -22,7 +21,7 @@ public class Person{
 	public String getContact(){
 		return number;
 	}
-	public void setContract(String number){
+	public void setContact(String number){
 		this.number = number;
 	}
 	public String getName() {
@@ -39,7 +38,6 @@ public class Person{
 		ID = iD;
 	}
 	
-
 	public void print(){
 		
 	}

@@ -15,7 +15,6 @@ public class DataBase{
 	@SuppressWarnings("unused")
 	static private LinkedList<Booking> Bookings;
 	static private LinkedList<Customer> Customers;
-	@SuppressWarnings("unused")
 	static private LinkedList<Employee> Employee;
 	
 	public DataBase(){
@@ -32,7 +31,7 @@ public class DataBase{
 		Customers.add(customer);
 	}
 	public void addWorker(Employee employee){
-		
+		Employee.add(employee);
 	}
 	public boolean removeWorker(Employee employee){
 		
@@ -78,12 +77,12 @@ public class DataBase{
 		for(Customer customer: Customers){
 			customer.print();
 		}
-		
 	}
 
 	public void printWorkers() {
-		// TODO Auto-generated method stub
-		
+		for(Employee employee: Employee){
+			employee.print();
+		}
 	}
 
 	public void printBookings() {
@@ -112,9 +111,13 @@ public class DataBase{
 	public void saveCustomers(){
 		for(Customer customer:Customers){
 			String cusString = customer.toString();
-			custRW.Write(cusString);
-			
-			
+			custRW.Write(cusString);	
+		}
+	}
+	public void saveEmployees(){
+		for(Employee employee:Employee){
+			String empString = employee.toString();
+			emplRW.Write(empString);	
 		}
 	}
 
