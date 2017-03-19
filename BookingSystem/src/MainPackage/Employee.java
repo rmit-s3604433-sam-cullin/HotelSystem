@@ -6,20 +6,18 @@ package MainPackage;
 public class Employee  extends Person{
 	
 	private String name;
-	private String position;
 	private String age;
-	private String empid;
 	private String contact;
+	private String position;
+	private String employeeid;
 	
 	public Employee(String name,String age,String contact,String title,String empid){
 		this.name = name;
 		this.age = age;
 		this.contact = contact;
 		this.position = title;
-		this.empid = empid;
+		this.employeeid = empid;
 	}
-
-
 
 	public void acceptWork() {
 		// TODO Auto-generated method stub
@@ -56,11 +54,9 @@ public class Employee  extends Person{
 		this.position = title;
 	}
 	public String getEmployeeID() {
-		return empid;
+		return employeeid;
 	}
 	public void setEmployeeID(String empid){
-		this.empid = empid;
+		this.employeeid = empid;
 	}
-
-	
 }

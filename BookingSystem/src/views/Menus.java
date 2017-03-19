@@ -10,18 +10,17 @@ import MainPackage.DataBase;
 import MainPackage.Employee;
 import MainPackage.Person;
 
-
 public class Menus{
   
 final static Scanner scan = new Scanner(System.in);
 	
 static DataBase database = BookingSystem.database;
 
-public void OwnerMenu() throws IOException {
+	public void OwnerMenu() throws IOException {
 		
 		boolean done = false;
-		Employee newEmployee;
-		new BookingSystem();
+		Employee employee = null;
+		/*new BookingSystem();*/
 		
 		while(!done) {
 			System.out.println("======================================");
@@ -38,7 +37,7 @@ public void OwnerMenu() throws IOException {
 			
 			switch (choice) {
 				case 1 : 
-					newEmployee = printAddEmployee();
+					employee = printAddEmployee();
 					database.printWorkers();
 					break;
 				case 4 :
@@ -48,7 +47,7 @@ public void OwnerMenu() throws IOException {
 			}
 		}
 	}
-public void CustomerMenu() throws FileNotFoundException, IOException {
+	public void CustomerMenu() throws FileNotFoundException, IOException {
 		
 		new BookingSystem();
 		String choice ;
@@ -75,7 +74,6 @@ public void CustomerMenu() throws FileNotFoundException, IOException {
 			}
 		}while(!choice.equals("2"));
 	}
-
 	public Customer printAddCustomer() {
 		
 		String name;
@@ -96,20 +94,15 @@ public void CustomerMenu() throws FileNotFoundException, IOException {
 		database.saveCustomers();
 		System.out.println("\nRegistration Successful!\n");
 		return newCustomer;
-		
 	}
-
 	public void printDataManager() {
 		// TODO Auto-generated method stub
 		
 	}
-
 	public Booking printBookingCreator() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 	public Employee printAddEmployee() {
 
 		String name;
@@ -134,7 +127,6 @@ public void CustomerMenu() throws FileNotFoundException, IOException {
 		System.out.println("\nSuccessfully added new employee to system!\n");
 		return newEmployee;
 	}
-
 	public Person login(){
 		int exit = 0;
 		Person person = null;
@@ -157,7 +149,7 @@ public void CustomerMenu() throws FileNotFoundException, IOException {
 					System.out.println("\nInvalid input\n");
 					break;
 			}
-			}while(exit == 0);
+		}while(exit == 0);
 		return person;
 	}
 	private String login1(){
