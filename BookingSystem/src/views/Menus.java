@@ -20,7 +20,7 @@ static DataBase database = BookingSystem.database;
 		
 		boolean done = false;
 		Employee employee = null;
-		/*new BookingSystem();*/
+		
 		
 		while(!done) {
 			System.out.println("======================================");
@@ -38,7 +38,8 @@ static DataBase database = BookingSystem.database;
 			switch (choice) {
 				case 1 : 
 					employee = printAddEmployee();
-					database.printWorkers();
+					database.addEmployee(employee);
+					database.printEmployee();
 					break;
 				case 4 :
 					System.out.println("\n");
@@ -90,8 +91,6 @@ static DataBase database = BookingSystem.database;
 		System.out.println("\nPlease enter ID: ");
 		id = scan.next();
 		newCustomer = new Customer(name,contact,id,password);
-		database.addCustomer(newCustomer);
-		database.saveCustomers();
 		System.out.println("\nRegistration Successful!\n");
 		return newCustomer;
 	}
@@ -122,8 +121,6 @@ static DataBase database = BookingSystem.database;
 		System.out.println("\nPlease enter new employee ID: ");
 		empid = scan.next();
 		newEmployee = new Employee(name,age,contact,title,empid);
-		database.addWorker(newEmployee);
-		database.saveEmployees();
 		System.out.println("\nSuccessfully added new employee to system!\n");
 		return newEmployee;
 	}
@@ -138,12 +135,14 @@ static DataBase database = BookingSystem.database;
 					exit = 1;
 					break;
 				case("2"):
-					person = printAddCustomer();
+					Customer tempCustomer = printAddCustomer();
+					database.addCustomer(tempCustomer);
+					person = (Person)tempCustomer;
 					break;
 				case("3"):
 					System.out.println("\nThe system will exit now.");
 					System.out.println("Program has been terminated.");
-					System.exit(0);
+					exit =1;
 					break;
 				default:
 					System.out.println("\nInvalid input\n");

@@ -7,8 +7,7 @@ import java.util.LinkedList;
 
 
 public class DataBase{
-	public ReadWrite custRW = new ReadWrite(BookingSystem.customertxt);
-	public ReadWrite emplRW = new ReadWrite(BookingSystem.employeetxt);
+	
 	
 	
 	
@@ -30,10 +29,10 @@ public class DataBase{
 	public void addCustomer(Customer customer){
 		Customers.add(customer);
 	}
-	public void addWorker(Employee employee){
+	public void addEmployee(Employee employee){
 		Employee.add(employee);
 	}
-	public boolean removeWorker(Employee employee){
+	public boolean removeEmplyee(Employee employee){
 		
 		return false;
 	}
@@ -79,7 +78,7 @@ public class DataBase{
 		}
 	}
 
-	public void printWorkers() {
+	public void printEmployee() {
 		for(Employee employee: Employee){
 			employee.print();
 		}
@@ -108,16 +107,22 @@ public class DataBase{
 		
 		return 0;
 	}
+	public void saveSystem(){
+		saveCustomers();
+		saveEmployees();
+	}
 	public void saveCustomers(){
-		for(Customer customer:Customers){
+		ReadWrite cusTxt = new ReadWrite();
+		for(Customer customer: Customers){
 			String cusString = customer.toString();
-			custRW.Write(cusString);	
+			cusTxt.Write(cusString,BookingSystem.customertxt);	
 		}
 	}
 	public void saveEmployees(){
-		for(Employee employee:Employee){
+		ReadWrite empTxt = new ReadWrite();
+		for(Employee employee: Employee){
 			String empString = employee.toString();
-			emplRW.Write(empString);	
+			empTxt.Write(empString,BookingSystem.employeetxt);	
 		}
 	}
 

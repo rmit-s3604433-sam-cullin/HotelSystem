@@ -25,14 +25,20 @@ public class Employee  extends Person{
 	}
 	@Override
 	public void print() {
-		// TODO Auto-generated method stub
+		System.out.println("name:"+this.name+" age:"+this.age+" conatact:"+this.contact+" position:"+this.position+" ID:"+this.employeeid);
 		
 	}
+	@Override
+	public String toString(){
+		String userString = this.getName()+","+this.getAge()+","+this.getContact()+","+this.getPosition()+","+this.getID();
+		
+		return userString;
+	}
 	
-	public String getName1() {
+	public String getName() {
 		return name;
 	}
-	public void setName1(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 	public String getAge(){

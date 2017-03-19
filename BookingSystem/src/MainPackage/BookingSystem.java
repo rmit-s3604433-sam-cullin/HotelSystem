@@ -7,41 +7,45 @@ public class BookingSystem {
 	
 	final static Scanner scan = new Scanner(System.in);
 	final static public DataBase database = new DataBase();
-	final static public String customertxt = "C:/Users/Nic/git/HotelSystem/BookingSystem/src/customerinfo.txt";
-	final static public String employeetxt = "C:/Users/Nic/git/HotelSystem/BookingSystem/src/employeeinfo.txt";
+	final static public String customertxt = "/Users/samcullin/git/HotelSystem/BookingSystem/src/customerinfo.txt";
+	final static public String employeetxt = "/Users/samcullin/git/HotelSystem/BookingSystem/src/employeeinfo.txt";
+	
+	
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		Menus menu = new Menus();
 		
 		Customer temCustomer = new Customer("sam","000","001","1234" );
+		Employee temEmployee = new Employee("bob","25","123456","dude","002");
+		database.addEmployee(temEmployee);
 		database.addCustomer(temCustomer);
-		/*database.printWorkers();*/
-		/*database.printCustomers();*/
+		database.printCustomers();
+		database.printEmployee();
 		int exit = 5;
 		do{
 		Person logedinUser = menu.login();
 		int usertype = getUserType(logedinUser);
-			switch(usertype){
-				case(1):
-					menu.OwnerMenu();
-				break;
-				case(2):
-					menu.OwnerMenu();
-				break;
-				case(3):
-				System.out.println("\nThe system will exit now.");
-				System.out.println("Program has been terminated.");
-				System.exit(0);
-				break;
-				default:
-			}
+		switch(usertype){
+			case(1):
+				menu.CustomerMenu();
+			break;
+			case(2):
+				menu.OwnerMenu();
+			break;
+			case(3):
+			exit =0;
+			break;
+			default:
+				
+		
+		}
+		
 		}while(exit > 0);
-		database.saveCustomers();
-		database.saveEmployees();
+		database.saveSystem();
 		}
 	
 	static public int getUserType(Person person){
-		int type = 1;
+		int type = 2;
 		if(person == null){
 			type =3;
 		}
