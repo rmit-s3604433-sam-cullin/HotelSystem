@@ -1,4 +1,4 @@
-package MainPackage;
+package mainpackage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
@@ -15,8 +15,8 @@ public class BookingSystem {
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		Menus menu = new Menus();
 		
-		Customer temCustomer = new Customer("sam","000","001","1234" );
-		Employee temEmployee = new Employee("bob","25","123456","dude","002");
+		Customer temCustomer = new Customer("c001","dan","abcd1234","1 Street Road, Melbourne","0401654752" );
+		Employee temEmployee = new Employee("bob","25","123456","dude","e002");
 		database.addEmployee(temEmployee);
 		database.addCustomer(temCustomer);
 		database.printCustomers();

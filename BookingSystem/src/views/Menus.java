@@ -3,12 +3,13 @@ package views;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
-import MainPackage.Booking;
-import MainPackage.BookingSystem;
-import MainPackage.Customer;
-import MainPackage.DataBase;
-import MainPackage.Employee;
-import MainPackage.Person;
+
+import mainpackage.Booking;
+import mainpackage.BookingSystem;
+import mainpackage.Customer;
+import mainpackage.DataBase;
+import mainpackage.Employee;
+import mainpackage.Person;
 
 public class Menus{
   
@@ -32,7 +33,7 @@ static DataBase database = BookingSystem.database;
 			System.out.println("\n4. Employeee availability");
 			System.out.println("\n4. Logout");
 			System.out.println("======================================");
-			System.out.println("PLease enter you choice: ");
+			System.out.println("Please enter you choice: ");
 			int choice = scan.nextInt();
 			
 			switch (choice) {
@@ -77,20 +78,23 @@ static DataBase database = BookingSystem.database;
 	}
 	public Customer printAddCustomer() {
 		
+		String id;
 		String name;
 		String password;
+		String address;
 		String contact;
 		Customer newCustomer;
-		String id;
 		System.out.println("\nPlease enter Name: ");
-		name = scan.next();
+		name = scan.nextLine();
 		System.out.println("\nPlease enter Password: ");
 		password = scan.next();
+		System.out.println("\nPlease enter Address: ");
+		address = scan.nextLine();
 		System.out.println("\nPlease enter Contact Number: ");
 		contact = scan.next();
 		System.out.println("\nPlease enter ID: ");
 		id = scan.next();
-		newCustomer = new Customer(name,contact,id,password);
+		newCustomer = new Customer(id,name,password,address,contact);
 		System.out.println("\nRegistration Successful!\n");
 		return newCustomer;
 	}
@@ -128,7 +132,7 @@ static DataBase database = BookingSystem.database;
 		int exit = 0;
 		Person person = null;
 		do{
-			String x = login1();
+			String x = SystemMenu();
 			switch(x){
 				case("1"):
 					person = login2();
@@ -151,7 +155,7 @@ static DataBase database = BookingSystem.database;
 		}while(exit == 0);
 		return person;
 	}
-	private String login1(){
+	private String SystemMenu(){
 		System.out.println("======================================");
 		System.out.println("   John's Electrician Booking System");
 		System.out.println("======================================");

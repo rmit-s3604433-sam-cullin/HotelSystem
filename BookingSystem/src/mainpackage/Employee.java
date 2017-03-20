@@ -1,9 +1,6 @@
-package MainPackage;
+package mainpackage;
 
-
-
-
-public class Employee  extends Person{
+public class Employee extends Person{
 	
 	private String name;
 	private String age;
@@ -47,10 +44,10 @@ public class Employee  extends Person{
 	public void setAge(String age){
 		this.age = age;
 	}
-	public String getContact1(){
+	public String getContact(){
 		return contact;
 	}
-	public void setContact1(String contact){
+	public void setContact(String contact){
 		this.contact = contact;
 	}
 	public String getPosition() {
