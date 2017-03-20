@@ -2,6 +2,8 @@ package views;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.*;
 import java.util.Scanner;
 
 import mainpackage.Booking;
@@ -10,12 +12,13 @@ import mainpackage.Customer;
 import mainpackage.DataBase;
 import mainpackage.Employee;
 import mainpackage.Person;
+import mainpackage.ReadWrite;
 
 public class Menus {
   
 final static Scanner scan = new Scanner(System.in);
 	
-static DataBase database = BookingSystem.database;
+/*static DataBase database = BookingSystem.database;*/
 
 	public void OwnerMenu() throws IOException {
 		
@@ -39,8 +42,8 @@ static DataBase database = BookingSystem.database;
 			switch (choice) {
 				case 1 : 
 					employee = printAddEmployee();
-					database.addEmployee(employee);
-					database.printEmployee();
+					/*database.addEmployee(employee);
+					database.printEmployee();*/
 					break;
 				case 4 :
 					System.out.println("\n");
@@ -83,9 +86,10 @@ static DataBase database = BookingSystem.database;
 		String password;
 		String address;
 		String contact;
+		System.out.println("\nPlease enter ID: ");
+		id = scan.next();
 		System.out.println("\nPlease enter Name: ");
-		name = scan.nextLine();
-		scan.nextLine();
+		name = scan.next();
 		System.out.println("\nPlease enter Password: ");
 		password = scan.next();
 		System.out.println("\nPlease enter Address: ");
@@ -93,8 +97,6 @@ static DataBase database = BookingSystem.database;
 		scan.nextLine();
 		System.out.println("\nPlease enter Contact Number: ");
 		contact = scan.next();
-		System.out.println("\nPlease enter ID: ");
-		id = scan.next();
 		Person newCustomer = new Customer(id,name,password,address,contact);
 		System.out.println("\nRegistration Successful!\n");
 		return newCustomer;
@@ -129,7 +131,7 @@ static DataBase database = BookingSystem.database;
 		System.out.println("\nSuccessfully added new employee to system!\n");
 		return newEmployee;
 	}
-	public Person login(){
+	public boolean login() throws IOException{
 		int exit = 0;
 		Person person = null;
 		do{
@@ -140,22 +142,48 @@ static DataBase database = BookingSystem.database;
 					exit = 1;
 					break;
 				case("2"):
-					Person tempPerson = printAddCustomer();
-					database.addCustomer(tempPerson);
-					database.saveCustomers();
-					person = (Person)tempPerson;
+					String ID = "c", name = "", password = "", address = "", contact = "";
+					Person nC = new Customer(ID,name,password,address,contact);
+					scan.nextLine();
+					System.out.println("\nPlease enter Name: ");
+					name = scan.nextLine();
+					nC.setName(name);
+					System.out.println("\nPlease enter Password: ");
+					password = scan.nextLine();
+					nC.setPassword(password);
+					System.out.println("\nPlease enter Address: ");
+					address = scan.nextLine();
+					nC.setAddress(address);
+					System.out.println("\nPlease enter Contact Number: ");
+					contact = scan.nextLine();
+					nC.setContact(contact);
+					System.out.println("\nPlease enter ID: ");
+					ID += scan.nextLine();
+					nC.setID(ID);
+					System.out.println("\nRegistration Successful!\n");
+					System.out.println(nC.toString());
+					String filename = "customerinfo.txt";
+					try (FileWriter fw = new FileWriter(filename, true);
+						BufferedWriter bw = new BufferedWriter(fw);
+						PrintWriter outputStream = new PrintWriter(bw)){
+						outputStream.write("\n" + nC.toString());
+						outputStream.close();
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+					}
+					person = (Person)nC;
 					break;
 				case("3"):
 					System.out.println("\nThe system will exit now.");
-					System.out.println("Program has been terminated.");
-					exit =1;
+					exit = 1;
 					break;
 				default:
 					System.out.println("\nInvalid input\n");
 					break;
 			}
-		}while(exit == 0);
-		return person;
+		} while (exit == 0);
+		
+		return true;
 	}
 	private String SystemMenu(){
 		System.out.println("======================================");

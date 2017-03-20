@@ -8,7 +8,7 @@ public class Customer extends Person {
 	public Customer(String ID, String name, String password, String address, String number) {
 		super(ID, name, password, address, number);
 	}
-	public Customer(String textfile){
+	public Customer(){
 		
 	}
 
@@ -23,28 +23,23 @@ public class Customer extends Person {
 	}
 	@Override
 	public void setID(String ID) {
-		// TODO Auto-generated method stub
-		
+		this.ID = ID;
 	}
 	@Override
 	public void setName(String name) {
-		// TODO Auto-generated method stub
-		
+		this.name = name;
 	}
 	@Override
 	public void setAddress(String address) {
-		// TODO Auto-generated method stub
-		
+		this.address = address;
 	}
 	@Override
 	public void setContact(String number) {
-		// TODO Auto-generated method stub
-		
+		this.number = number;
 	}
 	@Override
 	public void setPassword(String password) {
-		// TODO Auto-generated method stub
-		
+		this.password = password;
 	}
 	
 

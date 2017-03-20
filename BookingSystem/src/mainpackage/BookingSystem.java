@@ -1,45 +1,55 @@
 package mainpackage;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 import views.Menus;
+import java.sql.*;
+
 public class BookingSystem {
 	
 	final static Scanner scan = new Scanner(System.in);
-	final static public DataBase database = new DataBase();
 	final static public String customertxt = "customerinfo.txt";
 	final static public String employeetxt = "/Users/samcullin/git/HotelSystem/BookingSystem/src/employeeinfo.txt";
 	
 	
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
+		try {
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost/", "root", "");
+			System.out.println("Connection success!");
+		} catch (Exception e) {
+			System.err.println(e);
+		}
+		
 		Menus menu = new Menus();
 		
 		Customer temCustomer = new Customer("c001","jim","abcd1234","1 Street Road, Melbourne","0401654752" );
 		Employee temEmployee = new Employee("bob","25","123456","dude","e002");
-		database.addEmployee(temEmployee);
+		/*database.addEmployee(temEmployee);
 		database.addCustomer(temCustomer);
 		database.printCustomers();
-		database.printEmployee();
-		int exit = 5;
-		do{
-		Person logedinUser = menu.login();
-		int usertype = getUserType(logedinUser);
-		switch(usertype){
-			case(1):
-				menu.CustomerMenu();
-			break;
-			case(2):
-				menu.OwnerMenu();
-			break;
-			case(3):
-			exit =0;
-			break;
-			default:
-		}
+		database.printEmployee();*/
+		boolean done = false;
+		while (!done) {
+			done = menu.login();
+			System.out.println("Program has been terminated.");
+			/*int usertype = getUserType(logedinUser);
+			switch(usertype){
+				case(1):
+					menu.CustomerMenu();
+				break;
+				case(2):
+					menu.OwnerMenu();
+				break;
+				case(3):
+				exit =0;
+				break;
+				default:
+			}*/
 		
-		}while(exit > 0);
-		database.saveSystem();
+		}
+		/*database.saveSystem();*/
 		}
 	
 	static public int getUserType(Person person){
