@@ -13,19 +13,13 @@ public class Customer extends Person {
 	}
 
 	
-	public void book() {
+	public void createBooking() {
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
-	public void print() {
-		System.out.println("name:" + name + "   number:" + number + "   Password:" + password + "  ID:" + ID);
-		
-	}
-	@Override
 	public String toString(){
-		String userString = ID + "," + name + "," + password + "," + address + "," + number + ",";
-		return userString;
+		return ID + "," + name + "," + password + "," + address + "," + number;
 	}
 	@Override
 	public void setID(String ID) {

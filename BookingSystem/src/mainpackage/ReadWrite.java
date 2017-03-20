@@ -1,14 +1,23 @@
 package mainpackage;
 
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class ReadWrite {
 	
-
-	
-	public ReadWrite(){
+	public void saveToFile(String cusString) {
+		try {
+			PrintWriter outputStream = new PrintWriter(BookingSystem.customertxt);
+			outputStream.write(cusString.toString() + ":");
+			outputStream.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	/*public ReadWrite(){
 		
 	}
 
@@ -24,6 +33,6 @@ public class ReadWrite {
 		catch (IOException e) {
 				e.printStackTrace();
 		} 
-	}
+	}*/
 	
 }

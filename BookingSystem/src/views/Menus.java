@@ -11,7 +11,7 @@ import mainpackage.DataBase;
 import mainpackage.Employee;
 import mainpackage.Person;
 
-public class Menus{
+public class Menus {
   
 final static Scanner scan = new Scanner(System.in);
 	
@@ -76,25 +76,26 @@ static DataBase database = BookingSystem.database;
 			}
 		}while(!choice.equals("2"));
 	}
-	public Customer printAddCustomer() {
+	public Person printAddCustomer() {
 		
 		String id;
 		String name;
 		String password;
 		String address;
 		String contact;
-		Customer newCustomer;
 		System.out.println("\nPlease enter Name: ");
 		name = scan.nextLine();
+		scan.nextLine();
 		System.out.println("\nPlease enter Password: ");
 		password = scan.next();
 		System.out.println("\nPlease enter Address: ");
 		address = scan.nextLine();
+		scan.nextLine();
 		System.out.println("\nPlease enter Contact Number: ");
 		contact = scan.next();
 		System.out.println("\nPlease enter ID: ");
 		id = scan.next();
-		newCustomer = new Customer(id,name,password,address,contact);
+		Person newCustomer = new Customer(id,name,password,address,contact);
 		System.out.println("\nRegistration Successful!\n");
 		return newCustomer;
 	}
@@ -139,9 +140,10 @@ static DataBase database = BookingSystem.database;
 					exit = 1;
 					break;
 				case("2"):
-					Customer tempCustomer = printAddCustomer();
-					database.addCustomer(tempCustomer);
-					person = (Person)tempCustomer;
+					Person tempPerson = printAddCustomer();
+					database.addCustomer(tempPerson);
+					database.saveCustomers();
+					person = (Person)tempPerson;
 					break;
 				case("3"):
 					System.out.println("\nThe system will exit now.");

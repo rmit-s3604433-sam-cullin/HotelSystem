@@ -4,29 +4,25 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-
-
 public class DataBase{
 	
-	
-	
-	
-	@SuppressWarnings("unused")
+	/*@SuppressWarnings("unused")
 	static private LinkedList<Booking> Bookings;
-	static private LinkedList<Customer> Customers;
+	static private LinkedList<Person> Customers;
 	static private LinkedList<Employee> Employee;
 	
 	public DataBase(){
 		Bookings =  new LinkedList<Booking>();
-		Customers = new LinkedList<Customer>();
+		Customers = new LinkedList<Person>();
 		Employee = new LinkedList<Employee>();
-	
-	}
+	}*/
+	LinkedList<Person> Customers = new LinkedList<Person>();
+	LinkedList<Employee> Employee = new LinkedList<Employee>();
 	
 	public void addBooking(Booking booking){
-		//bookings should be added in order of their due dates
+		// bookings should be added in order of their due dates
 	}
-	public void addCustomer(Customer customer){
+	public void addCustomer(Person customer){
 		Customers.add(customer);
 	}
 	public void addEmployee(Employee employee){
@@ -73,14 +69,14 @@ public class DataBase{
 	}
 
 	public void printCustomers() {
-		for(Customer customer: Customers){
-			customer.print();
+		for(Person customer: Customers){
+			customer.toString();
 		}
 	}
 
 	public void printEmployee() {
 		for(Employee employee: Employee){
-			employee.print();
+			employee.toString();
 		}
 	}
 
@@ -109,22 +105,22 @@ public class DataBase{
 	}
 	public void saveSystem(){
 		saveCustomers();
-		saveEmployees();
+		//saveEmployees();
 	}
 	public void saveCustomers(){
 		ReadWrite cusTxt = new ReadWrite();
-		for(Customer customer: Customers){
+		for(Person customer: Customers){
 			String cusString = customer.toString();
-			cusTxt.Write(cusString,BookingSystem.customertxt);	
+			cusTxt.saveToFile(cusString);
 		}
 	}
-	public void saveEmployees(){
+	/*public void saveEmployees(){
 		ReadWrite empTxt = new ReadWrite();
 		for(Employee employee: Employee){
 			String empString = employee.toString();
-			empTxt.Write(empString,BookingSystem.employeetxt);	
+			empTxt.saveToFile(cusString)	
 		}
-	}
+	}*/
 
 }
 

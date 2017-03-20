@@ -1,6 +1,6 @@
 package mainpackage;
 
-public abstract class Person{
+public abstract class Person {
 	protected String ID;
 	protected String name;
 	protected String password;
@@ -40,8 +40,8 @@ public abstract class Person{
 		return number;
 	}
 	
-public void print(){
-		
+	public String toString(){
+		return ID + "," + name + "," + password + "," + address + "," + number;
 	}
 
 }

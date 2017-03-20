@@ -20,11 +20,11 @@ public class Employee extends Person{
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
+	/*@Override
 	public void print() {
 		System.out.println("name:"+this.name+" age:"+this.age+" conatact:"+this.contact+" position:"+this.position+" ID:"+this.employeeid);
 		
-	}
+	}*/
 	@Override
 	public String toString(){
 		String userString = this.getName()+","+this.getAge()+","+this.getContact()+","+this.getPosition()+","+this.getID();
@@ -61,5 +61,23 @@ public class Employee extends Person{
 	}
 	public void setEmployeeID(String empid){
 		this.employeeid = empid;
+	}
+
+	@Override
+	public void setID(String ID) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setPassword(String password) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setAddress(String address) {
+		// TODO Auto-generated method stub
+		
 	}
 }

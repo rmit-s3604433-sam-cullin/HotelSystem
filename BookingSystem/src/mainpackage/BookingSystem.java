@@ -7,7 +7,7 @@ public class BookingSystem {
 	
 	final static Scanner scan = new Scanner(System.in);
 	final static public DataBase database = new DataBase();
-	final static public String customertxt = "/Users/samcullin/git/HotelSystem/BookingSystem/src/customerinfo.txt";
+	final static public String customertxt = "customerinfo.txt";
 	final static public String employeetxt = "/Users/samcullin/git/HotelSystem/BookingSystem/src/employeeinfo.txt";
 	
 	
@@ -15,7 +15,7 @@ public class BookingSystem {
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		Menus menu = new Menus();
 		
-		Customer temCustomer = new Customer("c001","dan","abcd1234","1 Street Road, Melbourne","0401654752" );
+		Customer temCustomer = new Customer("c001","jim","abcd1234","1 Street Road, Melbourne","0401654752" );
 		Employee temEmployee = new Employee("bob","25","123456","dude","e002");
 		database.addEmployee(temEmployee);
 		database.addCustomer(temCustomer);
@@ -36,8 +36,6 @@ public class BookingSystem {
 			exit =0;
 			break;
 			default:
-				
-		
 		}
 		
 		}while(exit > 0);
