@@ -8,7 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import views.Menus;
+import views.Menu;
 
 public class OwnerMenu {
 
@@ -22,7 +22,7 @@ public class OwnerMenu {
 
 	@Test
 	public void OwnerMenuTest() throws IOException {
-		Menus test = new Menus();
+		Menu test = new Menu();
 		test.OwnerMenu();
 	}
 
