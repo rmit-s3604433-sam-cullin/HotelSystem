@@ -161,6 +161,7 @@ final static Scanner scan = new Scanner(System.in);
 					nC.setID(ID);
 					System.out.println("\nRegistration Successful!\n");
 					System.out.println(nC.toString());
+					/* PLEASE CHANGE THE BELOW FILENAME TO YOUR VALID DIRECTORY */
 					String filename = "/Users/Daniel/Documents/Bachelor Semester 05/Software Engineering - PT/HotelSystemGit/HotelSystem/BookingSystem/src/customerinfo.txt";
 					try (FileWriter fw = new FileWriter(filename, true);
 						BufferedWriter bw = new BufferedWriter(fw);
