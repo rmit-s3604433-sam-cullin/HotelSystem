@@ -47,7 +47,7 @@ public class BookingSystem {
 				System.out.print("name: " + resultSet2.getString("name") + " | ");
 				System.out.print("password: " + resultSet2.getString("password") + " | ");
 				System.out.print("address: " + resultSet2.getString("address") + " | ");
-				System.out.println("number: " + resultSet2.getInt("number") + " | ");
+				System.out.println("number: " + resultSet2.getInt("number"));
 			}
 		} catch (Exception e) {
 			System.err.println(e);
