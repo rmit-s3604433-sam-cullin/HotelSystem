@@ -25,7 +25,6 @@ final static Scanner scan = new Scanner(System.in);
 		boolean done = false;
 		Employee employee = null;
 		
-		
 		while(!done) {
 			System.out.println("======================================");
 			System.out.println("   Johns Electrician Booking System");
@@ -79,7 +78,7 @@ final static Scanner scan = new Scanner(System.in);
 			}
 		}while(!choice.equals("2"));
 	}
-	public Person printAddCustomer() {
+	/*public Person printAddCustomer() {
 		
 		String id;
 		String name;
@@ -100,7 +99,7 @@ final static Scanner scan = new Scanner(System.in);
 		Person newCustomer = new Customer(id,name,password,address,contact);
 		System.out.println("\nRegistration Successful!\n");
 		return newCustomer;
-	}
+	}*/
 	public void printDataManager() {
 		// TODO Auto-generated method stub
 		
@@ -135,7 +134,7 @@ final static Scanner scan = new Scanner(System.in);
 		int exit = 0;
 		Person person = null;
 		do{
-			String x = SystemMenu();
+			String x = systemMenu();
 			switch(x){
 				case("1"):
 					person = login2();
@@ -162,11 +161,11 @@ final static Scanner scan = new Scanner(System.in);
 					nC.setID(ID);
 					System.out.println("\nRegistration Successful!\n");
 					System.out.println(nC.toString());
-					String filename = "customerinfo.txt";
+					String filename = "/Users/Daniel/Documents/Bachelor Semester 05/Software Engineering - PT/HotelSystemGit/HotelSystem/BookingSystem/src/customerinfo.txt";
 					try (FileWriter fw = new FileWriter(filename, true);
 						BufferedWriter bw = new BufferedWriter(fw);
 						PrintWriter outputStream = new PrintWriter(bw)){
-						outputStream.write("\n" + nC.toString());
+						outputStream.write(nC.toString() + "\n");
 						outputStream.close();
 					} catch (FileNotFoundException e) {
 						e.printStackTrace();
@@ -185,13 +184,13 @@ final static Scanner scan = new Scanner(System.in);
 		
 		return true;
 	}
-	private String SystemMenu(){
+	private String systemMenu(){
 		System.out.println("======================================");
 		System.out.println("   John's Electrician Booking System");
 		System.out.println("======================================");
 		System.out.println("1. Login");
-		System.out.println("\n2. Register");
-		System.out.println("\n3. Quit");
+		System.out.println("2. Register");
+		System.out.println("3. Quit");
 		System.out.println("======================================");
 		System.out.print("Please Enter Your Choice: ");
 		String i = scan.next();

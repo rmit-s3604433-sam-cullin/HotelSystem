@@ -9,7 +9,7 @@ import java.sql.*;
 public class BookingSystem {
 	
 	final static Scanner scan = new Scanner(System.in);
-	final static public String customertxt = "customerinfo.txt";
+	final static public String customertxt = "/Users/samcullin/git/HotelSystem/BookingSystem/src/customerinfo.txt";
 	final static public String employeetxt = "/Users/samcullin/git/HotelSystem/BookingSystem/src/employeeinfo.txt";
 	
 	
