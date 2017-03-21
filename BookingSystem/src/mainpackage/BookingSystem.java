@@ -3,48 +3,59 @@ package mainpackage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
-import views.Menus;
+import views.Menu;
 import java.sql.*;
 
 public class BookingSystem {
 	
-	//Class.forname("org.sqlite.JDBC");
 	final static Scanner scan = new Scanner(System.in);
-	final static public String customertxt = "/Users/samcullin/git/HotelSystem/BookingSystem/src/customerinfo.txt";
-	final static public String employeetxt = "/Users/samcullin/git/HotelSystem/BookingSystem/src/employeeinfo.txt";
 	Person customers[];
 	Person employees[];
 	Person admins[];
 	
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
+		
+		Menu menu = new Menu();
+		boolean done = false;
+		
 		try {
 			Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 			System.out.println("Connection success!");
-			
 			Statement statement = con.createStatement();
+			
 			/*
 			statement.executeUpdate("CREATE TABLE customer(custid STRING, name STRING, password STRING, address STRING, number INTEGER)");
-			statement.executeUpdate("INSERT INTO customer values('c001', 'Sean Daley', 'abcd1234', '108 Dandenong Rd, Caulfield 3162', '0420516309')");
+			statement.executeUpdate("INSERT INTO customer values('c001', 'Patrick Cripps', 'abcd1234', '520 South Rd, Ormond 3145', '0410622387')");
+			statement.executeUpdate("INSERT INTO employee values('e002', 'Marc Murphy', '45 Derby St, Kew 3101', '0430655874', '27', 'Electrician')");
+			statement.executeUpdate("INSERT INTO employee values('e003', 'Sebastian Vettel', '73 Pakington St, St Kilda 3182', '0408711963', '36', 'Labourer')");
 			*/
+			statement.executeUpdate("DELETE FROM customer WHERE custid = ' c004'");
 			
-			ResultSet resultSet = statement.executeQuery("SELECT * from customer");
+			ResultSet resultSet = statement.executeQuery("SELECT * from employee");
 			while(resultSet.next()) {
-				System.out.println("name = " + resultSet.getString("name"));
-				System.out.println("id = " + resultSet.getString("custid"));
+				System.out.print("id: " + resultSet.getString("empid") + " | ");
+				System.out.print("name: " + resultSet.getString("name") + " | ");
+				System.out.print("address: " + resultSet.getString("address") + " | ");
+				System.out.print("number: " + resultSet.getInt("number") + " | ");
+				System.out.print("age: " + resultSet.getInt("age") + " | ");
+				System.out.println("position: " + resultSet.getString("position"));
+			}
+			System.out.println("");
+			ResultSet resultSet2 = statement.executeQuery("SELECT * from customer");
+			while(resultSet2.next()) {
+				System.out.print("custid: " + resultSet2.getString("custid") + " | ");
+				System.out.print("name: " + resultSet2.getString("name") + " | ");
+				System.out.print("password: " + resultSet2.getString("password") + " | ");
+				System.out.print("address: " + resultSet2.getString("address") + " | ");
+				System.out.println("number: " + resultSet2.getInt("number") + " | ");
 			}
 		} catch (Exception e) {
 			System.err.println(e);
 		}
-		
-		Menus menu = new Menus();
-		/*database.addEmployee(temEmployee);
-		database.addCustomer(temCustomer);
-		database.printCustomers();
-		database.printEmployee();*/
-		boolean done = false;
+
 		while (!done) {
-			done = menu.login();
+			done = menu.systemMenu();
 			System.out.println("Program has been terminated.");
 			/*int usertype = getUserType(logedinUser);
 			switch(usertype){
@@ -61,8 +72,7 @@ public class BookingSystem {
 			}*/
 		
 		}
-		/*database.saveSystem();*/
-		}
+	}
 	
 	static public int getUserType(Person person){
 		int type = 2;
@@ -71,73 +81,4 @@ public class BookingSystem {
 		}
 		return type;
 	}
-		/*int val = 0;
-		boolean done = false;
-		Login ownerlogin = new Login();
-		Login customerlogin = new Login();
-		Register register = new Register();
-		
-		while (!done) {
-			
-			printMenu();
-			try {
-				System.out.println("Please enter your choice: ");
-				val = scan.nextInt();
-			} catch(InputMismatchException exception) {
-				System.out.println("\nInvalid : Please choose from the following menu.\n");
-				scan.nextLine();
-				val = -1;
-			}
-
-			switch ( val ) {
-				case -1:
-					done = false;
-					break;
-				case 1:
-					while(!done) {
-						System.out.println("\n======================================");
-						System.out.println("   Johns Electrician Booking System");
-						System.out.println("======================================");
-						System.out.println("1. Business Owner");
-						System.out.println("\n2. Customer");
-						System.out.println("======================================");
-						System.out.println("Please choose a category: ");
-						int choice = scan.nextInt();
-						
-						switch (choice) {
-							case 1:
-								ownerlogin.login1();
-								break;
-							case 2:
-								customerlogin.login2();
-								break;
-							default:
-								System.out.println("\nInvalid : Please choose one of the category stated above.");
-						}
-					}
-					done = true;
-					break;
-				case 2:
-					register.register();
-					done = true;
-					break;
-				case 3:
-					System.out.println("\nThe system will exit now.");
-					System.out.println("Program has been terminated.");
-					System.exit(0);
-					break;
-				default:
-					System.out.println("\nInvalid : Please choose from the following menu.\n");
-			}
-		}
-	}
-	public static void printMenu() {
-		System.out.println("======================================");
-		System.out.println("   Johns Electrician Booking System");
-		System.out.println("======================================");
-		System.out.println("1. Login");
-		System.out.println("\n2. Register");
-		System.out.println("\n3. Quit");
-		System.out.println("======================================");
-	}*/
 }

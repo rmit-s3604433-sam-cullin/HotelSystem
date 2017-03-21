@@ -3,16 +3,15 @@ package mainpackage;
 
 
 public class Customer extends Person {
-
 	
-	public Customer(String ID, String name, String password, String address, int number) {
-		super(ID, name, password, address, number);
-	}
 	public Customer(){
 		
 	}
+	public Customer(String ID, String name, String password, String address, int number) {
+		super(ID, name, password, address, number);
+	}
+	public String getPassword() { return password; }
 
-	
 	public void createBooking() {
 		// TODO Auto-generated method stub
 		
@@ -34,7 +33,7 @@ public class Customer extends Person {
 		this.address = address;
 	}
 	@Override
-	public void setContact(int number) {
+	public void setNumber(int number) {
 		this.number = number;
 	}
 	@Override
