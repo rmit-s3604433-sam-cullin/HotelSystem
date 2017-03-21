@@ -1,10 +1,9 @@
 package mainpackage;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Scanner;
-import views.Menu;
+import java.io.*;
 import java.sql.*;
+import views.Menu;
 
 public class BookingSystem {
 	
