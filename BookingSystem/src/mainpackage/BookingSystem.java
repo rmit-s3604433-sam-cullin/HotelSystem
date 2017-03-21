@@ -8,24 +8,36 @@ import java.sql.*;
 
 public class BookingSystem {
 	
+	//Class.forname("org.sqlite.JDBC");
 	final static Scanner scan = new Scanner(System.in);
 	final static public String customertxt = "/Users/samcullin/git/HotelSystem/BookingSystem/src/customerinfo.txt";
 	final static public String employeetxt = "/Users/samcullin/git/HotelSystem/BookingSystem/src/employeeinfo.txt";
-	
+	Person customers[];
+	Person employees[];
+	Person admins[];
 	
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost/", "root", "");
+			Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 			System.out.println("Connection success!");
+			
+			Statement statement = con.createStatement();
+			/*
+			statement.executeUpdate("CREATE TABLE customer(custid STRING, name STRING, password STRING, address STRING, number INTEGER)");
+			statement.executeUpdate("INSERT INTO customer values('c001', 'Sean Daley', 'abcd1234', '108 Dandenong Rd, Caulfield 3162', '0420516309')");
+			*/
+			
+			ResultSet resultSet = statement.executeQuery("SELECT * from customer");
+			while(resultSet.next()) {
+				System.out.println("name = " + resultSet.getString("name"));
+				System.out.println("id = " + resultSet.getString("custid"));
+			}
 		} catch (Exception e) {
 			System.err.println(e);
 		}
 		
 		Menus menu = new Menus();
-		
-		Customer temCustomer = new Customer("c001","jim","abcd1234","1 Street Road, Melbourne","0401654752" );
-		Employee temEmployee = new Employee("bob","25","123456","dude","e002");
 		/*database.addEmployee(temEmployee);
 		database.addCustomer(temCustomer);
 		database.printCustomers();

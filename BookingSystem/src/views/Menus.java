@@ -40,8 +40,8 @@ final static Scanner scan = new Scanner(System.in);
 			
 			switch (choice) {
 				case 1 : 
-					employee = printAddEmployee();
-					/*database.addEmployee(employee);
+					/*employee = printAddEmployee();
+					database.addEmployee(employee);
 					database.printEmployee();*/
 					break;
 				case 4 :
@@ -108,7 +108,7 @@ final static Scanner scan = new Scanner(System.in);
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public Employee printAddEmployee() {
+	/*public Employee printAddEmployee() {
 
 		String name;
 		String age;
@@ -129,8 +129,8 @@ final static Scanner scan = new Scanner(System.in);
 		newEmployee = new Employee(name,age,contact,title,empid);
 		System.out.println("\nSuccessfully added new employee to system!\n");
 		return newEmployee;
-	}
-	public boolean login() throws IOException{
+	}*/
+	public boolean login() throws IOException {
 		int exit = 0;
 		Person person = null;
 		do{
@@ -141,7 +141,7 @@ final static Scanner scan = new Scanner(System.in);
 					exit = 1;
 					break;
 				case("2"):
-					String ID = "c", name = "", password = "", address = "", contact = "";
+					/*String ID = "c", name = "", password = "", address = "", contact = "";
 					Person nC = new Customer(ID,name,password,address,contact);
 					scan.nextLine();
 					System.out.println("\nPlease enter Name: ");
@@ -161,7 +161,7 @@ final static Scanner scan = new Scanner(System.in);
 					nC.setID(ID);
 					System.out.println("\nRegistration Successful!\n");
 					System.out.println(nC.toString());
-					/* PLEASE CHANGE THE BELOW FILENAME TO YOUR VALID DIRECTORY */
+					// PLEASE CHANGE THE BELOW FILENAME TO YOUR VALID DIRECTORY
 					String filename = "/Users/Daniel/Documents/Bachelor Semester 05/Software Engineering - PT/HotelSystemGit/HotelSystem/BookingSystem/src/customerinfo.txt";
 					try (FileWriter fw = new FileWriter(filename, true);
 						BufferedWriter bw = new BufferedWriter(fw);
@@ -171,7 +171,9 @@ final static Scanner scan = new Scanner(System.in);
 					} catch (FileNotFoundException e) {
 						e.printStackTrace();
 					}
-					person = (Person)nC;
+					person = (Person)nC;*/
+					ReadWrite write = new ReadWrite();
+					write.saveCustToFile();
 					break;
 				case("3"):
 					System.out.println("\nThe system will exit now.");
@@ -204,7 +206,8 @@ final static Scanner scan = new Scanner(System.in);
 		do{
 		System.out.println("\nPlease Enter User ID or 'exit'"); 
 		ID = scan.next();
-		person = database.getPersonByID(ID);
+		ReadWrite read = new ReadWrite();
+		//read.loadCustFromFile();
 		if(!ID.equals("exit") && person == null) {
 			System.out.println("Invalid : Please re-enter User ID");
 		}

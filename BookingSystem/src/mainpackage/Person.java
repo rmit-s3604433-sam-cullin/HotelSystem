@@ -5,12 +5,12 @@ public abstract class Person {
 	protected String name;
 	protected String password;
 	protected String address;
-	protected String number;
+	protected int number;
 
 	public Person(){
 	
 	}
-	public Person(String ID, String name, String password, String address, String number){
+	public Person(String ID, String name, String password, String address, int number){
 		this.ID = ID;
 		this.name = name;
 		this.password = password;
@@ -22,7 +22,7 @@ public abstract class Person {
 	public abstract void setName(String name);
 	public abstract void setPassword(String password);
 	public abstract void setAddress(String address);
-	public abstract void setContact(String number);
+	public abstract void setContact(int number);
 	
 	public String getID() {
 		return ID;
@@ -36,7 +36,7 @@ public abstract class Person {
 	public String getAddress() {
 		return address;
 	}
-	public String getNumber() {
+	public int getNumber() {
 		return number;
 	}
 	

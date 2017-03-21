@@ -103,24 +103,5 @@ public class DataBase{
 		
 		return 0;
 	}
-	public void saveSystem(){
-		saveCustomers();
-		//saveEmployees();
-	}
-	public void saveCustomers(){
-		ReadWrite cusTxt = new ReadWrite();
-		for(Person customer: Customers){
-			String cusString = customer.toString();
-			cusTxt.saveToFile(cusString);
-		}
-	}
-	/*public void saveEmployees(){
-		ReadWrite empTxt = new ReadWrite();
-		for(Employee employee: Employee){
-			String empString = employee.toString();
-			empTxt.saveToFile(cusString)	
-		}
-	}*/
-
 }
 

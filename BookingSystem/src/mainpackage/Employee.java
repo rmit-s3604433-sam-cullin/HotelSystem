@@ -2,18 +2,11 @@ package mainpackage;
 
 public class Employee extends Person{
 	
-	private String name;
 	private String age;
-	private String contact;
 	private String position;
-	private String employeeid;
 	
-	public Employee(String name,String age,String contact,String title,String empid){
-		this.name = name;
-		this.age = age;
-		this.contact = contact;
-		this.position = title;
-		this.employeeid = empid;
+	public Employee(String ID, String name, String password, String address, int number) {
+		super(ID, name, password, address, number);
 	}
 
 	public void acceptWork() {
@@ -27,57 +20,27 @@ public class Employee extends Person{
 	}*/
 	@Override
 	public String toString(){
-		String userString = this.getName()+","+this.getAge()+","+this.getContact()+","+this.getPosition()+","+this.getID();
-		
-		return userString;
+		return ID + "," + name + "," + password + "," + address + "," + number;
 	}
 	
-	public String getName() {
-		return name;
+	@Override
+	public void setID(String ID) {
+		this.ID = ID;
 	}
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getAge(){
-		return age;
-	}
-	public void setAge(String age){
-		this.age = age;
-	}
-	public String getContact(){
-		return contact;
-	}
-	public void setContact(String contact){
-		this.contact = contact;
-	}
-	public String getPosition() {
-		return position;
-	}
-	public void setPosition(String title) {
-		this.position = title;
-	}
-	public String getEmployeeID() {
-		return employeeid;
-	}
-	public void setEmployeeID(String empid){
-		this.employeeid = empid;
-	}
-
-	@Override
-	public void setID(String ID) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setPassword(String password) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	@Override
 	public void setAddress(String address) {
-		// TODO Auto-generated method stub
-		
+		this.address = address;
+	}
+	@Override
+	public void setContact(int number) {
+		this.number = number;
+	}
+	@Override
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

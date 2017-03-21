@@ -5,7 +5,7 @@ package mainpackage;
 public class Customer extends Person {
 
 	
-	public Customer(String ID, String name, String password, String address, String number) {
+	public Customer(String ID, String name, String password, String address, int number) {
 		super(ID, name, password, address, number);
 	}
 	public Customer(){
@@ -34,7 +34,7 @@ public class Customer extends Person {
 		this.address = address;
 	}
 	@Override
-	public void setContact(String number) {
+	public void setContact(int number) {
 		this.number = number;
 	}
 	@Override
