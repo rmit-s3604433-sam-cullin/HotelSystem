@@ -216,7 +216,6 @@ public class Menu {
 		System.out.println("\nPlease enter mobile Number: ");
 		number = scan.nextLine();
 		nC.setNumber(number);
-		System.out.println("\nData entry Successful!\n");
 		
 		try {
 			Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
@@ -225,7 +224,7 @@ public class Menu {
 			/* SQL Statement */
 			statement.executeUpdate("INSERT INTO customer values('" + nC.getID() + "', '" + nC.getName() + "', '" + nC.getPassword() + "', '" + nC.getAddress() + "', '0" + nC.getNumber() + "')");
 
-			System.out.println("\nRegistration Successful!\n");
+			System.out.println("\nRegistration Successful!");
 		} catch (Exception e) {
 			System.err.println(e);
 		}

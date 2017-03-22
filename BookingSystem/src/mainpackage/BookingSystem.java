@@ -34,6 +34,10 @@ public class BookingSystem {
 			statement.executeUpdate("INSERT INTO employee values('e003', 'Sebastian Vettel', '73 Pakington St, St Kilda 3182', '0408711963', '36', 'Labourer')");
 			*/
 			
+			/* if you want to delete register test entries
+			 * statement.executeUpdate("DELETE FROM customer WHERE custid='c003'");
+			 */
+			
 			/* perform query, loop through a print all rows */
 			ResultSet resultSet = statement.executeQuery("SELECT * FROM employee");
 			while(resultSet.next()) {
