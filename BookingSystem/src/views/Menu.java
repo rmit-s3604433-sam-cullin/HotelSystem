@@ -209,7 +209,7 @@ public class Menu {
 		nC.setName(name);
 		System.out.println("\nPlease enter Password: ");
 		password = scan.nextLine();
-		((Customer) nC).setPassword(password);
+		nC.setPassword(password);
 		System.out.println("\nPlease enter Address: ");
 		address = scan.nextLine();
 		nC.setAddress(address);
@@ -223,7 +223,7 @@ public class Menu {
 			Statement statement = con.createStatement();
 			
 			/* SQL Statement */
-			statement.executeUpdate("INSERT INTO customer values('" + nC.getID() + "', '" + nC.getName() + "', '" + ((Customer) nC).getPassword() + "', '" + nC.getAddress() + "', '0" + nC.getNumber() + "')");
+			statement.executeUpdate("INSERT INTO customer values('" + nC.getID() + "', '" + nC.getName() + "', '" + nC.getPassword() + "', '" + nC.getAddress() + "', '0" + nC.getNumber() + "')");
 			
 			ResultSet resultSet2 = statement.executeQuery("SELECT * from customer");
 			while(resultSet2.next()) {
