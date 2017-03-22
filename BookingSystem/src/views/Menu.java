@@ -66,6 +66,7 @@ public class Menu {
 						if(ID.equals(resultSet.getString("ownid"))) {
 							System.out.println("Admin found!");
 							userDone = true;
+							break;
 						}
 					}
 					if(!userDone) {
@@ -75,14 +76,16 @@ public class Menu {
 								System.out.println("User found!");
 								userDone = true;
 								break;
-							} else {
-								System.out.println("No user found");
-								break;
 							}
 						}
 					}
 				} catch (Exception e) {
 					System.err.println(e);
+				}
+				if(!userDone) {
+					System.out.println("No user found");
+					/* remove break to replay user ID input instead of going back to main menu */
+					break;
 				}
 			} else if(ID.equals("exit")) {
 				System.out.println("You selected exit");
