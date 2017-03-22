@@ -24,13 +24,13 @@ public class Menu {
 	}
 	
 	public boolean systemMenu() throws IOException {
+		
 		boolean exit = false;
 		do{
 			String x = printMenu();
 			switch(x){
 				case("1"):
 					login();
-					exit = true;
 					break;
 				case("2"):
 					addCustomer();
@@ -48,38 +48,81 @@ public class Menu {
 		return true;
 	}
 	
-	//@SuppressWarnings("unused")
 	public void login() {
-		Person person = null;
+		
 		String ID, password;
-		boolean userDone = false;
+		boolean userDone = false, passDone = false;
+		
 		do{
 			System.out.println("\nPlease Enter User ID or 'exit'"); 
 			ID = scan.next();
-			if(ID.matches("[c][0-9]{3}")) {
-				Login read = new Login();
-				read.readUsername(ID, person);
-				userDone = true;
+			if(ID.matches("[c][0-9]{3}") | ID.matches("[o][0-9]{3}")) {
+				try {
+					Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+					Statement statement = con.createStatement();
+					
+					ResultSet resultSet = statement.executeQuery("SELECT ownid FROM owner");
+					while(resultSet.next()) {
+						if(ID.equals(resultSet.getString("ownid"))) {
+							System.out.println("Admin found!");
+							userDone = true;
+						}
+					}
+					ResultSet resultSet2 = statement.executeQuery("SELECT custid FROM customer");
+					while(resultSet2.next()) {
+						if(ID.equals(resultSet2.getString("custid"))) { 
+							System.out.println("User found!");
+							userDone = true;
+						}
+					}
+				} catch (Exception e) {
+					System.err.println(e);
+				}
+			} else if(ID.equals("exit")) {
+				System.out.println("You selected exit");
+				break;
 			} else {
-				System.out.println("Invalid : Please re-enter User ID");
+				System.out.println("Input Invalid");
 			}
-		} while(!ID.equals("exit") && !userDone);
-		System.out.println(person.toString());
-		if(person != null) {
+		} while(!userDone);
+
+		if(userDone && !passDone) {
 			do {
-			System.out.println("\nPlease Enter User Password for "+ person.getName() + " or 'exit'");
+			System.out.println("\nPlease enter user password or 'exit'");
 			password = scan.next();
-			if(!password.equals("exit") && !password.equals(person.getPassword())) {
-				System.out.println("\nInvalid : Please re-enter User Password");
-			}
-			}while(!password.equals(person.getPassword()) && (!password.equals("exit")));
-			if(password.equals("exit")){
-				person = null;
-			}
+				if(password.equals("exit")){
+					System.out.println("You selected exit");
+					break;
+				} else {
+					try {
+						Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+						Statement statement = con.createStatement();
+						
+						ResultSet resultSet = statement.executeQuery("SELECT password FROM owner WHERE ownID='" + ID + "'");
+						while(resultSet.next()) {
+							if(password.equals(resultSet.getString("password"))) {
+								System.out.println("Password correct!");
+								ownerMenu();
+								passDone = true;
+							}
+						}
+						ResultSet resultSet2 = statement.executeQuery("SELECT password FROM customer WHERE custid='" + ID + "'");
+						while(resultSet2.next()) {
+							if(ID.equals(resultSet2.getString("custid"))) { 
+								System.out.println("Password correct!");
+								customerMenu();
+								passDone = true;
+							}
+						}
+					} catch (Exception e) {
+						System.err.println(e);
+					}
+				}
+			} while(!passDone);
 		}
 	}
 	
-	public void OwnerMenu() throws IOException {
+	public void ownerMenu() throws IOException {
 		
 		boolean done = false;
 		Employee employee = null;
@@ -111,7 +154,7 @@ public class Menu {
 		}
 	}
 	
-	public void CustomerMenu() throws FileNotFoundException, IOException {
+	public void customerMenu() throws FileNotFoundException, IOException {
 		
 		new BookingSystem();
 		String choice ;
