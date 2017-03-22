@@ -236,13 +236,10 @@ public class Menu {
 		}
 	}
 	
-	/*public Employee addEmployee() {
+	/*public void addEmployee() {
 
-		String name;
-		String age;
-		String contact;
-		String title;
-		String empid;
+		String ID = "", name = "", address = "", number = "", position = "";
+		int age = 0;
 		Employee newEmployee;
 		System.out.println("\nPlease enter new employee name: ");
 		name = scan.next();
@@ -256,6 +253,5 @@ public class Menu {
 		empid = scan.next();
 		newEmployee = new Employee(name,age,contact,title,empid);
 		System.out.println("\nSuccessfully added new employee to system!\n");
-		return newEmployee;
 	}*/
 }
