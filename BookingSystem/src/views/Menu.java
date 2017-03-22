@@ -68,11 +68,17 @@ public class Menu {
 							userDone = true;
 						}
 					}
-					ResultSet resultSet2 = statement.executeQuery("SELECT custid FROM customer");
-					while(resultSet2.next()) {
-						if(ID.equals(resultSet2.getString("custid"))) { 
-							System.out.println("User found!");
-							userDone = true;
+					if(!userDone) {
+						ResultSet resultSet2 = statement.executeQuery("SELECT custid FROM customer");
+						while(resultSet2.next()) {
+							if(ID.equals(resultSet2.getString("custid"))) { 
+								System.out.println("User found!");
+								userDone = true;
+								break;
+							} else {
+								System.out.println("No user found");
+								break;
+							}
 						}
 					}
 				} catch (Exception e) {
@@ -112,6 +118,8 @@ public class Menu {
 								System.out.println("Password correct!");
 								customerMenu();
 								passDone = true;
+							} else {
+								System.out.println("Password incorrect");
 							}
 						}
 					} catch (Exception e) {
