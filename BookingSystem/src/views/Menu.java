@@ -22,7 +22,7 @@ public class Menu {
 		String i = scan.next();
 		return i;
 	}
-	
+	/* first method called here */
 	public boolean systemMenu() throws IOException {
 		
 		boolean exit = false;
@@ -136,7 +136,7 @@ public class Menu {
 	public void ownerMenu() throws IOException {
 		
 		boolean done = false;
-		Employee employee = null;
+		//Employee employee = null;
 		
 		while(!done) {
 			System.out.println("======================================");
@@ -202,8 +202,8 @@ public class Menu {
 		System.out.println("\nPlease enter ID: ");
 		ID += scan.nextLine();
 		ID.trim();
-		System.out.println("ID:" + ID);
 		nC.setID(ID);
+		System.out.println("ID:" + nC.getID());
 		System.out.println("\nPlease enter Name: ");
 		name = scan.nextLine();
 		nC.setName(name);
@@ -216,23 +216,15 @@ public class Menu {
 		System.out.println("\nPlease enter mobile Number: ");
 		number = scan.nextLine();
 		nC.setNumber(number);
+		System.out.println("\nData entry Successful!\n");
 		
 		try {
 			Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-			System.out.println("Connection success!");
 			Statement statement = con.createStatement();
 			
 			/* SQL Statement */
 			statement.executeUpdate("INSERT INTO customer values('" + nC.getID() + "', '" + nC.getName() + "', '" + nC.getPassword() + "', '" + nC.getAddress() + "', '0" + nC.getNumber() + "')");
-			
-			ResultSet resultSet2 = statement.executeQuery("SELECT * from customer");
-			while(resultSet2.next()) {
-				System.out.print("id: " + resultSet2.getString("custid") + " | ");
-				System.out.print("name: " + resultSet2.getString("name") + " | ");
-				System.out.print("password: " + resultSet2.getString("password") + " | ");
-				System.out.print("address: " + resultSet2.getString("address") + " | ");
-				System.out.println("number: " + resultSet2.getString("number"));
-			}
+
 			System.out.println("\nRegistration Successful!\n");
 		} catch (Exception e) {
 			System.err.println(e);

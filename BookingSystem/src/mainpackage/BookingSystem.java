@@ -15,6 +15,7 @@ public class BookingSystem {
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		
+		/* create instance of menu */
 		Menu menu = new Menu();
 		boolean done = false;
 		
@@ -33,6 +34,7 @@ public class BookingSystem {
 			statement.executeUpdate("INSERT INTO employee values('e003', 'Sebastian Vettel', '73 Pakington St, St Kilda 3182', '0408711963', '36', 'Labourer')");
 			*/
 			
+			/* perform query, loop through a print all rows */
 			ResultSet resultSet = statement.executeQuery("SELECT * FROM employee");
 			while(resultSet.next()) {
 				System.out.print("empid: " + resultSet.getString("empid") + " | ");
@@ -43,6 +45,7 @@ public class BookingSystem {
 				System.out.println("position: " + resultSet.getString("position"));
 			}
 			System.out.println("");
+			/* here for customer */
 			ResultSet resultSet2 = statement.executeQuery("SELECT * FROM customer");
 			while(resultSet2.next()) {
 				System.out.print("custid: " + resultSet2.getString("custid") + " | ");
@@ -52,6 +55,7 @@ public class BookingSystem {
 				System.out.println("number: 0" + resultSet2.getString("number"));
 			}
 			System.out.println("");
+			/* here for owner */
 			ResultSet resultSet3 = statement.executeQuery("SELECT * FROM owner");
 			while(resultSet3.next()) {
 				System.out.print("ownid: " + resultSet3.getString("ownid") + " | ");

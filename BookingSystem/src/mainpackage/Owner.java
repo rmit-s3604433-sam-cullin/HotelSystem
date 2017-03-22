@@ -10,6 +10,7 @@ public class Owner extends Person {
 	public Owner(String ID, String businessName, String name, String password, String address, String number) {
 		super(ID, name, password, address, number);
 		this.businessName = businessName;
+		this.businessOwnName = name;
 	}
 	
 	public String getBusinessName() { return businessName; }
@@ -23,7 +24,7 @@ public class Owner extends Person {
 	}
 	@Override
 	public void setName(String name) {
-		this.name = businessOwnName;
+		this.businessOwnName = name;
 	}
 	@Override
 	public void setPassword(String password) {
@@ -39,7 +40,7 @@ public class Owner extends Person {
 	}
 	@Override
 	public String toString(){
-		return ID + "," + businessOwnName + "," + password + "," + address + "," + number;
+		return ID + "," + businessName + "," + businessOwnName + "," + password + "," + address + "," + number;
 	}
 
 }
