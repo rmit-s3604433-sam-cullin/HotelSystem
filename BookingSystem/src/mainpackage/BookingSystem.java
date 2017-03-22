@@ -23,22 +23,22 @@ public class BookingSystem {
 			System.out.println("Connection success!");
 			Statement statement = con.createStatement();
 			
-			statement.executeUpdate("DROP TABLE customer");
-			/*
+			/* NEVER DELETE THESE!
+			statement.executeUpdate("CREATE TABLE customer(custid STRING, name STRING, password STRING, address STRING, number STRING)");
+			statement.executeUpdate("INSERT INTO customer values('c001','Patrick Bateman', 'abcd1234', '720 Glenhuntly Rd, Glen Huntly 3163', '0470617895')");
+			statement.executeUpdate("INSERT INTO customer values('c002','Sean Daley', '1234abcd', '5/20 Sandbelt Close, Heatherton 3202', '0401387466')");
 			statement.executeUpdate("CREATE TABLE owner(ownid STRING, businessname STRING, ownername STRING, password STRING, address STRING, number STRING)");
 			statement.executeUpdate("INSERT INTO owner values('o001', 'JS Electrical PTY', 'John Stewart', 'ownerpass', '24 Lansell Rd, Toorak 3142', '0430614823')");
 			statement.executeUpdate("INSERT INTO employee values('e002', 'Marc Murphy', '45 Derby St, Kew 3101', '0430655874', '27', 'Electrician')");
 			statement.executeUpdate("INSERT INTO employee values('e003', 'Sebastian Vettel', '73 Pakington St, St Kilda 3182', '0408711963', '36', 'Labourer')");
 			*/
 			
-			//statement.executeUpdate("DELETE FROM owner WHERE custid='c001'");
-			
 			ResultSet resultSet = statement.executeQuery("SELECT * FROM employee");
 			while(resultSet.next()) {
 				System.out.print("empid: " + resultSet.getString("empid") + " | ");
 				System.out.print("name: " + resultSet.getString("name") + " | ");
 				System.out.print("address: " + resultSet.getString("address") + " | ");
-				System.out.print("number: " + resultSet.getInt("number") + " | ");
+				System.out.print("number: 0" + resultSet.getInt("number") + " | ");
 				System.out.print("age: " + resultSet.getInt("age") + " | ");
 				System.out.println("position: " + resultSet.getString("position"));
 			}

@@ -108,7 +108,7 @@ public class Menu {
 						}
 						ResultSet resultSet2 = statement.executeQuery("SELECT password FROM customer WHERE custid='" + ID + "'");
 						while(resultSet2.next()) {
-							if(ID.equals(resultSet2.getString("custid"))) { 
+							if(password.equals(resultSet2.getString("password"))) { 
 								System.out.println("Password correct!");
 								customerMenu();
 								passDone = true;
@@ -144,7 +144,7 @@ public class Menu {
 				case 1 : 
 					/*
 					 * addEmployee();
-					*/
+					 */
 					break;
 				case 4 :
 					System.out.println("\n");
