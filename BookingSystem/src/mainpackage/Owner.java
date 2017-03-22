@@ -22,7 +22,7 @@ public class Owner extends Person {
 	}
 
 	@Override
-	public void setNumber(int number) {
+	public void setNumber(String number) {
 		
 	}
 

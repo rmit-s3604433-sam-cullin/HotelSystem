@@ -48,20 +48,23 @@ public class Menu {
 		return true;
 	}
 	
-	@SuppressWarnings("unused")
+	//@SuppressWarnings("unused")
 	public void login() {
 		Person person = null;
 		String ID, password;
+		boolean userDone = false;
 		do{
-		System.out.println("\nPlease Enter User ID or 'exit'"); 
-		ID = scan.next();
-		if(!ID.equals("exit") && person == null) {
-			System.out.println("Invalid : Please re-enter User ID");
-		} else {
-			Login read = new Login();
-			read.readUsername(ID);
-		}
-		}while(person == null && (!ID.equals("exit")));
+			System.out.println("\nPlease Enter User ID or 'exit'"); 
+			ID = scan.next();
+			if(ID.matches("[c][0-9]{3}")) {
+				Login read = new Login();
+				read.readUsername(ID, person);
+				userDone = true;
+			} else {
+				System.out.println("Invalid : Please re-enter User ID");
+			}
+		} while(!ID.equals("exit") && !userDone);
+		System.out.println(person.toString());
 		if(person != null) {
 			do {
 			System.out.println("\nPlease Enter User Password for "+ person.getName() + " or 'exit'");
@@ -138,12 +141,13 @@ public class Menu {
 	
 	public void addCustomer() {
 		
-		String ID = "c", name = "", password = "", address = "";
-		int number = 0;
+		String ID = "c", name = "", password = "", address = "", number = "";
 		Person nC = new Customer(ID,name,password,address,number);
 		scan.nextLine();
 		System.out.println("\nPlease enter ID: ");
 		ID += scan.nextLine();
+		ID.trim();
+		System.out.println("ID:" + ID);
 		nC.setID(ID);
 		System.out.println("\nPlease enter Name: ");
 		name = scan.nextLine();
@@ -154,10 +158,9 @@ public class Menu {
 		System.out.println("\nPlease enter Address: ");
 		address = scan.nextLine();
 		nC.setAddress(address);
-		System.out.println("\nPlease enter Contact Number: ");
-		number = scan.nextInt();
+		System.out.println("\nPlease enter mobile Number: ");
+		number = scan.nextLine();
 		nC.setNumber(number);
-		scan.nextLine();
 		
 		try {
 			Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
@@ -165,7 +168,7 @@ public class Menu {
 			Statement statement = con.createStatement();
 			
 			/* SQL Statement */
-			statement.executeUpdate("INSERT INTO customer values(' " + nC.getID() + "', '" + nC.getName() + "', '" + ((Customer) nC).getPassword() + "', '" + nC.getAddress() + "', '" + nC.getNumber() + "')");
+			statement.executeUpdate("INSERT INTO customer values('" + nC.getID() + "', '" + nC.getName() + "', '" + ((Customer) nC).getPassword() + "', '" + nC.getAddress() + "', '0" + nC.getNumber() + "')");
 			
 			ResultSet resultSet2 = statement.executeQuery("SELECT * from customer");
 			while(resultSet2.next()) {
@@ -173,7 +176,7 @@ public class Menu {
 				System.out.print("name: " + resultSet2.getString("name") + " | ");
 				System.out.print("password: " + resultSet2.getString("password") + " | ");
 				System.out.print("address: " + resultSet2.getString("address") + " | ");
-				System.out.println("number: " + resultSet2.getInt("number"));
+				System.out.println("number: " + resultSet2.getString("number"));
 			}
 			System.out.println("\nRegistration Successful!\n");
 		} catch (Exception e) {

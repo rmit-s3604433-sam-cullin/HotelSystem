@@ -24,12 +24,13 @@ public class BookingSystem {
 			Statement statement = con.createStatement();
 			
 			/*
-			statement.executeUpdate("CREATE TABLE customer(custid STRING, name STRING, password STRING, address STRING, number INTEGER)");
+			statement.executeUpdate("CREATE TABLE customer(custid STRING, name STRING, password STRING, address STRING, number STRING)");
 			statement.executeUpdate("INSERT INTO customer values('c001', 'Patrick Cripps', 'abcd1234', '520 South Rd, Ormond 3145', '0410622387')");
 			statement.executeUpdate("INSERT INTO employee values('e002', 'Marc Murphy', '45 Derby St, Kew 3101', '0430655874', '27', 'Electrician')");
 			statement.executeUpdate("INSERT INTO employee values('e003', 'Sebastian Vettel', '73 Pakington St, St Kilda 3182', '0408711963', '36', 'Labourer')");
 			*/
-			statement.executeUpdate("DELETE FROM customer WHERE custid = ' c004'");
+			
+			//statement.executeUpdate("DELETE FROM customer WHERE custid = 'c001'");
 			
 			ResultSet resultSet = statement.executeQuery("SELECT * from employee");
 			while(resultSet.next()) {
@@ -47,7 +48,7 @@ public class BookingSystem {
 				System.out.print("name: " + resultSet2.getString("name") + " | ");
 				System.out.print("password: " + resultSet2.getString("password") + " | ");
 				System.out.print("address: " + resultSet2.getString("address") + " | ");
-				System.out.println("number: " + resultSet2.getInt("number"));
+				System.out.println("number: 0" + resultSet2.getString("number"));
 			}
 		} catch (Exception e) {
 			System.err.println(e);
