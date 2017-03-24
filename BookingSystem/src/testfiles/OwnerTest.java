@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import mainpackage.Employee;
 import mainpackage.Owner;
+import mainpackage.Person;
 
 public class OwnerTest {
 
@@ -20,9 +21,9 @@ public class OwnerTest {
 	@Test
 	public void testConstructer(){
 
-		Owner o2 = new Owner(ID,businessName,name,password,address,number);	
+		Person o2 = new Owner(ID,businessName,name,password,address,number);	
 		assertEquals(ID, o2.getID());
-		assertEquals(businessName, o2.getBusinessName());
+		assertEquals(businessName, ((Owner) o2).getBusinessName());
 		assertEquals(name, o2.getName());
 		assertEquals(password, o2.getPassword());
 		assertEquals(address, o2.getAddress());
@@ -40,7 +41,7 @@ public class OwnerTest {
 	public void testGetSetBusinessName(){
 		
 		o.setBusinessName(businessName);
-		assertEquals(businessName, o.getID());
+		assertEquals(businessName, o.getBusinessName());
 		
 	}
 	

@@ -48,20 +48,23 @@ public class Menu {
 		return true;
 	}
 	
-	public void login() {
+public void login() {
 		
 		String ID, password;
 		boolean userDone = false, passDone = false;
+		Connection con =null;
+		Statement statement =null;
+		ResultSet resultSet =null;
 		
 		do{
 			System.out.println("\nPlease Enter User ID or 'exit'"); 
 			ID = scan.next();
 			if(ID.matches("[c][0-9]{3}") | ID.matches("[o][0-9]{3}")) {
 				try {
-					Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-					Statement statement = con.createStatement();
+					con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+					statement = con.createStatement();
 					
-					ResultSet resultSet = statement.executeQuery("SELECT ownid FROM owner");
+					resultSet = statement.executeQuery("SELECT ownid FROM owner");
 					while(resultSet.next()) {
 						if(ID.equals(resultSet.getString("ownid"))) {
 							System.out.println("Admin found!");
@@ -69,30 +72,48 @@ public class Menu {
 							break;
 						}
 					}
+					resultSet.close();
 					if(!userDone) {
-						ResultSet resultSet2 = statement.executeQuery("SELECT custid FROM customer");
-						while(resultSet2.next()) {
-							if(ID.equals(resultSet2.getString("custid"))) { 
+						resultSet = statement.executeQuery("SELECT custid FROM customer");
+						while(resultSet.next()) {
+							if(ID.equals(resultSet.getString("custid"))) { 
 								System.out.println("User found!");
 								userDone = true;
 								break;
 							}
 						}
+						resultSet.close();
 					}
 				} catch (Exception e) {
 					System.err.println(e);
+				} finally {
+					//Closing statements for the sql connection
+					if (statement != null) {
+				        try {
+				            statement.close();
+				            System.out.println("id state closed");
+				        } catch (SQLException e) { System.out.println("id statment still open");}
+				    }
+				    if (con != null) {
+				        try {
+				            con.close();
+				            System.out.println("id con closed");
+				        } catch (SQLException e) { /* ignored */}
+				    }  
 				}
 				if(!userDone) {
 					System.out.println("No user found");
 					/* remove break to replay user ID input instead of going back to main menu */
 					break;
 				}
+					
 			} else if(ID.equals("exit")) {
 				System.out.println("You selected exit");
 				break;
 			} else {
 				System.out.println("Input Invalid");
 			}
+			
 		} while(!userDone);
 
 		if(userDone && !passDone) {
@@ -103,22 +124,32 @@ public class Menu {
 					System.out.println("You selected exit");
 					break;
 				} else {
+					
 					try {
-						Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-						Statement statement = con.createStatement();
+						con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+						statement = con.createStatement();
 						
-						ResultSet resultSet = statement.executeQuery("SELECT password FROM owner WHERE ownID='" + ID + "'");
+						//owner password check
+						resultSet = statement.executeQuery("SELECT password FROM owner WHERE ownID='" + ID + "'");
 						while(resultSet.next()) {
 							if(password.equals(resultSet.getString("password"))) {
 								System.out.println("Password correct!");
+								//moves to owner menu
+								statement.close();
+								con.close();
 								ownerMenu();
 								passDone = true;
 							}
 						}
-						ResultSet resultSet2 = statement.executeQuery("SELECT password FROM customer WHERE custid='" + ID + "'");
-						while(resultSet2.next()) {
-							if(password.equals(resultSet2.getString("password"))) { 
+						
+						//customer password check
+						resultSet = statement.executeQuery("SELECT password FROM customer WHERE custid='" + ID + "'");
+						while(resultSet.next()) {
+							if(password.equals(resultSet.getString("password"))) { 
 								System.out.println("Password correct!");
+								//moves to customer menu
+								statement.close();
+								con.close();
 								customerMenu();
 								passDone = true;
 							} else {
@@ -127,6 +158,25 @@ public class Menu {
 						}
 					} catch (Exception e) {
 						System.err.println(e);
+					} finally {
+						if(resultSet != null){
+					    	try {
+					    		resultSet.close();
+					    		System.out.println("pass result closed");
+					    	} catch (SQLException e){ /* ignored */ }
+					    }
+						if (statement != null) {
+					        try {
+					            statement.close();
+					            System.out.println("pass stat closed");
+					        } catch (SQLException e) { System.out.println("statement did not close");}
+					    }
+					    if (con != null) {
+					        try {
+					            con.close();
+					            System.out.println("pass con closed");
+					        } catch (SQLException e) { /* ignored */}
+					    } 
 					}
 				}
 			} while(!passDone);
@@ -154,9 +204,7 @@ public class Menu {
 			
 			switch (choice) {
 				case 1 : 
-					/*
-					 * addEmployee();
-					 */
+					addEmployee();
 					break;
 				case 4 :
 					System.out.println("\n");
@@ -230,22 +278,47 @@ public class Menu {
 		}
 	}
 	
-	/*public void addEmployee() {
+	public void addEmployee() {
 
-		String ID = "", name = "", address = "", number = "", position = "";
-		int age = 0;
-		Employee newEmployee;
+		String empid = "", name = "", address = "", number = "";
+		Connection con = null;
+		Statement statement = null;
+		scan.nextLine();
 		System.out.println("\nPlease enter new employee name: ");
-		name = scan.next();
-		System.out.println("\nPlease enter new employee age: ");
-		age = scan.next();
-		System.out.println("\nPlease enter new employee contact: ");
-		contact = scan.next();
-		System.out.println("\nPlease enter new employee title/position: ");
-		title = scan.next();
+		name = scan.nextLine();
+		System.out.println("\nPlease enter new employee number: ");
+		number = scan.nextLine();
+		System.out.println("\nPlease enter new employee address: ");
+		address = scan.nextLine();
 		System.out.println("\nPlease enter new employee ID: ");
 		empid = scan.next();
-		newEmployee = new Employee(name,age,contact,title,empid);
-		System.out.println("\nSuccessfully added new employee to system!\n");
-	}*/
+		empid.trim();
+		try {
+			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+			statement = con.createStatement();
+		
+			System.out.println("connection made for adding employee");
+			/* SQL Statement */
+			statement.executeUpdate("INSERT INTO employee values('e"+empid+"', '"+name+"', '"+address+"', '"+number+"')");
+			
+			System.out.println("\nSuccessfully added new employee to system!\n");
+			
+		} catch (Exception e) {
+			System.err.println(e);
+		}finally {
+			if (statement != null) {
+		        try {
+		            statement.close();
+		            System.out.println("add employee statement closed");
+		        } catch (SQLException e) { /* ignored */}
+		    }
+		    if (con != null) {
+		        try {
+		            con.close();
+		            System.out.println("add employee con closed");
+		        } catch (SQLException e) { /* ignored */}
+		    }
+		    
+		}
+	}
 }
