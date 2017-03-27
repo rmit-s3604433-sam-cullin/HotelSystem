@@ -25,7 +25,7 @@ public class Menu {
 	}
 	/* first method called here */
 	public boolean systemMenu() throws IOException {
-		
+
 		boolean exit = false;
 		do{
 			String x = printMenu();
@@ -49,7 +49,7 @@ public class Menu {
 		return true;
 	}
 	
-public void login() {
+public void login() { //need to pass ID and password. Make it cleaner for JUnit
 		
 		String ID, password;
 		boolean userDone = false, passDone = false;
@@ -245,32 +245,35 @@ public void login() {
 	
 	public void addCustomer() {
 		
-		String ID = "c", name = "", password = "", address = "", number = "";
+		String ID = "", name = "", password = "", address = "", number = "";
 		Person nC = new Customer(ID,name,password,address,number);
 		scan.nextLine();
 		
 		System.out.println("\nPlease enter ID: ");
-		ID += scan.nextLine();
+		ID = scan.nextLine();
 		
 		if(Pattern.matches("[c0-9]{2,4}", ID) == true){ //if id doesn't start with c and has less than or greater than 3 digits, please enter a correct id
-		
+			
 			ID.trim();		
 			nC.setID(ID);
 			
 		}
 		else{
 			
-			while(Pattern.matches("[c0-9]{2,4}", ID) == false){
+			boolean idmatch = false;
+			
+			while(idmatch == false){
 			
 				if(Pattern.matches("[c0-9]{2,4}", ID) == true){
 					
 					nC.setID(ID);
+					idmatch = true;
 				
 				}
 				else{
 					
 					System.out.println("Please enter a valid ID number");				
-					ID += scan.nextLine();
+					ID = scan.nextLine();
 					
 				}
 			}
@@ -288,12 +291,15 @@ public void login() {
 		}
 		else{
 			
-			while(Pattern.matches("[a-zA-z]{1,20}",name) == false){
+			boolean namematch = false;
+			
+			while(namematch == false){
 				
 				if(Pattern.matches("[a-zA-z]{1,20}",name) == true){
 				
 					nC.setName(name);
-				
+					namematch = true;
+					
 				}
 				else{
 					
@@ -311,17 +317,20 @@ public void login() {
 		
 		if(Pattern.matches("[a-zA-z0-9]{8,}",password) == true){ //password must contain more than 8 characters
 			
-			nC.setName(password);
+			nC.setPassword(password);
 		
 		}
 		else{
-		
-			while(Pattern.matches("[a-zA-z0-9]{8,}",password) == false){
+			
+			boolean passwordmatch = false;
+			
+			while(passwordmatch == false){
 			
 				if(Pattern.matches("[a-zA-z0-9]{8,}",password) == true){
 				
-					nC.setName(password);
-				
+					nC.setPassword(password);
+					passwordmatch = true;
+	
 				}
 				else{
 				
@@ -344,11 +353,14 @@ public void login() {
 		}
 		else{
 			
-			while(Pattern.matches("[0-9]{1,6}\\s[a-zA-z]{3,15}\\s[a-zA-z]{2,10}", address) == false){
+			boolean addressmatch = false;
+			
+			while(addressmatch == false){
 				
 				if(Pattern.matches("[0-9]{1,6}\\s[a-zA-z]{3,15}\\s[a-zA-z]{2,10}", address) == true){
 				
 					nC.setAddress(address);
+					addressmatch = true;
 				
 				}
 				else{
@@ -371,11 +383,14 @@ public void login() {
 		}
 		else{
 			
-			while(Pattern.matches("[0-9]{10}", number) == false){
+			boolean numbermatch = false;
+			
+			while(numbermatch == false){
 			
 				if(Pattern.matches("[0-9]{10}", number) == true){
 				
 					nC.setNumber(number);
+					numbermatch = true;
 				
 				}
 				else{
@@ -393,13 +408,12 @@ public void login() {
 			Statement statement = con.createStatement();
 			
 			/* SQL Statement */
-			statement.executeUpdate("INSERT INTO customer values('" + nC.getID() + "', '" + nC.getName() + "', '" + nC.getPassword() + "', '" + nC.getAddress() + "', '0" + nC.getNumber() + "')");
+			statement.executeUpdate("INSERT INTO customer values('c" + nC.getID() + "', '" + nC.getName() + "', '" + nC.getPassword() + "', '" + nC.getAddress() + "', '0" + nC.getNumber() + "')");
 
 			System.out.println("\nRegistration Successful!");
 		} catch (Exception e) {
 			System.err.println(e);
 		}
-		
 
 	}
 	
@@ -421,11 +435,14 @@ public void login() {
 		}
 		else{
 			
-			while(Pattern.matches("[a-zA-z]{1,20}",name) == false){
+			boolean namematch = false;
+			
+			while(namematch == false){
 				
 				if(Pattern.matches("[a-zA-z]{1,20}",name) == true){
 					
 					setname = name;
+					namematch = true;
 					
 				}
 				else{
@@ -448,11 +465,14 @@ public void login() {
 		}
 		else{
 			
-			while(Pattern.matches("[0-9]{10}", number) == false){
+			boolean numbermatch = false;
+			
+			while(numbermatch == false){
 				
 				if(Pattern.matches("[0-9]{10}", number) == true){
 					
 					setnumber = number;
+					numbermatch = true;
 					
 				}
 				else{
@@ -475,11 +495,14 @@ public void login() {
 		}
 		else{
 			
-			while(Pattern.matches("[0-9]{1,6}\\s[a-zA-z]{3,15}\\s[a-zA-z]{2,10}", address) == false){
+			boolean addressmatch = false;
+			
+			while(addressmatch == false){
 				
 				if(Pattern.matches("[0-9]{1,6}\\s[a-zA-z]{3,15}\\s[a-zA-z]{2,10}", address) == true){
 					
 					setaddress = address;
+					addressmatch = true;
 					
 				}
 				else{
@@ -504,12 +527,15 @@ public void login() {
 		}
 		else{
 			
-			while(Pattern.matches("[0-9]{1,3}", empid) == false){
+			boolean empidmatch = false;
+			
+			while(empidmatch == false){
 			
 				if(Pattern.matches("[0-9]{1,3}", empid) == true){
 					
 					empid.trim();
 					setempid = empid;
+					empidmatch = true;
 					
 				}
 				else{
