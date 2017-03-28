@@ -37,7 +37,7 @@ public class BookingSystem {
 			*/
 			
 			//if you want to delete register test entries
-			statement.executeUpdate("DELETE FROM employee WHERE empid='e004'");
+			//statement.executeUpdate("DELETE FROM employee WHERE empid='e004'");
 			 
 			
 			/* perform query, loop through and print all rows */
