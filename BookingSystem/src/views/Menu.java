@@ -243,7 +243,7 @@ public void login() { //need to pass ID and password. Make it cleaner for JUnit
 		}while(!choice.equals("2"));
 	}
 	
-	public void addCustomer() {
+	public void addCustomer() { //should make another class for this function
 		
 		String ID = "", name = "", password = "", address = "", number = "";
 		Person nC = new Customer(ID,name,password,address,number);
@@ -284,7 +284,7 @@ public void login() { //need to pass ID and password. Make it cleaner for JUnit
 		System.out.println("\nPlease enter Name: ");
 		name = scan.nextLine();	
 		
-		if(Pattern.matches("[a-zA-z]{1,20}",name) == true){ //if name must contain only letters and must be name.length < 20
+		if(Pattern.matches("[a-zA-z]{1,20}\\s[a-zA-z]{1,20}",name) == true){ //if name must contain only letters and must be name.length < 20
 			
 			nC.setName(name);
 			
@@ -295,7 +295,7 @@ public void login() { //need to pass ID and password. Make it cleaner for JUnit
 			
 			while(namematch == false){
 				
-				if(Pattern.matches("[a-zA-z]{1,20}",name) == true){
+				if(Pattern.matches("[a-zA-z]{1,20}\\s[a-zA-z]{1,20}",name) == true){
 				
 					nC.setName(name);
 					namematch = true;
@@ -417,7 +417,7 @@ public void login() { //need to pass ID and password. Make it cleaner for JUnit
 
 	}
 	
-	public void addEmployee() {
+	public void addEmployee() { //make another class for this function
 
 		String empid = "", name = "", address = "", number = "";
 		String setempid = null, setname = null, setaddress = null, setnumber = null;
