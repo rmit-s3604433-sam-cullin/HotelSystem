@@ -1,9 +1,11 @@
 package mainpackage;
 
 import java.util.Scanner;
+
+import view.Menu;
+
 import java.io.*;
 import java.sql.*;
-import views.Menu;
 
 public class BookingSystem {
 	
