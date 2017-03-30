@@ -15,9 +15,7 @@ public class CustomerTest {
 		nC.setID(ID);
 		
 		assertTrue(nC.getID().matches("c[0-9]{3}"));
-		/* This will run successful. 
-		 * To get a fail return assertTrue instead of assert
-		 */
+		
 	}
 	@Test
 	public void testName() {
