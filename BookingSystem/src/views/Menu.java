@@ -359,6 +359,7 @@ public void login() {
 				break;
 			} else {
 				System.out.println("Please enter a valid address");
+				address = scan.nextLine();
 			}
 		}
 		
@@ -369,6 +370,7 @@ public void login() {
 				break;
 			} else {
 				System.out.println("Please enter mobile number");
+				number = scan.nextLine();
 			}
 		}
 		
