@@ -39,10 +39,8 @@ public class AddCustomer {
 		addCustomer(setID,setName,setPassword,setAddress,setNumber);
 	}
 
-	public String addCustomerID(String ID){
-		
+	public String addCustomerID(String ID){		
 		String setID = "";
-
 		while(true) {
 			if(ID.matches("[0-9]{3}")) {
 				ID.trim();
@@ -52,15 +50,12 @@ public class AddCustomer {
 				System.out.println("Please enter a valid ID number");
 				ID = scan.nextLine();
 			}
-		}
-		
+		}	
 		return setID;
 	}
 	
-	public String addCustomerName(String name){
-		
-		String setName = "";
-		
+	public String addCustomerName(String name){	
+		String setName = "";	
 		while(true) {
 			if(name.matches("[a-zA-Z ]{1,30}")) {	
 				setName = name;
@@ -70,15 +65,11 @@ public class AddCustomer {
 				name = scan.nextLine();
 			}
 		}
-
 		return setName;
 	}
-	
-	
+		
 	public String addCustomerPassword(String password){
-		
 		String setPassword = "";
-		
 		while(true) {	
 			if(password.matches("[a-zA-Z0-9,./';:?><{}|+=-_()*&^%$#@!`~]{8,20}")){
 				setPassword = password;
@@ -87,15 +78,12 @@ public class AddCustomer {
 				System.out.println("Please enter a valid password");
 				password = scan.nextLine();
 			}
-		}
-		
+		}	
 		return setPassword;
 	}
 	
-	public String addCustomerAddress(String address){
-		
+	public String addCustomerAddress(String address){	
 		String setAddress = "";
-	
 		while(true) {	
 			if(address.matches("[a-zA-Z0-9 ,./':-|_`~&$@#+()]{2,40}")){
 				setAddress = address;
@@ -105,14 +93,11 @@ public class AddCustomer {
 				address = scan.nextLine();
 			}
 		}
-	
 		return setAddress;
 	}
 	
-	public String addCustomerNumber(String number){
-		
-		String setNumber = "";
-		
+	public String addCustomerNumber(String number){	
+		String setNumber = "";	
 		while(true) {
 			if(number.matches("[0-9]{10}")){
 				setNumber = number;
@@ -121,33 +106,20 @@ public class AddCustomer {
 				System.out.println("Please enter mobile number");
 				number = scan.nextLine();
 			}
-		}
-		
+		}	
 		return setNumber;
 	}
 	
-	public void addCustomer(String ID, String name, String password, String address, String number) {
-		
+	public void addCustomer(String ID, String name, String password, String address, String number) {	
 		Person nC = new Customer(ID,name,password,address,number);
-		
 		try {
-			
 			Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-			Statement statement = con.createStatement();
-			
+			Statement statement = con.createStatement();	
 			/* SQL Statement */
 			statement.executeUpdate("INSERT INTO customer values('c" + nC.getID() + "', '" + nC.getName() + "', '" + nC.getPassword() + "', '" + nC.getAddress() + "', '0" + nC.getNumber() + "')");
-
-			System.out.println("\nRegistration Successful!");
-			
-		} catch (Exception e) {
-			
-			System.err.println(e);
-			
+			System.out.println("\nRegistration Successful!");			
+		} catch (Exception e) {		
+			System.err.println(e);		
 		}
-		
-
-	}
-
-	
+	}	
 }
