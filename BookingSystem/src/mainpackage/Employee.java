@@ -1,11 +1,13 @@
 package mainpackage;
 
+import java.util.Scanner;
+
 public class Employee {
 	
-	private int number, age;
-	private String ID, name, address, position;
 	
-	public Employee(String ID, String name, String address, int number, int age, String position) {
+	private String ID, name, address, position, age, number;
+	
+	public Employee(String ID, String name, String address, String number, String age, String position) {
 		this.ID = ID;
 		this.name = name;
 		this.address = address;
@@ -17,8 +19,8 @@ public class Employee {
 	public String getID() { return ID; }
 	public String getName() { return name; }
 	public String getAddress() { return address; }
-	public int getNumber() { return number; }
-	public int getAge() { return age; }
+	public String getNumber() { return number; }
+	public String getAge() { return age; }
 	public String getPosition() { return position; }
 	
 	public void setID(String ID) {
@@ -30,10 +32,10 @@ public class Employee {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public void setNumber(int number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 	public void setPosition(String position) {
@@ -42,6 +44,29 @@ public class Employee {
 	
 	public String toString(){
 		return ID + "," + name +  "," + address + "," + number + "," + age + "," + position;
+	}
+	
+	
+	
+	
+	
+	
+	
+	public int multiply(int x, int y){
+		
+		return x*y;
+		
+	}
+	
+	
+	public void multiply(){
+		
+		Scanner scan = new Scanner(System.in);
+		
+		int x = scan.nextInt();
+		int y = scan.nextInt();
+		
+		int total = x*y;
 	}
 
 }
