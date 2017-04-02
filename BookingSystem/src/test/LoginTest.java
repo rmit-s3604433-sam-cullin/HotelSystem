@@ -7,20 +7,21 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class LoginTest {
 		
 	@Test
-	//Test owner valid id and valid password - Successful
+	//Test owner invalid id and valid password - Failure
 	public void test1() throws SQLException {
 		
 		Statement statement =null;
 		ResultSet resultSet =null;
 		Connection con =null;
 		String Result, Result2;
-		
-		String ID = "o001"; 
+			
+		String ID = "o0101"; 
 		String Password = "ownerpass";
 		assertTrue(ID.matches("[o][0-9]{3}"));
 		
@@ -78,7 +79,7 @@ public class LoginTest {
 		assertEquals(Password, (Result2));
 	}
 	@Test
-	//Test customer valid id and valid password - Successful
+	//Test customer invalid id and valid password - Failure
 	public void test4() throws SQLException {
 
 		Statement statement =null;
@@ -86,7 +87,7 @@ public class LoginTest {
 		Connection con =null;
 		String Result, Result2;
 		
-		String ID = "c001";
+		String ID = "c1234";
 		String Password = "abcd1234";
 		assertTrue(ID.matches("[c][0-9]{3}"));
 		
