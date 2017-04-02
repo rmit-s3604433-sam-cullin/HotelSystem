@@ -10,10 +10,6 @@ import java.sql.*;
 public class BookingSystem {
 	
 	final static Scanner scan = new Scanner(System.in);
-	Person customers[];
-	Person employees[];
-	Person admins[];
-	
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		

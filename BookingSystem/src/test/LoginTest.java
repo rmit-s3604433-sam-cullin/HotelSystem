@@ -1,588 +1,146 @@
 package test;
 
-import static org.junit.Assert.*;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class LoginTest {
-	
+		
 	@Test
-	public void IDTest1(){
-		String ID = "    "; 
-		boolean userDone = false;
+	//Test owner valid id and valid password - Successful
+	public void test1() throws SQLException {
+		
+		Statement statement =null;
+		ResultSet resultSet =null;
+		Connection con =null;
+		String Result, Result2;
+		
+		String ID = "o001"; 
+		String Password = "ownerpass";
+		assertTrue(ID.matches("[o][0-9]{3}"));
+		
+		con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+		statement = con.createStatement();		
+		resultSet = statement.executeQuery("SELECT ownid FROM owner");
+		Result = resultSet.getString("ownid");
+		resultSet = statement.executeQuery("SELECT password FROM owner WHERE ownID='" + ID + "'");
+		Result2 = resultSet.getString("password");
+		assertEquals(ID, (Result));
+		assertEquals(Password, (Result2));
+	}
+	@Test
+	//Test owner valid id but invalid password - Failure
+	public void test2() throws SQLException {
+		
+		Statement statement2 =null;
+		ResultSet resultSet2 =null;
+		Connection con2 =null;
+		String Result, Result2;
+		
+		String ID = "o001"; 
+		String Password = "myownpass";
+		assertTrue(ID.matches("[o][0-9]{3}"));
+		
+		con2 = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+		statement2 = con2.createStatement();		
+		resultSet2 = statement2.executeQuery("SELECT ownid FROM owner");
+		Result = resultSet2.getString("ownid");
+		resultSet2 = statement2.executeQuery("SELECT password FROM owner WHERE ownID='" + ID + "'");
+		Result2 = resultSet2.getString("password");
+		assertEquals(ID, (Result));
+		assertEquals(Password, (Result2));
+	}
+	@Test
+	//Test owner invalid id and invalid password - Failure
+	public void test3() throws SQLException {
+		
+		Statement statement3 =null;
+		ResultSet resultSet3 =null;
+		Connection con3 =null;
+		String Result, Result2;
+		
+		String ID = "o1234"; 
+		String Password = "ownpass123";
+		assertTrue(ID.matches("[o][0-9]{3}"));
+		
+		con3 = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+		statement3 = con3.createStatement();		
+		resultSet3 = statement3.executeQuery("SELECT ownid FROM owner");
+		Result = resultSet3.getString("ownid");
+		resultSet3 = statement3.executeQuery("SELECT password FROM owner WHERE ownID='" + ID + "'");
+		Result2 = resultSet3.getString("password");
+		assertEquals(ID, (Result));
+		assertEquals(Password, (Result2));
+	}
+	@Test
+	//Test customer valid id and valid password - Successful
+	public void test4() throws SQLException {
 
-			if(ID.matches("[c][0-9]{3}") | ID.matches("[o][0-9]{3}")) {
-				try {
-					Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-					Statement statement = con.createStatement();
-					ResultSet resultSet = statement.executeQuery("SELECT ownid FROM owner");
-					while(resultSet.next()) {
-						if(ID.equals(resultSet.getString("ownid"))) {
-							userDone = true;
-							break;
-						}
-					}
-					if(!userDone) {
-						ResultSet resultSet2 = statement.executeQuery("SELECT custid FROM customer");
-						while(resultSet2.next()) {
-							if(ID.equals(resultSet2.getString("custid"))) { 
-								userDone = true;
-								break;
-							}
-						}
-					}
-				} catch (Exception e) {
-					System.err.println(e);
-				}
-			}
+		Statement statement =null;
+		ResultSet resultSet =null;
+		Connection con =null;
+		String Result, Result2;
 		
-		assertTrue(userDone == false);
+		String ID = "c001";
+		String Password = "abcd1234";
+		assertTrue(ID.matches("[c][0-9]{3}"));
+		
+		con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+		statement = con.createStatement();		
+		resultSet = statement.executeQuery("SELECT custid FROM customer");
+		Result = resultSet.getString("custid");
+		resultSet = statement.executeQuery("SELECT password FROM customer WHERE custid='" + ID + "'");
+		Result2 = resultSet.getString("password");
+		assertEquals(ID, (Result));
+		assertEquals(Password, (Result2));
 	}
-	
 	@Test
-	public void IDTest2(){
-		String ID = "abcdsdfgdsa"; 
-		boolean userDone = false;
+	//Test customer valid id but invalid password - Failure
+	public void test5() throws SQLException {
 
-			if(ID.matches("[c][0-9]{3}") | ID.matches("[o][0-9]{3}")) {
-				try {
-					Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-					Statement statement = con.createStatement();
-					ResultSet resultSet = statement.executeQuery("SELECT ownid FROM owner");
-					while(resultSet.next()) {
-						if(ID.equals(resultSet.getString("ownid"))) {
-							userDone = true;
-							break;
-						}
-					}
-					if(!userDone) {
-						ResultSet resultSet2 = statement.executeQuery("SELECT custid FROM customer");
-						while(resultSet2.next()) {
-							if(ID.equals(resultSet2.getString("custid"))) { 
-								userDone = true;
-								break;
-							}
-						}
-					}
-				} catch (Exception e) {
-					System.err.println(e);
-				}
-			}
+		Statement statement2 =null;
+		ResultSet resultSet2 =null;
+		Connection con2 =null;
+		String Result, Result2;
 		
-		assertTrue(userDone == false);
+		String ID = "c001";
+		String Password = "qwer6789";
+		assertTrue(ID.matches("[c][0-9]{3}"));
+		
+		con2 = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+		statement2 = con2.createStatement();		
+		resultSet2 = statement2.executeQuery("SELECT custid FROM customer");
+		Result = resultSet2.getString("custid");
+		resultSet2 = statement2.executeQuery("SELECT password FROM customer WHERE custid='" + ID + "'");
+		Result2 = resultSet2.getString("password");
+		assertEquals(ID, (Result));
+		assertEquals(Password, (Result2));
 	}
-	
 	@Test
-	public void IDTest3(){
-		
-		String ID = "123456678"; 
-		boolean userDone = false;
+	//Test customer invalid id and invalid password- Failure
+	public void test6() throws SQLException {
 
-			if(ID.matches("[c][0-9]{3}") | ID.matches("[o][0-9]{3}")) {
-				try {
-					Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-					Statement statement = con.createStatement();
-					ResultSet resultSet = statement.executeQuery("SELECT ownid FROM owner");
-					while(resultSet.next()) {
-						if(ID.equals(resultSet.getString("ownid"))) {
-							userDone = true;
-							break;
-						}
-					}
-					if(!userDone) {
-						ResultSet resultSet2 = statement.executeQuery("SELECT custid FROM customer");
-						while(resultSet2.next()) {
-							if(ID.equals(resultSet2.getString("custid"))) { 
-								userDone = true;
-								break;
-							}
-						}
-					}
-				} catch (Exception e) {
-					System.err.println(e);
-				}
-			}
+		Statement statement3 =null;
+		ResultSet resultSet3 =null;
+		Connection con3 =null;
+		String Result, Result2;
 		
-		assertTrue(userDone == false);
+		String ID = "12345";
+		String Password = "play13579";
+		assertTrue(ID.matches("[c][0-9]{3}"));
 		
-	}
-	
-	@Test
-	public void IDTest4(){
-		
-		String ID = "c0"; 
-		boolean userDone = false;
-
-			if(ID.matches("[c][0-9]{3}") | ID.matches("[o][0-9]{3}")) {
-				try {
-					Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-					Statement statement = con.createStatement();
-					ResultSet resultSet = statement.executeQuery("SELECT ownid FROM owner");
-					while(resultSet.next()) {
-						if(ID.equals(resultSet.getString("ownid"))) {
-							userDone = true;
-							break;
-						}
-					}
-					if(!userDone) {
-						ResultSet resultSet2 = statement.executeQuery("SELECT custid FROM customer");
-						while(resultSet2.next()) {
-							if(ID.equals(resultSet2.getString("custid"))) { 
-								userDone = true;
-								break;
-							}
-						}
-					}
-				} catch (Exception e) {
-					System.err.println(e);
-				}
-			}
-		
-		assertTrue(userDone == false);
-		
-	}
-	
-	@Test
-	public void IDTest5(){
-		String ID = "c01"; 
-		boolean userDone = false;
-
-			if(ID.matches("[c][0-9]{3}") | ID.matches("[o][0-9]{3}")) {
-				try {
-					Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-					Statement statement = con.createStatement();
-					ResultSet resultSet = statement.executeQuery("SELECT ownid FROM owner");
-					while(resultSet.next()) {
-						if(ID.equals(resultSet.getString("ownid"))) {
-							userDone = true;
-							break;
-						}
-					}
-					if(!userDone) {
-						ResultSet resultSet2 = statement.executeQuery("SELECT custid FROM customer");
-						while(resultSet2.next()) {
-							if(ID.equals(resultSet2.getString("custid"))) { 
-								userDone = true;
-								break;
-							}
-						}
-					}
-				} catch (Exception e) {
-					System.err.println(e);
-				}
-			}
-		
-		assertTrue(userDone == false);
-	}
-	
-	@Test
-	public void IDTest6(){
-		
-		String ID = "c0001"; 
-		boolean userDone = false;
-
-			if(ID.matches("[c][0-9]{3}") | ID.matches("[o][0-9]{3}")) {
-				try {
-					Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-					Statement statement = con.createStatement();
-					ResultSet resultSet = statement.executeQuery("SELECT ownid FROM owner");
-					while(resultSet.next()) {
-						if(ID.equals(resultSet.getString("ownid"))) {
-							userDone = true;
-							break;
-						}
-					}
-					if(!userDone) {
-						ResultSet resultSet2 = statement.executeQuery("SELECT custid FROM customer");
-						while(resultSet2.next()) {
-							if(ID.equals(resultSet2.getString("custid"))) { 
-								userDone = true;
-								break;
-							}
-						}
-					}
-				} catch (Exception e) {
-					System.err.println(e);
-				}
-			}
-		
-		assertTrue(userDone == false);
-		
-	}
-	
-	@Test
-	public void IDTest7(){
-		
-		String ID = "c000000000000001"; 
-		boolean userDone = false;
-
-			if(ID.matches("[c][0-9]{3}") | ID.matches("[o][0-9]{3}")) {
-				try {
-					Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-					Statement statement = con.createStatement();
-					ResultSet resultSet = statement.executeQuery("SELECT ownid FROM owner");
-					while(resultSet.next()) {
-						if(ID.equals(resultSet.getString("ownid"))) {
-							userDone = true;
-							break;
-						}
-					}
-					if(!userDone) {
-						ResultSet resultSet2 = statement.executeQuery("SELECT custid FROM customer");
-						while(resultSet2.next()) {
-							if(ID.equals(resultSet2.getString("custid"))) { 
-								userDone = true;
-								break;
-							}
-						}
-					}
-				} catch (Exception e) {
-					System.err.println(e);
-				}
-			}
-		
-		assertTrue(userDone == false);
-	}
-	
-	@Test
-	public void IDTest8(){
-		
-		String ID = "o1"; 
-		boolean userDone = false;
-
-			if(ID.matches("[c][0-9]{3}") | ID.matches("[o][0-9]{3}")) {
-				try {
-					Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-					Statement statement = con.createStatement();
-					ResultSet resultSet = statement.executeQuery("SELECT ownid FROM owner");
-					while(resultSet.next()) {
-						if(ID.equals(resultSet.getString("ownid"))) {
-							userDone = true;
-							break;
-						}
-					}
-					if(!userDone) {
-						ResultSet resultSet2 = statement.executeQuery("SELECT custid FROM customer");
-						while(resultSet2.next()) {
-							if(ID.equals(resultSet2.getString("custid"))) { 
-								userDone = true;
-								break;
-							}
-						}
-					}
-				} catch (Exception e) {
-					System.err.println(e);
-				}
-			}
-		
-		assertTrue(userDone == false);
-		
-	}
-	
-	@Test 
-	public void IDTest9(){
-		
-		String ID = "o11"; 
-		boolean userDone = false;
-
-			if(ID.matches("[c][0-9]{3}") | ID.matches("[o][0-9]{3}")) {
-				try {
-					Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-					Statement statement = con.createStatement();
-					ResultSet resultSet = statement.executeQuery("SELECT ownid FROM owner");
-					while(resultSet.next()) {
-						if(ID.equals(resultSet.getString("ownid"))) {
-							userDone = true;
-							break;
-						}
-					}
-					if(!userDone) {
-						ResultSet resultSet2 = statement.executeQuery("SELECT custid FROM customer");
-						while(resultSet2.next()) {
-							if(ID.equals(resultSet2.getString("custid"))) { 
-								userDone = true;
-								break;
-							}
-						}
-					}
-				} catch (Exception e) {
-					System.err.println(e);
-				}
-			}
-		
-		assertTrue(userDone == false);
-		
-	}
-	
-	@Test
-	public void IDTest10(){
-		
-		String ID = "o1110"; 
-		boolean userDone = false;
-
-			if(ID.matches("[c][0-9]{3}") | ID.matches("[o][0-9]{3}")) {
-				try {
-					Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-					Statement statement = con.createStatement();
-					ResultSet resultSet = statement.executeQuery("SELECT ownid FROM owner");
-					while(resultSet.next()) {
-						if(ID.equals(resultSet.getString("ownid"))) {
-							userDone = true;
-							break;
-						}
-					}
-					if(!userDone) {
-						ResultSet resultSet2 = statement.executeQuery("SELECT custid FROM customer");
-						while(resultSet2.next()) {
-							if(ID.equals(resultSet2.getString("custid"))) { 
-								userDone = true;
-								break;
-							}
-						}
-					}
-				} catch (Exception e) {
-					System.err.println(e);
-				}
-			}
-		
-		assertTrue(userDone == false);
-		
-	}
-	
-	@Test
-	public void IDTest11(){
-		
-		String ID = "o00000000000001110001"; 
-		boolean userDone = false;
-
-			if(ID.matches("[c][0-9]{3}") | ID.matches("[o][0-9]{3}")) {
-				try {
-					Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-					Statement statement = con.createStatement();
-					ResultSet resultSet = statement.executeQuery("SELECT ownid FROM owner");
-					while(resultSet.next()) {
-						if(ID.equals(resultSet.getString("ownid"))) {
-							userDone = true;
-							break;
-						}
-					}
-					if(!userDone) {
-						ResultSet resultSet2 = statement.executeQuery("SELECT custid FROM customer");
-						while(resultSet2.next()) {
-							if(ID.equals(resultSet2.getString("custid"))) { 
-								userDone = true;
-								break;
-							}
-						}
-					}
-				} catch (Exception e) {
-					System.err.println(e);
-				}
-			}
-		
-		assertTrue(userDone == false);
-	}
-	
-	@Test
-	public void PasswordTest1(){
-		String ID = "c001"; 
-		String password = "00000000000";
-		boolean userDone = true, passDone = false;
-		
-		if(userDone && !passDone) {
-			try {
-				Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-				Statement statement = con.createStatement();
-						
-				ResultSet resultSet = statement.executeQuery("SELECT password FROM owner WHERE ownID='" + ID + "'");
-				while(resultSet.next()) {
-					if(password.equals(resultSet.getString("password"))) {
-							passDone = true;
-						}
-					}
-					ResultSet resultSet2 = statement.executeQuery("SELECT password FROM customer WHERE custid='" + ID + "'");
-					while(resultSet2.next()) {
-						if(password.equals(resultSet2.getString("password"))) { 
-							passDone = true;
-						} else {
-							System.out.println("Password incorrect");
-						}
-					}
-				} catch (Exception e) {
-					System.err.println(e);
-				}
-			}
-		
-		assertTrue(passDone == false);
-	}
-	
-	@Test
-	public void PasswordTest2(){
-		String ID = "c001"; 
-		String password = "abcdefghijklmnop";
-		boolean userDone = true, passDone = false;
-		
-		if(userDone && !passDone) {
-			try {
-				Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-				Statement statement = con.createStatement();
-						
-				ResultSet resultSet = statement.executeQuery("SELECT password FROM owner WHERE ownID='" + ID + "'");
-				while(resultSet.next()) {
-					if(password.equals(resultSet.getString("password"))) {
-							passDone = true;
-						}
-					}
-					ResultSet resultSet2 = statement.executeQuery("SELECT password FROM customer WHERE custid='" + ID + "'");
-					while(resultSet2.next()) {
-						if(password.equals(resultSet2.getString("password"))) { 
-							passDone = true;
-						} else {
-							System.out.println("Password incorrect");
-						}
-					}
-				} catch (Exception e) {
-					System.err.println(e);
-				}
-			}
-		
-		assertTrue(passDone == false);
-	}
-	
-	@Test
-	public void PasswordTest3(){
-		String ID = "c001"; 
-		String password = "^@($&*#!)($*#@";
-		boolean userDone = true, passDone = false;
-		
-		if(userDone && !passDone) {
-			try {
-				Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-				Statement statement = con.createStatement();
-						
-				ResultSet resultSet = statement.executeQuery("SELECT password FROM owner WHERE ownID='" + ID + "'");
-				while(resultSet.next()) {
-					if(password.equals(resultSet.getString("password"))) {
-							passDone = true;
-						}
-					}
-					ResultSet resultSet2 = statement.executeQuery("SELECT password FROM customer WHERE custid='" + ID + "'");
-					while(resultSet2.next()) {
-						if(password.equals(resultSet2.getString("password"))) { 
-							passDone = true;
-						} else {
-							System.out.println("Password incorrect");
-						}
-					}
-				} catch (Exception e) {
-					System.err.println(e);
-				}
-			}
-		
-		assertTrue(passDone == false);
-	}
-	
-	@Test
-	public void PasswordTest4(){
-		String ID = "c001"; 
-		String password = "fjaskdj-12984124";
-		boolean userDone = true, passDone = false;
-		
-		if(userDone && !passDone) {
-			try {
-				Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-				Statement statement = con.createStatement();
-						
-				ResultSet resultSet = statement.executeQuery("SELECT password FROM owner WHERE ownID='" + ID + "'");
-				while(resultSet.next()) {
-					if(password.equals(resultSet.getString("password"))) {
-							passDone = true;
-						}
-					}
-					ResultSet resultSet2 = statement.executeQuery("SELECT password FROM customer WHERE custid='" + ID + "'");
-					while(resultSet2.next()) {
-						if(password.equals(resultSet2.getString("password"))) { 
-							passDone = true;
-						} else {
-							System.out.println("Password incorrect");
-						}
-					}
-				} catch (Exception e) {
-					System.err.println(e);
-				}
-			}
-		
-		assertTrue(passDone == false);
-	}
-	
-	@Test
-	public void PasswordTest5(){
-		String ID = "c001"; 
-		String password = "ANSAJLFNVDS";
-		boolean userDone = true, passDone = false;
-		
-		if(userDone && !passDone) {
-			try {
-				Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-				Statement statement = con.createStatement();
-						
-				ResultSet resultSet = statement.executeQuery("SELECT password FROM owner WHERE ownID='" + ID + "'");
-				while(resultSet.next()) {
-					if(password.equals(resultSet.getString("password"))) {
-							passDone = true;
-						}
-					}
-					ResultSet resultSet2 = statement.executeQuery("SELECT password FROM customer WHERE custid='" + ID + "'");
-					while(resultSet2.next()) {
-						if(password.equals(resultSet2.getString("password"))) { 
-							passDone = true;
-						} else {
-							System.out.println("Password incorrect");
-						}
-					}
-				} catch (Exception e) {
-					System.err.println(e);
-				}
-			}
-		
-		assertTrue(passDone == false);
-	}
-	
-	@Test
-	public void PasswordTest6(){
-		String ID = "c001"; 
-		String password = "ABCD1234";
-		boolean userDone = true, passDone = false;
-		
-		if(userDone && !passDone) {
-			try {
-				Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-				Statement statement = con.createStatement();
-						
-				ResultSet resultSet = statement.executeQuery("SELECT password FROM owner WHERE ownID='" + ID + "'");
-				while(resultSet.next()) {
-					if(password.equals(resultSet.getString("password"))) {
-							passDone = true;
-						}
-					}
-					ResultSet resultSet2 = statement.executeQuery("SELECT password FROM customer WHERE custid='" + ID + "'");
-					while(resultSet2.next()) {
-						if(password.equals(resultSet2.getString("password"))) { 
-							passDone = true;
-						} else {
-							System.out.println("Password incorrect");
-						}
-					}
-				} catch (Exception e) {
-					System.err.println(e);
-				}
-			}
-		
-		assertTrue(passDone == false);
+		con3 = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+		statement3 = con3.createStatement();		
+		resultSet3 = statement3.executeQuery("SELECT custid FROM customer");
+		Result = resultSet3.getString("custid");
+		resultSet3 = statement3.executeQuery("SELECT password FROM customer WHERE custid='" + ID + "'");
+		Result2 = resultSet3.getString("password");
+		assertEquals(ID, (Result));
+		assertEquals(Password, (Result2));
 	}
 }

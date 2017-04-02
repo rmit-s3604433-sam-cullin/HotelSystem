@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.EventQueue;
 import java.io.*;
 import java.sql.*;
 import java.util.Scanner;
@@ -11,6 +12,17 @@ public class Menu {
 	final static Scanner scan = new Scanner(System.in);
 
 	private String printMenu(){
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Login window = new Login();
+					window.getFrame().setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
 		System.out.println("======================================");
 		System.out.println("   John's Electrician Booking System");
 		System.out.println("======================================");
