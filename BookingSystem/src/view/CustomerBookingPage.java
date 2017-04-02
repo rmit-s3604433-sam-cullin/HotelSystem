@@ -13,19 +13,19 @@ public class CustomerBookingPage {
 	@SuppressWarnings("unused")
 	private JTable table;
 
-	/**
+	/*
 	 * Launch the application.
 	 */
 
 
-	/**
+	/*
 	 * Create the application.
 	 */
 	public CustomerBookingPage() {
 		initialize();
 	}
 
-	/**
+	/*
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
@@ -50,18 +50,14 @@ public class CustomerBookingPage {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//code for checking if the booking is valid and either
-				//prompt the user to chose another date
-				//or add the booking to the database
+				/* code for checking if the booking is valid and either
+				 * prompt the user to chose another date
+				 * or add the booking to the database
+				 */
 			}
 		});
 		btnNewButton.setBounds(398, 69, 117, 99);
 		frame.getContentPane().add(btnNewButton);
-		
-
-			
-		
-		
 		
 	}
 

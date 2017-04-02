@@ -67,7 +67,9 @@ public class DayView extends JPanel{
 	Boolean [] getAvailable(){
 		Boolean times[] = {true ,false ,true};
 		
-		//SQL code for getting available info for current day selected
+		/*
+		 * SQL code for getting available info for current day selected
+		 */
 		return times;
 	}
 	

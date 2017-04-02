@@ -205,7 +205,6 @@ public void login() {
 			System.out.println("   Johns Electrician Booking System");
 			System.out.println("======================================");
 			System.out.println("1. Add new employee");
-			/* Ask Homy how he wants this recorded*/
 			System.out.println("\n2. Add working time/dates for next month");
 			System.out.println("\n3. Booking summary");
 			System.out.println("\n4. Employeee availability");

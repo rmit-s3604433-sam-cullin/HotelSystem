@@ -180,7 +180,7 @@ public class Register {
 	}
 
 	public Window getFrame() {
-		// TODO Auto-generated method stub
+		
 		return frame;
 	}
 
