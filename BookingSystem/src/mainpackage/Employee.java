@@ -1,12 +1,12 @@
 package mainpackage;
 
-import java.util.Scanner;
-
 public class Employee {
 	
 	
 	private String ID, name, address, position, age, number;
-	
+	public Employee(){
+		
+	}
 	public Employee(String ID, String name, String address, String number, String age, String position) {
 		this.ID = ID;
 		this.name = name;
@@ -24,16 +24,51 @@ public class Employee {
 	public String getPosition() { return position; }
 	
 	public void setID(String ID) {
-		this.ID = ID;
+		while(true){
+			while(true) {
+				if(ID.matches("[0-9]{3}")) {
+					ID.trim();
+					this.ID = ID;
+					break;
+				} else {
+					System.out.println("Invalid ID number");
+					break;
+				}
+			}
+		}
 	}
 	public void setName(String name) {
-		this.name = name;
+		while(true) {
+			if(name.matches("[a-zA-Z ]{1,30}")) {	
+				this.name = name;
+				break;
+			} else {
+				System.out.println("Invalid name");
+				break;
+			}
+		}
 	}
 	public void setAddress(String address) {
-		this.address = address;
+		while(true) {	
+			if(address.matches("[a-zA-Z0-9 ,./':-|_`~&$@#+()]{2,40}")){
+				this.address = address;
+				break;
+			} else {
+				System.out.println("Invalid Address");
+				break;
+			}
+		}	
 	}
 	public void setNumber(String number) {
-		this.number = number;
+		while(true) {
+			if(number.matches("[0-9]{10}")){
+				this.number = number;
+				break;
+			} else {
+				System.out.println("Invalid Number");
+				break;
+			}
+		}
 	}
 	public void setAge(String age) {
 		this.age = age;
@@ -45,28 +80,4 @@ public class Employee {
 	public String toString(){
 		return ID + "," + name +  "," + address + "," + number + "," + age + "," + position;
 	}
-	
-	
-	
-	
-	
-	
-	
-	public int multiply(int x, int y){
-		
-		return x*y;
-		
-	}
-	
-	
-	public void multiply(){
-		
-		Scanner scan = new Scanner(System.in);
-		
-		int x = scan.nextInt();
-		int y = scan.nextInt();
-		
-		int total = x*y;
-	}
-
 }
