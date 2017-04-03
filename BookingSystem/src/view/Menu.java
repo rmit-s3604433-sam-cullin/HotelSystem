@@ -6,11 +6,16 @@ import java.sql.*;
 import java.util.Scanner;
 
 import mainpackage.*;
+import register.AddCustomer;
+import register.AddCustomerV2;
+import register.AddEmployee;
 
 public class Menu {
   
 	final static Scanner scan = new Scanner(System.in);
-
+	AddCustomer customer = new AddCustomer();
+	AddEmployee employee = new AddEmployee();
+	
 	private String printMenu(){
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -45,7 +50,7 @@ public class Menu {
 					login();
 					break;
 				case("2"):
-					addCustomer();
+					customer.addCustomerMenu();
 					break;
 				case("3"):
 					System.out.println("\nThe system will exit now.");
@@ -215,7 +220,7 @@ public void login() {
 			
 			switch (choice) {
 				case 1 : 
-					addEmployee();
+					employee.addEmployeeMenu();
 					break;
 				case 4 :
 					System.out.println("\n");
@@ -251,167 +256,6 @@ public void login() {
 					System.out.println("please enter valid input");
 			}
 		}while(!choice.equals("2"));
-	}
-	
-	public void addCustomer() {
-		
-		String custid = "", name = "", password = "", address = "", number = "";
-		Person nC = new Customer(custid,name,password,address,number);
-		scan.nextLine();
-		
-		System.out.println("\nPlease enter ID: ");
-		custid = scan.nextLine();
-		while(true) {
-			if(custid.matches("[0-9]{3}")) {
-				custid.trim();
-				nC.setID(custid);
-				break;
-			} else {
-				System.out.println("Please enter a valid ID number");
-				custid = scan.nextLine();
-			}
-		}
-			
-		System.out.println("\nPlease enter Name: ");
-		name = scan.nextLine();	
-		while(true) {
-			if(name.matches("[a-zA-Z ]{1,30}")) {	
-				nC.setName(name);
-				break;
-			} else {
-				System.out.println("Please enter a valid name");
-				name = scan.nextLine();
-			}
-		}
-		
-		System.out.println("\nPlease enter Password: ");
-		password = scan.nextLine();
-		while(true) {	
-			if(password.matches("[a-zA-Z0-9,./';:?><{}|+=-_()*&^%$#@!`~]{8,20}")){
-				nC.setPassword(password);
-				break;
-			} else {
-				System.out.println("Please enter a valid password");
-				password = scan.nextLine();
-			}
-		}
-		
-		System.out.println("\nPlease enter Address: ");
-		address = scan.nextLine();
-		while(true) {	
-			if(address.matches("[a-zA-Z0-9 ,./':-|_`~&$@#+()]{2,40}")){
-				nC.setAddress(address);
-				break;
-			} else {
-				System.out.println("Please enter a valid address");
-				address = scan.nextLine();
-			}
-		}
-		
-		System.out.println("\nPlease enter mobile Number: ");
-		number = scan.nextLine();
-		while(true) {
-			if(number.matches("[0-9]{10}")){
-				nC.setNumber(number);
-				break;
-			} else {
-				System.out.println("Please enter mobile number");
-				number = scan.nextLine();
-			}
-		}
-		
-		try {
-			Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-			Statement statement = con.createStatement();
-			
-			/* SQL Statement */
-			statement.executeUpdate("INSERT INTO customer values('c" + nC.getID() + "', '" + nC.getName() + "', '" + nC.getPassword() + "', '" + nC.getAddress() + "', '0" + nC.getNumber() + "')");
-
-			System.out.println("\nRegistration Successful!");
-		} catch (Exception e) {
-			System.err.println(e);
-		}
-	}
-	
-	public void addEmployee() {
-
-		String empid = "", name = "", address = "", number = "";
-		Connection con = null;
-		Statement statement = null;
-		scan.nextLine();
-		
-		System.out.println("\nPlease enter new employee ID: ");
-		empid = scan.nextLine();
-		while(true) {
-			if(empid.matches("[0-9]{3}")) {
-				empid.trim();
-				break;
-			} else {
-				System.out.println("Please enter a valid ID number");
-				empid = scan.nextLine();
-			}
-		}
-			
-		System.out.println("\nPlease enter new employee name: ");
-		name = scan.nextLine();	
-		while(true) {
-			if(name.matches("[a-zA-Z ]{1,30}")) {	
-				break;
-			} else {
-				System.out.println("Please enter a valid name");
-				name = scan.nextLine();
-			}
-		}
-		
-		System.out.println("\nPlease enter new employee address: ");
-		address = scan.nextLine();
-		while(true) {	
-			if(address.matches("[a-zA-Z0-9 ,./':-|_`~&$@#+()]{2,40}")){
-				break;
-			} else {
-				System.out.println("Please enter a valid address");
-				address = scan.nextLine();
-			}
-		}
-		
-		System.out.println("\nPlease enter new employee mobile: ");
-		number = scan.nextLine();
-		while(true) {
-			if(number.matches("[0-9]{10}")){
-				break;
-			} else {
-				System.out.println("Please enter mobile number");
-				number = scan.nextLine();
-			}
-		}
-		
-		try {
-			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-			statement = con.createStatement();
-		
-			System.out.println("connection made for adding employee");
-			/* SQL Statement */
-			statement.executeUpdate("INSERT INTO employee values('e"+empid+"', '"+name+"', '"+address+"', '"+number+"')");
-			
-			System.out.println("\nSuccessfully added new employee to system!\n");
-			
-		} catch (Exception e) {
-			System.err.println(e);
-		} finally {
-			if (statement != null) {
-		        try {
-		            statement.close();
-		            System.out.println("add employee statement closed");
-		        } catch (SQLException e) { /* ignored */}
-		    }
-		    if (con != null) {
-		        try {
-		            con.close();
-		            System.out.println("add employee con closed");
-		        } catch (SQLException e) { /* ignored */}
-		    }
-		    
-		}
 	}
 
 	public void addTimeDate() {
