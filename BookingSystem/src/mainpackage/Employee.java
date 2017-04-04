@@ -7,6 +7,9 @@ public class Employee {
 	
 	private String ID, name, address, position, age, number;
 	
+	public Employee() {
+		
+	}
 	public Employee(String ID, String name, String address, String number, String age, String position) {
 		this.ID = ID;
 		this.name = name;
