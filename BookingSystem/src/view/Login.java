@@ -93,6 +93,8 @@ public class Login {
 					ResultSet set2 = statement2.executeQuery();
 					if(set.next()) {
 						/*JOptionPane.showMessageDialog(null, "Verification success - Owner Login Successful");*/
+						frame.setVisible(false);
+						frame.dispose();
 						EventQueue.invokeLater(new Runnable() {
 							public void run() {
 								try {
@@ -106,6 +108,8 @@ public class Login {
 					}
 					else if(set2.next()){
 						/*JOptionPane.showMessageDialog(null, "Verification success - Customer Login Successful");*/
+						frame.setVisible(false);
+						frame.dispose();
 						EventQueue.invokeLater(new Runnable() {
 							public void run() {
 								try {
@@ -138,7 +142,6 @@ public class Login {
 		
 		JLabel lblRegister = new JLabel("<HTML><U>Click here to Register!</U></HTML>");
 		lblRegister.addMouseListener(new MouseAdapter() {
-			
 			public void mouseClicked(MouseEvent arg0) {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {

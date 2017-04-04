@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -91,6 +92,7 @@ public class Register {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String custid = REGIDinput.getText();
+				
 				if(custid.matches("[0-9]{3}")) {
 					custid.trim();
 				} else {
@@ -156,28 +158,34 @@ public class Register {
 				String password = REGPASSinput.getText();
 				String address = REGADDRSinput.getText();
 				Person nC = new Customer(custid,name,password,address,number);
-						
+				
+				Connection con = null;
+				Statement statement = null;
 				try {
-					Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-					Statement statement = con.createStatement();
-					
+					con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+					statement = con.createStatement();
 					/* SQL Statement */
 					statement.executeUpdate("INSERT INTO customer values('c" + nC.getID() + "', '" + nC.getName() + "', '" + nC.getPassword() + "', '" + nC.getAddress() + "', '0" + nC.getNumber() + "')");
 
 					JOptionPane.showMessageDialog(null, "\nRegistration Successful!");
-					EventQueue.invokeLater(new Runnable() {
-						public void run() {
-							try {
-								Login window = new Login();
-								window.getFrame().setVisible(true);
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
-						}
-					});
+					frame.setVisible(false);
+					frame.dispose();
 					
 				} catch (Exception e1) {
 					System.err.println(e1);
+				} finally {
+					if (statement != null) {
+				        try {
+				            statement.close();
+				            System.out.println("pass stat closed");
+				        } catch (SQLException e1) { System.out.println("statement did not close");}
+				    }
+				    if (con != null) {
+				        try {
+				            con.close();
+				            System.out.println("pass con closed");
+				        } catch (SQLException e1) { /* ignored */}
+				    } 
 				}
 				
 			}
@@ -190,16 +198,8 @@ public class Register {
 		lblGoBackMain.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							Login window = new Login();
-							window.getFrame().setVisible(true);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				});
+				frame.setVisible(false);
+				frame.dispose();
 			}
 		});
 		lblGoBackMain.setFont(new Font("Tahoma", Font.PLAIN, 13));

@@ -174,16 +174,8 @@ public class BookingSummary {
 		lblMainMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							OwnerMenu window = new OwnerMenu();
-							window.getFrame().setVisible(true);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				});
+				frame.setVisible(false);
+				frame.dispose();
 			}
 		});
 		lblMainMenu.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -194,6 +186,8 @@ public class BookingSummary {
 		lblviewLatestBookings.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				frame.setVisible(false);
+				frame.dispose();
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {

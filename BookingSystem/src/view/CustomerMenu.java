@@ -59,6 +59,8 @@ public class CustomerMenu {
 		lblLogout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				frame.setVisible(false);
+				frame.dispose();
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {

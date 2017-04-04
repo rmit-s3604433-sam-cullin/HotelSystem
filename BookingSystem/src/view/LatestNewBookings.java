@@ -168,6 +168,8 @@ public class LatestNewBookings {
 		lblviewBookingSummary.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				frame.setVisible(false);
+				frame.dispose();
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
@@ -188,16 +190,8 @@ public class LatestNewBookings {
 		label_26.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							OwnerMenu window = new OwnerMenu();
-							window.getFrame().setVisible(true);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				});
+				frame.setVisible(false);
+				frame.dispose();
 			}
 		});
 		label_26.setFont(new Font("Tahoma", Font.PLAIN, 14));

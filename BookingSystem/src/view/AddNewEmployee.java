@@ -23,6 +23,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -145,10 +146,12 @@ public class AddNewEmployee {
 				String address = textField_2.getText();
 				Employee nE = new Employee(empid,name,address,number);
 
+				Connection con = null;
+				Statement statement = null;
+				ResultSet resultSet =null;
 				try {
-					Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-					Statement statement = con.createStatement();
-				
+					con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+					statement = con.createStatement();
 					/* SQL Statement */
 					statement.executeUpdate("INSERT INTO employee values('e"+nE.getID()+"', '"+nE.getName()+"', '"+nE.getAddress()+"', '"+nE.getNumber()+"')");
 					
@@ -156,6 +159,25 @@ public class AddNewEmployee {
 					
 				} catch (Exception e1) {
 					System.err.println(e1);
+				} finally {
+					if(resultSet != null){
+				    	try {
+				    		resultSet.close();
+				    		System.out.println("pass result closed");
+				    	} catch (SQLException e1){ /* ignored */ }
+				    }
+					if (statement != null) {
+				        try {
+				            statement.close();
+				            System.out.println("pass stat closed");
+				        } catch (SQLException e1) { System.out.println("statement did not close");}
+				    }
+				    if (con != null) {
+				        try {
+				            con.close();
+				            System.out.println("pass con closed");
+				        } catch (SQLException e1) { /* ignored */}
+				    } 
 				}
 			}
 		});
@@ -168,16 +190,8 @@ public class AddNewEmployee {
 		lblGoBackMain.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							OwnerMenu window = new OwnerMenu();
-							window.getFrame().setVisible(true);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				});
+				frame.setVisible(false);
+				frame.dispose();
 			}
 		});
 		lblGoBackMain.setFont(new Font("Tahoma", Font.PLAIN, 13));
