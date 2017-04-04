@@ -99,30 +99,35 @@ public class EmployeeTest {
 		e.setAddress(address);	
 		assertTrue(e.getAddress().matches("[a-zA-Z0-9 ,./':-|_`~&$@#+()]{2,40}"));
 	}
+	@Test
 	public void testAddress2() {
 		String ID = "", name = "",address = "Abcdefghijk", position = "", number = "", age = "";
 		Employee e = new Employee(ID,name,address,number,age,position);
 		e.setAddress(address);	
 		assertTrue(e.getAddress().matches("[a-zA-Z0-9 ,./':-|_`~&$@#+()]{2,40}"));
 	}
+	@Test
 	public void testAddress3() {
 		String ID = "", name = "",address = "1012302495901", position = "", number = "", age = "";
 		Employee e = new Employee(ID,name,address,number,age,position);
 		e.setAddress(address);	
 		assertTrue(e.getAddress().matches("[a-zA-Z0-9 ,./':-|_`~&$@#+()]{2,40}"));
 	}
+	@Test
 	public void testAddress4() {
 		String ID = "", name = "",address = "90009-88897709", position = "", number = "", age = "";
 		Employee e = new Employee(ID,name,address,number,age,position);
 		e.setAddress(address);	
 		assertTrue(e.getAddress().matches("[a-zA-Z0-9 ,./':-|_`~&$@#+()]{2,40}"));
 	}
+	@Test
 	public void testAddress5() {
 		String ID = "", name = "",address = "?_=[][{}};./,.`~", position = "", number = "", age = "";
 		Employee e = new Employee(ID,name,address,number,age,position);
 		e.setAddress(address);	
 		assertTrue(e.getAddress().matches("[a-zA-Z0-9 ,./':-|_`~&$@#+()]{2,40}"));
 	}
+	@Test
 	public void testAddress6() {
 		String ID = "", name = "",address = " ", position = "", number = "", age = "";
 		Employee e = new Employee(ID,name,address,number,age,position);
