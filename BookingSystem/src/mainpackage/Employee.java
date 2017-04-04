@@ -5,23 +5,23 @@ import java.util.Scanner;
 public class Employee {
 	
 	
-	private String ID, name, address, position, age, number;
+	private String ID, name, address, number;
 	
-	public Employee(String ID, String name, String address, String number, String age, String position) {
+	public Employee(String ID, String name, String address, String number) {
 		this.ID = ID;
 		this.name = name;
 		this.address = address;
 		this.number = number;
-		this.age = age;
-		this.position = position;
+		/*this.age = age;
+		this.position = position;*/
 	}
 
 	public String getID() { return ID; }
 	public String getName() { return name; }
 	public String getAddress() { return address; }
 	public String getNumber() { return number; }
-	public String getAge() { return age; }
-	public String getPosition() { return position; }
+	/*public String getAge() { return age; }
+	public String getPosition() { return position; }*/
 	
 	public void setID(String ID) {
 		this.ID = ID;
@@ -35,15 +35,15 @@ public class Employee {
 	public void setNumber(String number) {
 		this.number = number;
 	}
-	public void setAge(String age) {
+	/*public void setAge(String age) {
 		this.age = age;
 	}
 	public void setPosition(String position) {
 		this.position = position;
-	}
+	}*/
 	
 	public String toString(){
-		return ID + "," + name +  "," + address + "," + number + "," + age + "," + position;
+		return ID + "," + name +  "," + address + "," + number;
 	}
 	
 	

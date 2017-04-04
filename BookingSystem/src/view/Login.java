@@ -92,10 +92,30 @@ public class Login {
 					ResultSet set = statement.executeQuery();
 					ResultSet set2 = statement2.executeQuery();
 					if(set.next()) {
-						JOptionPane.showMessageDialog(null, "Verification success - Owner Login Successful");
+						/*JOptionPane.showMessageDialog(null, "Verification success - Owner Login Successful");*/
+						EventQueue.invokeLater(new Runnable() {
+							public void run() {
+								try {
+									OwnerMenu window = new OwnerMenu();
+									window.getFrame().setVisible(true);
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+							}
+						});
 					}
 					else if(set2.next()){
-						JOptionPane.showMessageDialog(null, "Verification success - Customer Login Successful");	
+						/*JOptionPane.showMessageDialog(null, "Verification success - Customer Login Successful");*/
+						EventQueue.invokeLater(new Runnable() {
+							public void run() {
+								try {
+									CustomerMenu window = new CustomerMenu();
+									window.getFrame().setVisible(true);
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+							}
+						});
 					}
 					else {
 						JOptionPane.showMessageDialog(null, "Invalid Username or Password");
@@ -109,7 +129,7 @@ public class Login {
 			}
 		});
 		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnLogin.setBackground(Color.RED);
+		btnLogin.setBackground(Color.LIGHT_GRAY);
 		getFrame().getContentPane().add(btnLogin);
 		
 		JLabel lblNewCustomer = new JLabel("New Customer?");
