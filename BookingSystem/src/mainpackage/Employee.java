@@ -24,50 +24,33 @@ public class Employee {
 	public String getPosition() { return position; }
 	
 	public void setID(String ID) {
-		while(true){
-			while(true) {
-				if(ID.matches("[0-9]{3}")) {
-					ID.trim();
-					this.ID = ID;
-					break;
-				} else {
-					System.out.println("Invalid ID number");
-					break;
-				}
-			}
-		}
-	}
-	public void setName(String name) {
-		while(true) {
-			if(name.matches("[a-zA-Z ]{1,30}")) {	
-				this.name = name;
-				break;
-			} else {
-				System.out.println("Invalid name");
-				break;
-			}
-		}
-	}
-	public void setAddress(String address) {
-		while(true) {	
-			if(address.matches("[a-zA-Z0-9 ,./':-|_`~&$@#+()]{2,40}")){
-				this.address = address;
-				break;
-			} else {
-				System.out.println("Invalid Address");
-				break;
-			}
+		if(ID.matches("[0-9]{3}")) {
+			ID.trim();
+			this.ID = ID;	
+		} else {
+			System.out.println("Invalid ID number");		
 		}	
 	}
+	public void setName(String name) {
+		if(name.matches("[a-zA-Z ]{1,30}")) {	
+			this.name = name;
+		} else {
+			System.out.println("Invalid name");
+		}
+	}
+	public void setAddress(String address) {	
+		if(address.matches("[a-zA-Z0-9 ,./':-|_`~&$@#+()]{2,40}")){
+			this.address = address;				
+		} else {
+			System.out.println("Invalid Address");			
+		}
+			
+	}
 	public void setNumber(String number) {
-		while(true) {
-			if(number.matches("[0-9]{10}")){
-				this.number = number;
-				break;
-			} else {
-				System.out.println("Invalid Number");
-				break;
-			}
+		if(number.matches("[0-9]{10}")){
+			this.number = number;
+		} else {
+			System.out.println("Invalid Number");
 		}
 	}
 	public void setAge(String age) {
