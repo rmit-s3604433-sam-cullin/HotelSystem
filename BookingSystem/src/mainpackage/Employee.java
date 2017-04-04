@@ -7,7 +7,14 @@ public class Employee {
 	
 	private String ID, name, address, number;
 	
+<<<<<<< HEAD
 	public Employee(String ID, String name, String address, String number) {
+=======
+	public Employee() {
+		
+	}
+	public Employee(String ID, String name, String address, String number, String age, String position) {
+>>>>>>> Regex in setters and junit overhaul commit
 		this.ID = ID;
 		this.name = name;
 		this.address = address;
