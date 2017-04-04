@@ -6,6 +6,8 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class CustomerBookingPage {
 
@@ -58,6 +60,17 @@ public class CustomerBookingPage {
 		});
 		btnNewButton.setBounds(398, 69, 117, 99);
 		frame.getContentPane().add(btnNewButton);
+		
+		JLabel lblBack = new JLabel("Back");
+		lblBack.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frame.setVisible(false);
+				frame.dispose();
+			}
+		});
+		lblBack.setBounds(23, 243, 61, 16);
+		frame.getContentPane().add(lblBack);
 		
 	}
 

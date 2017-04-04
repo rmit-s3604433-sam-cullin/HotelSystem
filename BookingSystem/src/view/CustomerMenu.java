@@ -51,6 +51,21 @@ public class CustomerMenu {
 		frame.getContentPane().add(label);
 		
 		JLabel lblViewAvailable = new JLabel("View Available Date & Time");
+		lblViewAvailable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run(){
+						try{
+							CustomerBookingPage window = new CustomerBookingPage();
+							window.getFrame().setVisible(true);
+						} catch (Exception e){
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
 		lblViewAvailable.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblViewAvailable.setBounds(125, 74, 175, 22);
 		frame.getContentPane().add(lblViewAvailable);
