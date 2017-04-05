@@ -10,32 +10,32 @@ public class EmployeeNameTest {
 	@Test
 	public void test1() {
 		employee.setName("tim0t4y 7uRn3r");
-		assertEquals("tim0t4y 7uRn3r", employee.getName());
+		assertFalse("tim0t4y 7uRn3r".equals(employee.getName()));
 	}
 	@Test
 	public void test2() {
 		employee.setName(" ");
-		assertEquals(" ", employee.getName());
+		assertFalse(" ".equals(employee.getName()));
 	}
 	@Test
 	public void test3() {
 		employee.setName("10239843");
-		assertEquals("10239843", employee.getName());
+		assertFalse("10239843".equals(employee.getName()));
 	}
 	@Test
 	public void test4() {
 		employee.setName("[]-=;'./,`");
-		assertEquals("[]-=;'./,`", employee.getName());
+		assertFalse("[]-=;'./,`".equals(employee.getName()));
 	}
 	@Test
 	public void test5() {
 		employee.setName("12123]][;..`1");
-		assertEquals("12123]][;..`1", employee.getName());
+		assertFalse("12123]][;..`1".equals(employee.getName()));
 	}
 	@Test
 	public void test6() {
 		employee.setName("Taspf][';`kfja");
-		assertEquals("Taspf][';`kfja", employee.getName());
+		assertFalse("Taspf][';`kfja".equals(employee.getName()));
 	}
 
 
