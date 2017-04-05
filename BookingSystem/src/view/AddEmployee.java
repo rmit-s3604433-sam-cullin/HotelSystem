@@ -210,6 +210,7 @@ public class AddEmployee extends JFrame {
 				}
 			}
 		});
+		
 		frame.add(cards);
 		frame.setBounds(100,100,400,150);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
