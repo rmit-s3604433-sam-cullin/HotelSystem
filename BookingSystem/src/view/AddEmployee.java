@@ -24,11 +24,13 @@ public class AddEmployee extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JFrame frame = new JFrame();
+	
 	private JPanel cards = new JPanel();
 	private JPanel panel1 = new JPanel();
 	private JPanel panel2 = new JPanel();
 	private JPanel panel3 = new JPanel();
 	private JPanel panel4 = new JPanel();
+	
 	private JLabel title1 = new JLabel("Add New Employee");
 	private JLabel title2 = new JLabel("Add New Employee");
 	private JLabel title3 = new JLabel("Add New Employee");
@@ -37,10 +39,12 @@ public class AddEmployee extends JFrame {
 	private JLabel empName = new JLabel("Employee name:");
 	private JLabel empAddress = new JLabel("Employee address:");
 	private JLabel empNumber = new JLabel("Employee number:");
+	
 	private JButton submit1 = new JButton("OK");
 	private JButton submit2 = new JButton("OK");
 	private JButton submit3 = new JButton("OK");
 	private JButton submit4 = new JButton("OK");
+	
 	private JTextField empidInput = new JTextField(10);
 	private JTextField empNameInput = new JTextField(10);
 	private JTextField empAddressInput = new JTextField(10);
