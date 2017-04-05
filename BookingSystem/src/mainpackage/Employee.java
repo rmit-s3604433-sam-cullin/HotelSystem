@@ -32,7 +32,7 @@ public class Employee {
 		}	
 	}
 	public void setName(String name) {
-		if(name.matches("[a-zA-Z ]{1,30}")) {	
+		if(name.matches("[a-zA-Z ]{2,30}")) {	
 			this.name = name;
 		} else {
 			System.out.println("Invalid name");
