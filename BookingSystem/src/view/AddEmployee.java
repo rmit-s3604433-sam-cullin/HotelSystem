@@ -22,6 +22,7 @@ import java.awt.event.ActionEvent;
 
 public class AddEmployee extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JFrame frame = new JFrame();
 	private JPanel cards = new JPanel();
 	private JPanel panel1 = new JPanel();
