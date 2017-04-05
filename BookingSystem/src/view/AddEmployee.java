@@ -52,6 +52,7 @@ public class AddEmployee extends JFrame {
 		
 		cards.setLayout(cl);
 
+		/* Add ID Panel */
 		panel1.setLayout(null);
 		panel1.add(title1);
 		title1.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -66,6 +67,7 @@ public class AddEmployee extends JFrame {
 		submit1.setBounds(285,63,50,22);
 		panel1.setBackground(Color.BLUE);
 		
+		/* Add Name Panel */
 		panel2.setLayout(null);
 		panel2.add(title2);
 		title2.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -80,6 +82,7 @@ public class AddEmployee extends JFrame {
 		submit2.setBounds(285,63,50,22);
 		panel2.setBackground(Color.GREEN);
 		
+		/* Add Address Panel */
 		panel3.setLayout(null);
 		panel3.add(title3);
 		title3.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -94,6 +97,7 @@ public class AddEmployee extends JFrame {
 		submit3.setBounds(285,63,50,22);
 		panel3.setBackground(Color.YELLOW);
 		
+		/* Add Number Panel */
 		panel4.setLayout(null);
 		panel4.add(title4);
 		title4.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -108,6 +112,7 @@ public class AddEmployee extends JFrame {
 		submit4.setBounds(285,63,50,22);
 		panel4.setBackground(Color.RED);
 		
+		/* Add cards */
 		cards.add(panel1, "1");
 		cards.add(panel2, "2");
 		cards.add(panel3, "3");

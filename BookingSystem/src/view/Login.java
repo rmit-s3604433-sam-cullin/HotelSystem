@@ -28,18 +28,10 @@ public class Login {
 	private JTextField IDinput;
 	private JPasswordField passwordField;
 
-	/**
-	 * Launch the application.
-	 */
-
-	/**
-	 * Create the application.
-	 */
 	public Login() {
 		initialize();
 	}
-
-	/**
+	/*
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
@@ -80,7 +72,7 @@ public class Login {
 					String pass = passwordField.getText();
 					//Create query
 					String query ="SELECT * FROM owner WHERE ownid=? AND password=?";
-					String query2 ="SELECT * FROM customer WHERE custid=? AND password =?";
+					String query2 ="SELECT * FROM customer WHERE custid=? AND password=?";
 			
 					PreparedStatement statement = connection.prepareStatement(query);
 					PreparedStatement statement2 = connection.prepareStatement(query2);
