@@ -46,8 +46,7 @@ public class OwnerMenu {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							AddNewEmployee window = new AddNewEmployee();
-							window.getFrame().setVisible(true);
+							new AddEmployee();
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
