@@ -24,14 +24,13 @@ public class Login {
 		while(true){
 			System.out.println("Please enter User ID or 'exit': ");
 			ID = scan.nextLine();
-	
-			if(ID.equals("exit")){
-				System.out.println("Returning to main menu");
-				menu.systemMenu();
+			if(loginIDValidation(ID) == 1){
+				IDCheck = true;
 				break;
 			}						
-			else if(loginIDValidation(ID) == 1){
-				IDCheck = true;
+			else if(ID.equals("exit")){
+				System.out.println("Returning to main menu");
+				menu.systemMenu();
 				break;
 			}
 			else{
@@ -44,13 +43,13 @@ public class Login {
 				if(loginIDValidation(ID) == 1){
 					System.out.println("Enter the password: ");
 					String password = scan.nextLine();
-					int j = loginPasswordValidation(ID,password);
-					if(j == 1){
+					int i = loginPasswordValidation(ID,password);
+					if(i == 1){
 						System.out.println("Successful");
 						menu.customerMenu();
 						break;
 					}
-					else if(j == 2){
+					else if(i == 2){
 						menu.ownerMenu();
 					}
 					else {
@@ -94,7 +93,7 @@ public class Login {
 				resultSet = statement.executeQuery("SELECT password FROM owner WHERE ownid='" + ID + "'");		
 				if(resultSet.next()){			
 					if(password.equals(resultSet.getString("password"))) {
-						i = 1;
+						i = 2;
 					}
 				}
 			}
