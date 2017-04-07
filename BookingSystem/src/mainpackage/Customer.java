@@ -1,5 +1,8 @@
 package mainpackage;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class Customer extends Person {
@@ -22,6 +25,7 @@ public class Customer extends Person {
 			this.ID = ID;
 		} else {
 			System.out.println("Invalid ID number");
+			System.out.println("getID()= " + getID());
 		}			
 	}
 	
@@ -64,6 +68,21 @@ public class Customer extends Person {
 	@Override
 	public String toString(){
 		return ID + "," + name + "," + password + "," + address + "," + number;
+	}
+	
+	@Override
+	public void addCustomer(Person nC){
+		try {
+			Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+			Statement statement = con.createStatement();
+			
+			/* SQL Statement */
+			statement.executeUpdate("INSERT INTO customer values('c" + nC.getID() + "', '" + nC.getName() + "', '" 
+					+ nC.getPassword() + "', '" + nC.getAddress() + "', '0" + nC.getNumber() + "')");
+			System.out.println("\nRegistration Successful!");
+		} catch (Exception e) {
+			System.err.println(e);
+		}
 	}
 
 }

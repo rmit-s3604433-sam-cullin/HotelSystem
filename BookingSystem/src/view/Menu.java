@@ -15,8 +15,7 @@ public class Menu {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login window = new Login();
-					window.getFrame().setVisible(true);
+					new Login();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -217,6 +216,8 @@ public void login() {
 				case 1 : 
 					addEmployee();
 					break;
+				case 2 :
+					addTimeDate();
 				case 4 :
 					System.out.println("\n");
 					BookingSystem.main(null);

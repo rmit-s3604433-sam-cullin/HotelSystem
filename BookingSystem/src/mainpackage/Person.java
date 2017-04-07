@@ -33,5 +33,9 @@ public abstract class Person {
 	public String toString(){
 		return ID + "," + name + "," + password + "," + address + "," + number;
 	}
+	public void addCustomer(Person nC) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

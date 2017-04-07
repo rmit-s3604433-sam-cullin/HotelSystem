@@ -14,32 +14,9 @@ public class CustomerMenu {
 	private JFrame frame;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CustomerMenu window = new CustomerMenu();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the application.
 	 */
 	public CustomerMenu() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -50,26 +27,13 @@ public class CustomerMenu {
 		label.setBounds(65, 21, 306, 30);
 		frame.getContentPane().add(label);
 		
+		//Button label for customer to view the available date and time to book an appointment
 		JLabel lblViewAvailable = new JLabel("View Available Date & Time");
-		lblViewAvailable.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				EventQueue.invokeLater(new Runnable() {
-					public void run(){
-						try{
-							CustomerBookingPage window = new CustomerBookingPage();
-							window.getFrame().setVisible(true);
-						} catch (Exception e){
-							e.printStackTrace();
-						}
-					}
-				});
-			}
-		});
 		lblViewAvailable.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblViewAvailable.setBounds(125, 74, 175, 22);
 		frame.getContentPane().add(lblViewAvailable);
 		
+		//Button label for customer to logout of the system
 		JLabel lblLogout = new JLabel("Logout");
 		lblLogout.addMouseListener(new MouseAdapter() {
 			@Override
@@ -79,8 +43,7 @@ public class CustomerMenu {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							Login window = new Login();
-							window.getFrame().setVisible(true);
+							new Login();
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -91,7 +54,13 @@ public class CustomerMenu {
 		lblLogout.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblLogout.setBounds(184, 107, 50, 22);
 		frame.getContentPane().add(lblLogout);
+		
+		frame.setVisible(true);
 	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
 
 	public Window getFrame() {
 		// TODO Auto-generated method stub

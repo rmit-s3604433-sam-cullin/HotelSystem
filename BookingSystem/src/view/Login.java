@@ -1,26 +1,26 @@
 package view;
 
 import javax.swing.JFrame;
+import java.awt.Window;
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JButton;
 
-import java.awt.Window;
 import java.awt.Font;
+import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Login {
 
@@ -28,13 +28,14 @@ public class Login {
 	private JTextField IDinput;
 	private JPasswordField passwordField;
 
-	public Login() {
-		initialize();
-	}
-	/*
-	 * Initialize the contents of the frame.
+	/**
+	 * Launch the application.
 	 */
-	private void initialize() {
+
+	/**
+	 * Create the application.
+	 */
+	public Login() {
 		setFrame(new JFrame());
 		getFrame().setBounds(100, 100, 450, 300);
 		((JFrame) getFrame()).setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,7 +73,7 @@ public class Login {
 					String pass = passwordField.getText();
 					//Create query
 					String query ="SELECT * FROM owner WHERE ownid=? AND password=?";
-					String query2 ="SELECT * FROM customer WHERE custid=? AND password=?";
+					String query2 ="SELECT * FROM customer WHERE custid=? AND password =?";
 			
 					PreparedStatement statement = connection.prepareStatement(query);
 					PreparedStatement statement2 = connection.prepareStatement(query2);
@@ -90,8 +91,7 @@ public class Login {
 						EventQueue.invokeLater(new Runnable() {
 							public void run() {
 								try {
-									OwnerMenu window = new OwnerMenu();
-									window.getFrame().setVisible(true);
+									new OwnerMenu();
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
@@ -105,8 +105,7 @@ public class Login {
 						EventQueue.invokeLater(new Runnable() {
 							public void run() {
 								try {
-									CustomerMenu window = new CustomerMenu();
-									window.getFrame().setVisible(true);
+									new CustomerMenu();
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
@@ -135,11 +134,12 @@ public class Login {
 		JLabel lblRegister = new JLabel("<HTML><U>Click here to Register!</U></HTML>");
 		lblRegister.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
+				//frame.setVisible(false);
+				//frame.dispose();
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							Register window = new Register();
-							window.getFrame().setVisible(true);
+							new RegisterCustomer();	
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -153,7 +153,13 @@ public class Login {
 		passwordField = new JPasswordField();
 		passwordField.setBounds(173, 122, 148, 23);
 		frame.getContentPane().add(passwordField);
+	
+		frame.setVisible(true);
 	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
 
 	public JFrame getFrame() {
 		return frame;

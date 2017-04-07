@@ -4,26 +4,19 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Window;
-
 import javax.swing.JTextField;
-
 import mainpackage.Customer;
 import mainpackage.Person;
-
+//import register.AddCustomer;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class Register {
+public class RegisterCustomer {
 
 	JFrame frame;
 	private JTextField REGIDinput;
@@ -31,6 +24,7 @@ public class Register {
 	private JTextField REGPASSinput;
 	private JTextField REGADDRSinput;
 	private JTextField REGMOBNOinput;
+	public JLabel lblLabelError1;
 
 	/**
 	 * Launch the application.
@@ -39,16 +33,9 @@ public class Register {
 	/**
 	 * Create the application.
 	 */
-	public Register() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
+	public RegisterCustomer() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 429);
+		frame.setBounds(100, 100, 450, 447);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -74,12 +61,12 @@ public class Register {
 		
 		JLabel CustAddress = new JLabel("Address :");
 		CustAddress.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		CustAddress.setBounds(83, 202, 62, 19);
+		CustAddress.setBounds(83, 210, 62, 19);
 		frame.getContentPane().add(CustAddress);
 		
 		JLabel CustMobile = new JLabel("Mobile Number :");
 		CustMobile.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		CustMobile.setBounds(39, 242, 107, 19);
+		CustMobile.setBounds(39, 250, 107, 19);
 		frame.getContentPane().add(CustMobile);
 		
 		REGIDinput = new JTextField(10);
@@ -88,110 +75,114 @@ public class Register {
 		REGIDinput.setColumns(10);
 		
 		REGNAMEinput = new JTextField();
-		REGNAMEinput.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				String custid = REGIDinput.getText();
-				
-				if(custid.matches("[0-9]{3}")) {
-					custid.trim();
-				} else {
-					JOptionPane.showMessageDialog(null,"Invalid : ID number should contain only 3 digits.\nPlease enter a valid ID number");
-				}
-			}
-		});
 		REGNAMEinput.setColumns(10);
 		REGNAMEinput.setBounds(173, 120, 190, 22);
 		frame.getContentPane().add(REGNAMEinput);
 		
 		REGPASSinput = new JTextField();
-		REGPASSinput.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				String name = REGNAMEinput.getText();
-				if(!name.matches("[a-zA-Z ]{1,30}")) {
-					JOptionPane.showMessageDialog(null,"Invalid : Invalid Name.\nPlease enter a shorter valid name");
-				}
-			}
-		});
 		REGPASSinput.setColumns(10);
 		REGPASSinput.setBounds(173, 161, 190, 22);
 		frame.getContentPane().add(REGPASSinput);
 		
 		REGADDRSinput = new JTextField();
-		REGADDRSinput.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String password = REGPASSinput.getText();
-				if(!password.matches("[a-zA-Z0-9,./';:?><{}|+=-_()*&^%$#@!`~]{8,20}")){
-					JOptionPane.showMessageDialog(null,"Invalid : Password must be at least 8 characters long and max 20.\nPlease enter a new valid password");
-				} 
-			}
-		});
 		REGADDRSinput.setColumns(10);
-		REGADDRSinput.setBounds(173, 203, 190, 22);
+		REGADDRSinput.setBounds(173, 211, 190, 22);
 		frame.getContentPane().add(REGADDRSinput);
 		
 		REGMOBNOinput = new JTextField();
-		REGMOBNOinput.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				String address = REGADDRSinput.getText();
-				if(!address.matches("[a-zA-Z0-9 ,./':-|_`~&$@#+()]{2,40}")){
-					JOptionPane.showMessageDialog(null,"Invalid : Invalid Address.\nPlease enter a new valid address");
-				} 
-			}
-		});
 		REGMOBNOinput.setColumns(10);
-		REGMOBNOinput.setBounds(173, 243, 190, 22);
+		REGMOBNOinput.setBounds(173, 251, 190, 22);
 		frame.getContentPane().add(REGMOBNOinput);
+		
+		JLabel lblLabelError1 = new JLabel("<HTML><font color = 'red'>Invalid ID.</font></HTML>");
+		lblLabelError1.setBounds(175, 96, 107, 22);
+		frame.getContentPane().add(lblLabelError1);
+		lblLabelError1.setVisible(false);
+		
+		JLabel lblLabelError2 = new JLabel("<HTML><font color = 'red'>Invalid Name.</font></HTML>");
+		lblLabelError2.setBounds(175, 137, 107, 22);
+		frame.getContentPane().add(lblLabelError2);
+		lblLabelError2.setVisible(false);
+		
+		JLabel lblLabelError3 = new JLabel("<HTML><font color = 'red'>Invalid Password.</font></HTML>");
+		lblLabelError3.setBounds(175, 177, 107, 22);
+		frame.getContentPane().add(lblLabelError3);
+		lblLabelError3.setVisible(false);
+		
+		JLabel lblLabelError4 = new JLabel("<HTML><font color = 'red'>Invalid Address.</font></HTML>");
+		lblLabelError4.setBounds(175, 227, 107, 22);
+		frame.getContentPane().add(lblLabelError4);
+		lblLabelError4.setVisible(false);
+		
+		JLabel lblLabelError5 = new JLabel("<HTML><font color = 'red'>Invalid Mobile Number.</font></HTML>");
+		lblLabelError5.setBounds(175, 267, 130, 22);
+		frame.getContentPane().add(lblLabelError5);
+		lblLabelError5.setVisible(false);
 		
 		JButton btnRegister = new JButton("Register");
 		btnRegister.addActionListener(new ActionListener() {
+						
 			public void actionPerformed(ActionEvent e) {
-				
-				String number = REGMOBNOinput.getText();
-				if(!number.matches("[0-9]{10}")){
-					JOptionPane.showMessageDialog(null,"Invalid : Invalid Mobile Number.\nPlease enter a new valid mobile number");
-				}
+							
 				String custid = REGIDinput.getText();
 				String name = REGNAMEinput.getText();
 				String password = REGPASSinput.getText();
 				String address = REGADDRSinput.getText();
-				Person nC = new Customer(custid,name,password,address,number);
+				String number = REGMOBNOinput.getText();
 				
-				Connection con = null;
-				Statement statement = null;
-				try {
-					con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-					statement = con.createStatement();
-					/* SQL Statement */
-					statement.executeUpdate("INSERT INTO customer values('c" + nC.getID() + "', '" + nC.getName() + "', '" + nC.getPassword() + "', '" + nC.getAddress() + "', '0" + nC.getNumber() + "')");
-
-					JOptionPane.showMessageDialog(null, "\nRegistration Successful!");
-					frame.setVisible(false);
-					frame.dispose();
-					
-				} catch (Exception e1) {
-					System.err.println(e1);
-				} finally {
-					if (statement != null) {
-				        try {
-				            statement.close();
-				            System.out.println("pass stat closed");
-				        } catch (SQLException e1) { System.out.println("statement did not close");}
-				    }
-				    if (con != null) {
-				        try {
-				            con.close();
-				            System.out.println("pass con closed");
-				        } catch (SQLException e1) { /* ignored */}
-				    } 
+				Person nC = new Customer();
+				//AddCustomer customer = new AddCustomer();
+				
+				//Input validate customer ID
+				nC.setID(custid);
+				if(nC.getID() == null) {				
+					lblLabelError1.setVisible(true);
+				} else {
+					lblLabelError1.setVisible(false);
+				}
+				//Input validate customer Name
+				nC.setName(name);
+				if(nC.getName() == null) {			
+					lblLabelError2.setVisible(true);
+				} else {
+					lblLabelError2.setVisible(false);
+				}
+				//Input validate customer Password
+				nC.setPassword(password);
+				if(nC.getPassword() == null){
+					lblLabelError3.setVisible(true);
+				} else {
+					lblLabelError3.setVisible(false);
+				}
+				//Input validate customer Address
+				nC.setAddress(address);
+				if(nC.getAddress() == null){
+					lblLabelError4.setVisible(true);
+				} else {
+					lblLabelError4.setVisible(false);
+				}
+				//Input validate customer Mobile Number
+				nC.setNumber(number);
+				if(nC.getNumber() == null){
+					lblLabelError5.setVisible(true);
+				} else {
+					lblLabelError5.setVisible(false);
 				}
 				
+				if(!(nC.getID() == null) && !(nC.getName() == null) && !(nC.getPassword() == null) && !(nC.getNumber() == null)
+						&& !(nC.getAddress() == null)){
+					nC.addCustomer(nC);
+					JOptionPane.showMessageDialog(null,"Registration Successful");
+					frame.setVisible(false);
+					frame.dispose();
+					Login window = new Login();
+					window.getFrame().setVisible(true);
+				}
 			}
 		});
+		
 		btnRegister.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnRegister.setBounds(161, 296, 100, 30);
+		btnRegister.setBounds(161, 313, 100, 30);
 		frame.getContentPane().add(btnRegister);
 		
 		JLabel lblGoBackMain = new JLabel("<HTML><U>Go back</U></HTML>");
@@ -203,13 +194,20 @@ public class Register {
 			}
 		});
 		lblGoBackMain.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblGoBackMain.setBounds(187, 348, 49, 14);
+		lblGoBackMain.setBounds(187, 365, 49, 14);
 		frame.getContentPane().add(lblGoBackMain);
-	}
-
-	public Window getFrame() {
 		
+		JLabel lblCharactersLong = new JLabel("(8-20 characters long)");
+		lblCharactersLong.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblCharactersLong.setBounds(44, 181, 107, 14);
+		frame.getContentPane().add(lblCharactersLong);
+		
+		frame.setVisible(true);
+	}
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	public Window getFrame() {	
 		return frame;
 	}
-
 }
