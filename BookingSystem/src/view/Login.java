@@ -18,6 +18,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -65,8 +66,10 @@ public class Login {
 		btnLogin.setBounds(171, 177, 89, 23);
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+					Connection con = null;
+					Statement statement = null;
 				try {
-					Connection connection = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+					con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 					//Getting data from text field
 					String name = IDinput.getText();
 					@SuppressWarnings("deprecation")
@@ -75,14 +78,14 @@ public class Login {
 					String query ="SELECT * FROM owner WHERE ownid=? AND password=?";
 					String query2 ="SELECT * FROM customer WHERE custid=? AND password =?";
 			
-					PreparedStatement statement = connection.prepareStatement(query);
-					PreparedStatement statement2 = connection.prepareStatement(query2);
+					PreparedStatement statement1 = con.prepareStatement(query);
+					PreparedStatement statement2 = con.prepareStatement(query2);
 				
-					statement.setString(1, name);
-					statement.setString(2, pass);
+					statement1.setString(1, name);
+					statement1.setString(2, pass);
 					statement2.setString(1, name);
 					statement2.setString(2, pass);
-					ResultSet set = statement.executeQuery();
+					ResultSet set = statement1.executeQuery();
 					ResultSet set2 = statement2.executeQuery();
 					if(set.next()) {
 						/*JOptionPane.showMessageDialog(null, "Verification success - Owner Login Successful");*/
@@ -118,11 +121,25 @@ public class Login {
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				} finally {
+					if(statement != null) {
+						try {
+							statement.close();
+							System.out.println("id state closed");
+						} catch (SQLException e1) { }
+					}
+				}
+				if(con != null) {
+					try {
+						con.close();
+						System.out.println("id con closed");
+					} catch (SQLException e1) { }
 				}
 				//JOptionPane.showMessageDialog(null, "Connection Successful");
-
+				
 			}
 		});
+		
 		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnLogin.setBackground(Color.LIGHT_GRAY);
 		getFrame().getContentPane().add(btnLogin);

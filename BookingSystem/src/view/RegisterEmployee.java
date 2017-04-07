@@ -33,53 +33,53 @@ public class RegisterEmployee {
 	 */
 	public RegisterEmployee() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 447);
+		frame.setBounds(100, 100, 450, 408);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel Registration = new JLabel("Employee Registration");
 		Registration.setFont(new Font("Tahoma", Font.BOLD, 18));
-		Registration.setBounds(116, 22, 208, 22);
+		Registration.setBounds(117, 22, 210, 30);
 		frame.getContentPane().add(Registration);
 		
 		JLabel EmpID = new JLabel("Employee ID :");
 		EmpID.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		EmpID.setBounds(86, 79, 65, 19);
+		EmpID.setBounds(49, 77, 100, 19);
 		frame.getContentPane().add(EmpID);
 		
 		JLabel EmpName = new JLabel("Name :");
 		EmpName.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		EmpName.setBounds(96, 119, 49, 19);
+		EmpName.setBounds(94, 121, 49, 19);
 		frame.getContentPane().add(EmpName);
 		
 		JLabel EmpAddress = new JLabel("Address :");
 		EmpAddress.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		EmpAddress.setBounds(83, 210, 62, 19);
+		EmpAddress.setBounds(81, 167, 62, 19);
 		frame.getContentPane().add(EmpAddress);
 		
 		JLabel EmpMobile = new JLabel("Mobile Number :");
 		EmpMobile.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		EmpMobile.setBounds(39, 250, 107, 19);
+		EmpMobile.setBounds(37, 212, 107, 19);
 		frame.getContentPane().add(EmpMobile);
 		
 		EMPIDinput = new JTextField(10);
-		EMPIDinput.setBounds(173, 78, 190, 22);
+		EMPIDinput.setBounds(171, 76, 190, 22);
 		frame.getContentPane().add(EMPIDinput);
 		EMPIDinput.setColumns(10);
 		
 		EMPNAMEinput = new JTextField();
 		EMPNAMEinput.setColumns(10);
-		EMPNAMEinput.setBounds(173, 120, 190, 22);
+		EMPNAMEinput.setBounds(171, 122, 190, 22);
 		frame.getContentPane().add(EMPNAMEinput);
 		
 		EMPADDRSinput = new JTextField();
 		EMPADDRSinput.setColumns(10);
-		EMPADDRSinput.setBounds(173, 211, 190, 22);
+		EMPADDRSinput.setBounds(171, 168, 190, 22);
 		frame.getContentPane().add(EMPADDRSinput);
 		
 		EMPMOBNOinput = new JTextField();
 		EMPMOBNOinput.setColumns(10);
-		EMPMOBNOinput.setBounds(173, 251, 190, 22);
+		EMPMOBNOinput.setBounds(171, 213, 190, 22);
 		frame.getContentPane().add(EMPMOBNOinput);
 		
 		JLabel lblLabelError1 = new JLabel("<HTML><font color = 'red'>Invalid ID.</font></HTML>");
@@ -88,17 +88,17 @@ public class RegisterEmployee {
 		lblLabelError1.setVisible(false);
 		
 		JLabel lblLabelError2 = new JLabel("<HTML><font color = 'red'>Invalid Name.</font></HTML>");
-		lblLabelError2.setBounds(175, 137, 107, 22);
+		lblLabelError2.setBounds(175, 140, 107, 22);
 		frame.getContentPane().add(lblLabelError2);
 		lblLabelError2.setVisible(false);
 		
 		JLabel lblLabelError4 = new JLabel("<HTML><font color = 'red'>Invalid Address.</font></HTML>");
-		lblLabelError4.setBounds(175, 227, 107, 22);
+		lblLabelError4.setBounds(175, 187, 107, 22);
 		frame.getContentPane().add(lblLabelError4);
 		lblLabelError4.setVisible(false);
 		
 		JLabel lblLabelError5 = new JLabel("<HTML><font color = 'red'>Invalid Mobile Number.</font></HTML>");
-		lblLabelError5.setBounds(175, 267, 130, 22);
+		lblLabelError5.setBounds(175, 230, 162, 22);
 		frame.getContentPane().add(lblLabelError5);
 		lblLabelError5.setVisible(false);
 		
@@ -113,7 +113,6 @@ public class RegisterEmployee {
 				String number = EMPMOBNOinput.getText();
 				
 				Employee nE = new Employee();
-				//AddCustomer customer = new AddCustomer();
 				
 				//Input validate customer ID
 				nE.setID(empid);
@@ -156,7 +155,7 @@ public class RegisterEmployee {
 		});
 		
 		btnRegister.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnRegister.setBounds(161, 313, 100, 30);
+		btnRegister.setBounds(164, 284, 89, 23);
 		frame.getContentPane().add(btnRegister);
 		
 		JLabel lblGoBackMain = new JLabel("<HTML><U>Go back</U></HTML>");
@@ -168,7 +167,7 @@ public class RegisterEmployee {
 			}
 		});
 		lblGoBackMain.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblGoBackMain.setBounds(187, 365, 49, 14);
+		lblGoBackMain.setBounds(186, 329, 49, 14);
 		frame.getContentPane().add(lblGoBackMain);
 		
 		frame.setVisible(true);
