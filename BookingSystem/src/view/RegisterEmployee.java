@@ -149,7 +149,7 @@ public class RegisterEmployee {
 					JOptionPane.showMessageDialog(null,"Registration Successful");
 					frame.setVisible(false);
 					frame.dispose();
-					new Login();
+					new OwnerMenu();
 				}
 			}
 		});

@@ -106,7 +106,7 @@ public class OwnerMenu {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							new Login();
+							new LoginGUI();
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

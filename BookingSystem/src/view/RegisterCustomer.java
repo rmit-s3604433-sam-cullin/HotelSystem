@@ -175,7 +175,7 @@ public class RegisterCustomer {
 					JOptionPane.showMessageDialog(null,"Registration Successful");
 					frame.setVisible(false);
 					frame.dispose();
-					Login window = new Login();
+					LoginGUI window = new LoginGUI();
 					window.getFrame().setVisible(true);
 				}
 			}
