@@ -4,6 +4,9 @@ import javax.swing.JFrame;
 import java.awt.Window;
 
 import javax.swing.JTextField;
+
+import mainpackage.LoginCheck;
+
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -72,44 +75,57 @@ public class Login {
 		btnLogin.setBounds(171, 177, 89, 23);
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					Connection connection = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-					//Getting data from text field
-					String name = IDinput.getText();
-					@SuppressWarnings("deprecation")
-					String pass = passwordField.getText();
-					//Create query
-					String query ="SELECT * FROM owner WHERE ownid=? AND password=?";
-					String query2 ="SELECT * FROM customer WHERE custid=? AND password =?";
-			
-					PreparedStatement statement = connection.prepareStatement(query);
-					PreparedStatement statement2 = connection.prepareStatement(query2);
 				
-					statement.setString(1, name);
-					statement.setString(2, pass);
-					statement2.setString(1, name);
-					statement2.setString(2, pass);
-					ResultSet set = statement.executeQuery();
-					ResultSet set2 = statement2.executeQuery();
-					if(set.next()) {
-						JOptionPane.showMessageDialog(null, "Verification success - Owner Login Successful");
+				String id = IDinput.getText();
+				String password = passwordField.getText();
+				
+				LoginCheck login = new LoginCheck();
+				login.loginIDValidation(id);
+				if(login.loginIDValidation(id) == 1){
+					if(login.loginPasswordValidation(id, password) == 1){
+						System.out.println("Customer");
+						//customer
+						frame.setVisible(false);
+						frame.dispose();
+						EventQueue.invokeLater(new Runnable() {
+							public void run() {
+								try {
+									CustomerMenu window = new CustomerMenu();
+									window.getFrame().setVisible(true);
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+							}
+						});
 					}
-					else if(set2.next()){
-						JOptionPane.showMessageDialog(null, "Verification success - Customer Login Successful");	
+					else if(login.loginPasswordValidation(id, password) == 2){
+						//owner
+						System.out.println("Owner");
+						frame.setVisible(false);
+						frame.dispose();
+						EventQueue.invokeLater(new Runnable() {
+							public void run() {
+								try {
+									OwnerMenu window = new OwnerMenu();
+									window.getFrame().setVisible(true);
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+							}
+						});
 					}
 					else {
+						//incorrect password
 						JOptionPane.showMessageDialog(null, "Invalid Username or Password");
 					}
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
 				}
-				//JOptionPane.showMessageDialog(null, "Connection Successful");
-
+				else {
+					JOptionPane.showMessageDialog(null, "Invalid Username or Password");
+				}
 			}
 		});
 		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnLogin.setBackground(Color.RED);
+		btnLogin.setBackground(Color.LIGHT_GRAY);
 		getFrame().getContentPane().add(btnLogin);
 		
 		JLabel lblNewCustomer = new JLabel("New Customer?");
@@ -118,13 +134,15 @@ public class Login {
 		
 		JLabel lblRegister = new JLabel("<HTML><U>Click here to Register!</U></HTML>");
 		lblRegister.addMouseListener(new MouseAdapter() {
-			
 			public void mouseClicked(MouseEvent arg0) {
+				frame.setVisible(false);
+				frame.dispose();
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
 							Register window = new Register();
 							window.getFrame().setVisible(true);
+							
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
