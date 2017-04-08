@@ -4,10 +4,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import mainpackage.Login;
+import jebs.mainpackage.LoginValidation;
 
 public class LoginPasswordTest {
-	Login login = new Login();
+	LoginValidation login = new LoginValidation();
 	@Test
 	public void test1() {
 		assertTrue(1 == login.loginPasswordValidation("c001", "abcd1234"));
