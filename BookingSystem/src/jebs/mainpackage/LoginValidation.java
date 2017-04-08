@@ -12,6 +12,7 @@ public class LoginValidation {
 	Statement statement = null;
 	ResultSet resultSet = null;
 	
+	//Owner ID Validation
 	public int loginIDValidation(String ID){
 		int i = 0;		
 		if(ID.matches("[c][0-9]{3}") | ID.matches("[o][0-9]{3}")){	
@@ -33,20 +34,19 @@ public class LoginValidation {
 				if(statement != null) {
 					try {
 						statement.close();
-						System.out.println("id state closed");
 					} catch (SQLException e1) { }
 				}
 			}
 			if(con != null) {
 				try {
 					con.close();
-					System.out.println("id con closed");
 				} catch (SQLException e1) { }
 			}		
 		}
 		return i;
 	}
 	
+	//Owner Password Validation
 	public int loginPasswordValidation(String ID, String password){	
 		int i = 0;	
 		try{
@@ -77,14 +77,12 @@ public class LoginValidation {
 			if(statement != null) {
 				try {
 					statement.close();
-					System.out.println("id state closed");
 				} catch (SQLException e1) { }
 			}
 		}
 		if(con != null) {
 			try {
 				con.close();
-				System.out.println("id con closed");
 			} catch (SQLException e1) { }
 		}
 		

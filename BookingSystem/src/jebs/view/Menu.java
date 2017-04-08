@@ -20,6 +20,8 @@ public class Menu {
 	Login login = new Login();
 	LoginValidation lv = new LoginValidation();
 	
+	//This is where our program initiates
+	//Launching of Login GUI
 	private String printMenu(){
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -32,6 +34,7 @@ public class Menu {
 			}
 		});
 		
+		//This is our old code which prints in user console
 		System.out.println("======================================");
 		System.out.println("   John's Electrician Booking System");
 		System.out.println("======================================");
@@ -68,7 +71,7 @@ public class Menu {
 		
 		return true;
 	}
-	
+	//This old code prints the Login Menu function in the console
 	public void loginMenu() throws IOException{
 		boolean IDCheck = false;
 		String ID = "";
@@ -110,6 +113,7 @@ public class Menu {
 			}
 		}	
 	}
+	//This old code prints the Owner Menu in the console
 	public void ownerMenu() throws IOException {
 		
 		boolean done = false;
@@ -139,7 +143,7 @@ public class Menu {
 			}
 		}
 	}
-	
+	//This old code prints the Customer Menu in the console
 	public void customerMenu() throws FileNotFoundException, IOException {
 		
 		new BookingSystem();
@@ -167,7 +171,7 @@ public class Menu {
 			}
 		}while(!choice.equals("2"));
 	}
-	
+	//This old code is used for new customer registration into the system
 	public void registerCustomerMenu(){
 		
 		String ID = "", name = "", password = "", address = "", number = "";
@@ -227,7 +231,7 @@ public class Menu {
 		}
 		nC.addCustomer(nC);
 	}
-	
+	// This old code is used by Owner to add new employee into the system
 	public void registerEmployeeMenu(){
 		String ID = "", name = "", address = "", number = "";
 		Employee nE = new Employee(ID,name,address,number);

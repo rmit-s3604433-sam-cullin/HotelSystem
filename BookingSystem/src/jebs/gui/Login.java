@@ -69,18 +69,22 @@ public class Login {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setBounds(171, 177, 89, 23);
 		btnLogin.addActionListener(new ActionListener() {
+			
+			//Once Login button is clicked, it stores all user input into respective String
 			public void actionPerformed(ActionEvent e) {
 				String id = IDinput.getText();
 				@SuppressWarnings("deprecation")
 				String password = passwordField.getText();
 				
+				//Input validates user input data with system and database
 				LoginValidation lv = new LoginValidation();
 				lv.loginIDValidation(id);
+				//Check user input if its Owner or Customer
 				if(lv.loginIDValidation(id) == 1){
 					if(lv.loginPasswordValidation(id, password) == 1){
 						frame.setVisible(false);
 						frame.dispose();
-						//customer
+						//Customer
 						EventQueue.invokeLater(new Runnable() {
 							public void run() {
 								try {
@@ -93,7 +97,7 @@ public class Login {
 						});
 					}
 					else if(lv.loginPasswordValidation(id, password) == 2){
-						//owner
+						//Owner
 						System.out.println("Owner");
 						frame.setVisible(false);
 						frame.dispose();
@@ -109,12 +113,13 @@ public class Login {
 						});
 					}
 					else {
-						//incorrect password
+						//Incorrect user name or password
 						JOptionPane.showMessageDialog(null, "Invalid Username or Password");
 					}
 				}
+				//Invalid User ID
 				else {
-					JOptionPane.showMessageDialog(null, "Invalid Username or Password");
+					JOptionPane.showMessageDialog(null, "Invalid User ID");
 				}
 			}
 		});
@@ -126,11 +131,10 @@ public class Login {
 		lblNewCustomer.setBounds(102, 221, 97, 14);
 		getFrame().getContentPane().add(lblNewCustomer);
 		
+		//Button label for new customer to register themselves into the system
 		JLabel lblRegister = new JLabel("<HTML><U>Click here to Register!</U></HTML>");
 		lblRegister.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				frame.setVisible(false);
-				frame.dispose();
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {

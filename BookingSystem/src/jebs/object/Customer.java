@@ -19,8 +19,9 @@ public class Customer extends Person {
 		// TODO Auto-generated method stub
 	}
 	
+	//Input validation for new customer data to register into the system
 	@Override
-	public void setID(String ID) { //can't have duplicates
+	public void setID(String ID) {
 		if(ID.matches("[0-9]{3}")) {
 			ID.trim();
 			this.ID = ID;
@@ -73,6 +74,7 @@ public class Customer extends Person {
 	}
 	
 	@Override
+	//Function to add new customer into the system database
 	public void addCustomer(Person nC){
 		Connection con = null;
 		Statement statement = null;
@@ -90,14 +92,12 @@ public class Customer extends Person {
 			if(statement != null) {
 				try {
 					statement.close();
-					System.out.println("id state closed");
 				} catch (SQLException e) { }
 			}
 		}
 		if(con != null) {
 			try {
 				con.close();
-				System.out.println("id con closed");
 			} catch (SQLException e) { }
 		}
 	}

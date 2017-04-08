@@ -24,6 +24,7 @@ public class Employee {
 	public String getAddress() { return address; }
 	public String getNumber() { return number; }
 	
+	//Input validation for adding new employee data into the system
 	public void setID(String ID) {
 		if(ID.matches("[0-9]{3}")) {
 			ID.trim();
@@ -59,6 +60,7 @@ public class Employee {
 		return ID + "," + name +  "," + address + "," + number;
 	}
 	
+	//Function to add new employee into the system database
 	public void addEmployee(Employee nE){
 		Connection con = null;
 		Statement statement = null;
@@ -76,14 +78,12 @@ public class Employee {
 			if(statement != null) {
 				try {
 					statement.close();
-					System.out.println("id state closed");
 				} catch (SQLException e) { }
 			}
 		}
 		if(con != null) {
 			try {
 				con.close();
-				System.out.println("id con closed");
 			} catch (SQLException e) { }
 		}
 	}

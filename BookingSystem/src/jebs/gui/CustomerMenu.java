@@ -16,18 +16,6 @@ public class CustomerMenu {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CustomerMenu window = new CustomerMenu();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
@@ -50,11 +38,13 @@ public class CustomerMenu {
 		label.setBounds(65, 21, 306, 30);
 		frame.getContentPane().add(label);
 		
+		//Button label for customer to view available time and date to book for an appointment
 		JLabel lblViewAvailable = new JLabel("View Available Date & Time");
 		lblViewAvailable.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblViewAvailable.setBounds(125, 74, 175, 22);
 		frame.getContentPane().add(lblViewAvailable);
 		
+		//Button label for customer to logout of the system
 		JLabel lblLogout = new JLabel("Logout");
 		lblLogout.addMouseListener(new MouseAdapter() {
 			@Override

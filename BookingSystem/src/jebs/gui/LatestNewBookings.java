@@ -16,18 +16,6 @@ public class LatestNewBookings {
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LatestNewBookings window = new LatestNewBookings();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
 
 	/**
 	 * Create the application.
@@ -45,6 +33,7 @@ public class LatestNewBookings {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		//All latest bookings hard coded data
 		JLabel lbllatestBookingSummary = new JLabel("<HTML><U>Latest Booking Summary</U></HTML>");
 		lbllatestBookingSummary.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lbllatestBookingSummary.setBounds(182, 11, 229, 22);
@@ -164,6 +153,7 @@ public class LatestNewBookings {
 		label_24.setBounds(171, 151, 46, 14);
 		frame.getContentPane().add(label_24);
 		
+		//Button label for Owner to go back to Main Booking Summary page
 		JLabel lblviewBookingSummary = new JLabel("<HTML><U>View Booking Summary</HTML></U>");
 		lblviewBookingSummary.addMouseListener(new MouseAdapter() {
 			@Override
@@ -186,6 +176,7 @@ public class LatestNewBookings {
 		lblviewBookingSummary.setBounds(440, 385, 144, 28);
 		frame.getContentPane().add(lblviewBookingSummary);
 		
+		//Button label for Owner to go back to Main Menu
 		JLabel label_26 = new JLabel("<HTML><U>Main Menu</HTML></U>");
 		label_26.addMouseListener(new MouseAdapter() {
 			@Override

@@ -1,5 +1,6 @@
 package jebs.object;
 
+//Person class that contains all basic attributes of a person
 public abstract class Person {
 	protected String ID;
 	protected String name;
