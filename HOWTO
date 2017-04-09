@@ -5,7 +5,7 @@ Click on "Clone a git Repository".
 Then switch screen to the submission folder, under "Additional Resources (Links)".
 Make sure its "rmit-s3604433-sam-cullin/HotelSystem" Master branch.
 Clone the https provided in the green button.
-Paste the link in Eclipse "Clone a git Repo" dialog box, enter all your credential, import all branches, Click "done".
+Paste the link in Eclipse "Clone a git Repo" dialog box, enter all your credential, import master branch, Click "done".
 Then head to your package explorer, and delete the existing project, BUT remember to copy the link before deleting it.
 DO NOT TICK delete project content on disk.
 After you delete the project, right click on package explorer, New -> Java Project.
