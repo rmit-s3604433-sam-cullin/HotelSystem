@@ -1,6 +1,6 @@
-package view;
+package jebs.gui;
 
-import mainpackage.Employee;
+import jebs.object.Employee;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -104,7 +104,8 @@ public class RegisterEmployee {
 		
 		JButton btnRegister = new JButton("Register");
 		btnRegister.addActionListener(new ActionListener() {
-						
+			
+			//Once the Register button is clicked, it stores all the user input into respective String
 			public void actionPerformed(ActionEvent e) {
 							
 				String empid = EMPIDinput.getText();
@@ -142,11 +143,11 @@ public class RegisterEmployee {
 				} else {
 					lblLabelError5.setVisible(false);
 				}
-				
+				//If all input is valid, it stores the new employee data into the database
 				if(!(nE.getID() == null) && !(nE.getName() == null) && !(nE.getNumber() == null)
 						&& !(nE.getAddress() == null)){
 					nE.addEmployee(nE);
-					JOptionPane.showMessageDialog(null,"Registration Successful");
+					JOptionPane.showMessageDialog(null,"Successfully added new employee!");
 					frame.setVisible(false);
 					frame.dispose();
 					new Login();
@@ -158,6 +159,7 @@ public class RegisterEmployee {
 		btnRegister.setBounds(164, 284, 89, 23);
 		frame.getContentPane().add(btnRegister);
 		
+		//Go back button for Owner to return to Main Menu
 		JLabel lblGoBackMain = new JLabel("<HTML><U>Go back</U></HTML>");
 		lblGoBackMain.addMouseListener(new MouseAdapter() {
 			@Override

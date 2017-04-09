@@ -1,7 +1,8 @@
-package mainpackage;
+package jebs.object;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
@@ -23,6 +24,7 @@ public class Employee {
 	public String getAddress() { return address; }
 	public String getNumber() { return number; }
 	
+	//Input validation for adding new employee data into the system
 	public void setID(String ID) {
 		if(ID.matches("[0-9]{3}")) {
 			ID.trim();
@@ -58,10 +60,13 @@ public class Employee {
 		return ID + "," + name +  "," + address + "," + number;
 	}
 	
+	//Function to add new employee into the system database
 	public void addEmployee(Employee nE){
+		Connection con = null;
+		Statement statement = null;
 		try {
-			Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-			Statement statement = con.createStatement();
+			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+			statement = con.createStatement();
 			
 			/* SQL Statement */
 			statement.executeUpdate("INSERT INTO employee values('e" + nE.getID() + "', '" + nE.getName() + "', '" 
@@ -69,6 +74,17 @@ public class Employee {
 			System.out.println("\nRegistration Successful!");
 		} catch (Exception e) {
 			System.err.println(e);
+		} finally {
+			if(statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) { }
+			}
+		}
+		if(con != null) {
+			try {
+				con.close();
+			} catch (SQLException e) { }
 		}
 	}
 }

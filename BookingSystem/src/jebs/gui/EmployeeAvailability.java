@@ -1,6 +1,4 @@
-package view;
-
-import java.awt.EventQueue;
+package jebs.gui;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,7 +31,7 @@ public class EmployeeAvailability {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		//Page content including title and tab panels
+		//All employee availability hard coded data
 		JLabel lblemployeeAvailability = new JLabel("<HTML><U>Employee Availability</U></HTML>");
 		lblemployeeAvailability.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblemployeeAvailability.setBounds(175, 22, 202, 22);
@@ -201,16 +199,6 @@ public class EmployeeAvailability {
 			public void mouseClicked(MouseEvent e) {
 				frame.setVisible(false);
 				frame.dispose();
-				EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							OwnerMenu window = new OwnerMenu();
-							window.getFrame().setVisible(true);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				});
 			}
 		});
 		label_19.setFont(new Font("Tahoma", Font.PLAIN, 14));

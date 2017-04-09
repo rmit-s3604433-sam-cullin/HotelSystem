@@ -1,7 +1,9 @@
-package mainpackage;
+package jebs.mainpackage;
 
 import java.util.Date;
 import java.util.LinkedList;
+
+import jebs.object.Customer;
 
 
 

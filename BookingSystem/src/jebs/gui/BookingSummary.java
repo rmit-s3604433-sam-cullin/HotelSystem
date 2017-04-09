@@ -1,4 +1,4 @@
-package view;
+package jebs.gui;
 
 import java.awt.EventQueue;
 
@@ -16,18 +16,6 @@ public class BookingSummary {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BookingSummary window = new BookingSummary();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
@@ -45,38 +33,33 @@ public class BookingSummary {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		//All booking summary hard coded data
 		JLabel lblBookingSummary = new JLabel("<HTML><U>Booking Summary</U></HTML>");
 		lblBookingSummary.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblBookingSummary.setBounds(203, 11, 171, 22);
 		frame.getContentPane().add(lblBookingSummary);
 		
 		JLabel lblNewLabel = new JLabel("Customer Name");
-		/*lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));*/
 		lblNewLabel.setBounds(58, 69, 93, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblCustomerId = new JLabel("Customer ID");
-		/*lblCustomerId.setFont(new Font("Tahoma", Font.PLAIN, 12));*/
 		lblCustomerId.setBounds(171, 69, 73, 14);
 		frame.getContentPane().add(lblCustomerId);
 		
 		JLabel lblDate = new JLabel("Date");
-		/*lblDate.setFont(new Font("Tahoma", Font.PLAIN, 12));*/
 		lblDate.setBounds(277, 70, 29, 14);
 		frame.getContentPane().add(lblDate);
 		
 		JLabel lblTime = new JLabel("Time");
-		/*lblTime.setFont(new Font("Tahoma", Font.PLAIN, 12));*/
 		lblTime.setBounds(363, 70, 29, 14);
 		frame.getContentPane().add(lblTime);
 		
 		JLabel lblEmployeeIncharge = new JLabel("Employee In-Charge");
-		/*lblEmployeeIncharge.setFont(new Font("Tahoma", Font.PLAIN, 12));*/
 		lblEmployeeIncharge.setBounds(456, 69, 117, 14);
 		frame.getContentPane().add(lblEmployeeIncharge);
 		
 		JLabel lblNo = new JLabel("No.");
-		/*lblNo.setFont(new Font("Tahoma", Font.PLAIN, 12));*/
 		lblNo.setBounds(20, 70, 23, 14);
 		frame.getContentPane().add(lblNo);
 		
@@ -170,6 +153,7 @@ public class BookingSummary {
 		lblEMax_1.setBounds(456, 193, 78, 14);
 		frame.getContentPane().add(lblEMax_1);
 		
+		//Button label for Owner to go back to Main Menu
 		JLabel lblMainMenu = new JLabel("<HTML><U>Main Menu</HTML></U>");
 		lblMainMenu.addMouseListener(new MouseAdapter() {
 			@Override
@@ -182,6 +166,7 @@ public class BookingSummary {
 		lblMainMenu.setBounds(20, 385, 64, 28);
 		frame.getContentPane().add(lblMainMenu);
 		
+		//Button label for Owner to view latest new bookings (latest 7 days bookings)
 		JLabel lblviewLatestBookings = new JLabel("<HTML><U>View Latest Bookings</HTML></U>");
 		lblviewLatestBookings.addMouseListener(new MouseAdapter() {
 			@Override

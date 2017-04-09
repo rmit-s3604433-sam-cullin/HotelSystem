@@ -1,4 +1,4 @@
-package view;
+package jebs.gui;
 
 import java.awt.EventQueue;
 

@@ -1,9 +1,12 @@
-package view;
+package jebs.gui;
 
 import javax.swing.JFrame;
 import java.awt.Window;
 
 import javax.swing.JTextField;
+
+import jebs.mainpackage.LoginValidation;
+
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -13,12 +16,6 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -37,6 +34,13 @@ public class Login {
 	 * Create the application.
 	 */
 	public Login() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
 		setFrame(new JFrame());
 		getFrame().setBounds(100, 100, 450, 300);
 		((JFrame) getFrame()).setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,50 +69,43 @@ public class Login {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setBounds(171, 177, 89, 23);
 		btnLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-					Connection con = null;
-					Statement statement = null;
-				try {
-					con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-					//Getting data from text field
-					String name = IDinput.getText();
-					@SuppressWarnings("deprecation")
-					String pass = passwordField.getText();
-					//Create query
-					String query ="SELECT * FROM owner WHERE ownid=? AND password=?";
-					String query2 ="SELECT * FROM customer WHERE custid=? AND password =?";
 			
-					PreparedStatement statement1 = con.prepareStatement(query);
-					PreparedStatement statement2 = con.prepareStatement(query2);
+			//Once Login button is clicked, it stores all user input into respective String
+			public void actionPerformed(ActionEvent e) {
+				String id = IDinput.getText();
+				@SuppressWarnings("deprecation")
+				String password = passwordField.getText();
 				
-					statement1.setString(1, name);
-					statement1.setString(2, pass);
-					statement2.setString(1, name);
-					statement2.setString(2, pass);
-					ResultSet set = statement1.executeQuery();
-					ResultSet set2 = statement2.executeQuery();
-					if(set.next()) {
-						/*JOptionPane.showMessageDialog(null, "Verification success - Owner Login Successful");*/
+				//Input validates user input data with system and database
+				LoginValidation lv = new LoginValidation();
+				lv.loginIDValidation(id);
+				//Check user input if its Owner or Customer
+				if(lv.loginIDValidation(id) == 1){
+					if(lv.loginPasswordValidation(id, password) == 1){
 						frame.setVisible(false);
 						frame.dispose();
+						//Customer
 						EventQueue.invokeLater(new Runnable() {
 							public void run() {
 								try {
-									new OwnerMenu();
+									CustomerMenu window = new CustomerMenu();
+									window.getFrame().setVisible(true);
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
 							}
 						});
 					}
-					else if(set2.next()){
-						/*JOptionPane.showMessageDialog(null, "Verification success - Customer Login Successful");*/
+					else if(lv.loginPasswordValidation(id, password) == 2){
+						//Owner
+						System.out.println("Owner");
 						frame.setVisible(false);
 						frame.dispose();
 						EventQueue.invokeLater(new Runnable() {
 							public void run() {
 								try {
-									new CustomerMenu();
+									OwnerMenu window = new OwnerMenu();
+									window.getFrame().setVisible(true);
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
@@ -116,30 +113,16 @@ public class Login {
 						});
 					}
 					else {
+						//Incorrect user name or password
 						JOptionPane.showMessageDialog(null, "Invalid Username or Password");
 					}
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} finally {
-					if(statement != null) {
-						try {
-							statement.close();
-							System.out.println("id state closed");
-						} catch (SQLException e1) { }
-					}
 				}
-				if(con != null) {
-					try {
-						con.close();
-						System.out.println("id con closed");
-					} catch (SQLException e1) { }
+				//Invalid User ID
+				else {
+					JOptionPane.showMessageDialog(null, "Invalid User ID");
 				}
-				//JOptionPane.showMessageDialog(null, "Connection Successful");
-				
 			}
 		});
-		
 		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnLogin.setBackground(Color.LIGHT_GRAY);
 		getFrame().getContentPane().add(btnLogin);
@@ -148,15 +131,16 @@ public class Login {
 		lblNewCustomer.setBounds(102, 221, 97, 14);
 		getFrame().getContentPane().add(lblNewCustomer);
 		
+		//Button label for new customer to register themselves into the system
 		JLabel lblRegister = new JLabel("<HTML><U>Click here to Register!</U></HTML>");
 		lblRegister.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				//frame.setVisible(false);
-				//frame.dispose();
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							new RegisterCustomer();	
+							RegisterCustomer window = new RegisterCustomer();
+							window.getFrame().setVisible(true);
+							
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -170,13 +154,7 @@ public class Login {
 		passwordField = new JPasswordField();
 		passwordField.setBounds(173, 122, 148, 23);
 		frame.getContentPane().add(passwordField);
-	
-		frame.setVisible(true);
 	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
 
 	public JFrame getFrame() {
 		return frame;

@@ -1,7 +1,7 @@
-package view;
+package jebs.gui;
 
-import mainpackage.Customer;
-import mainpackage.Person;
+import jebs.object.Customer;
+import jebs.object.Person;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -121,7 +121,8 @@ public class RegisterCustomer {
 		
 		JButton btnRegister = new JButton("Register");
 		btnRegister.addActionListener(new ActionListener() {
-						
+			
+			//Once the Register button is clicked, it stores all the user input into respective String
 			public void actionPerformed(ActionEvent e) {
 							
 				String custid = REGIDinput.getText();
@@ -131,7 +132,6 @@ public class RegisterCustomer {
 				String number = REGMOBNOinput.getText();
 				
 				Person nC = new Customer();
-				//AddCustomer customer = new AddCustomer();
 				
 				//Input validate customer ID
 				nC.setID(custid);
@@ -168,15 +168,13 @@ public class RegisterCustomer {
 				} else {
 					lblLabelError5.setVisible(false);
 				}
-				
+				//If all input is valid, it stores the new customer data into the database
 				if(!(nC.getID() == null) && !(nC.getName() == null) && !(nC.getPassword() == null) && !(nC.getNumber() == null)
 						&& !(nC.getAddress() == null)){
 					nC.addCustomer(nC);
 					JOptionPane.showMessageDialog(null,"Registration Successful");
 					frame.setVisible(false);
 					frame.dispose();
-					Login window = new Login();
-					window.getFrame().setVisible(true);
 				}
 			}
 		});
@@ -185,6 +183,7 @@ public class RegisterCustomer {
 		btnRegister.setBounds(161, 313, 100, 30);
 		frame.getContentPane().add(btnRegister);
 		
+		//Go back button for customer to quit Register page and go back to Login page
 		JLabel lblGoBackMain = new JLabel("<HTML><U>Go back</U></HTML>");
 		lblGoBackMain.addMouseListener(new MouseAdapter() {
 			@Override

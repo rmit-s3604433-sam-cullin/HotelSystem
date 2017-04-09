@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import mainpackage.Employee;
+import jebs.object.Employee;
 
 public class EmployeeNumberTest {
 	

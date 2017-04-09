@@ -1,7 +1,8 @@
-package mainpackage;
+package jebs.object;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
@@ -18,8 +19,9 @@ public class Customer extends Person {
 		// TODO Auto-generated method stub
 	}
 	
+	//Input validation for new customer data to register into the system
 	@Override
-	public void setID(String ID) { //can't have duplicates
+	public void setID(String ID) {
 		if(ID.matches("[0-9]{3}")) {
 			ID.trim();
 			this.ID = ID;
@@ -59,6 +61,7 @@ public class Customer extends Person {
 	@Override
 	public void setNumber(String number) {
 		if(number.matches("[0-9]{10}")){
+			number.trim();
 			this.number = number;	
 		} else {
 			System.out.println("Invalid Number");		
@@ -71,10 +74,13 @@ public class Customer extends Person {
 	}
 	
 	@Override
+	//Function to add new customer into the system database
 	public void addCustomer(Person nC){
+		Connection con = null;
+		Statement statement = null;
 		try {
-			Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-			Statement statement = con.createStatement();
+			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+			statement = con.createStatement();
 			
 			/* SQL Statement */
 			statement.executeUpdate("INSERT INTO customer values('c" + nC.getID() + "', '" + nC.getName() + "', '" 
@@ -82,6 +88,17 @@ public class Customer extends Person {
 			System.out.println("\nRegistration Successful!");
 		} catch (Exception e) {
 			System.err.println(e);
+		} finally {
+			if(statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) { }
+			}
+		}
+		if(con != null) {
+			try {
+				con.close();
+			} catch (SQLException e) { }
 		}
 	}
 

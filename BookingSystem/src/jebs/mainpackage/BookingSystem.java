@@ -1,8 +1,8 @@
-package mainpackage;
+package jebs.mainpackage;
 
 import java.util.Scanner;
 
-import view.Menu;
+import jebs.view.Menu;
 
 import java.io.*;
 import java.sql.*;

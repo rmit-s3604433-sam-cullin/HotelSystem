@@ -1,4 +1,4 @@
-package mainpackage;
+package jebs.object;
 
 public class Owner extends Person {
 
