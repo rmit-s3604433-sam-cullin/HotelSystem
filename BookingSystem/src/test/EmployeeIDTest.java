@@ -11,32 +11,32 @@ public class EmployeeIDTest {
 	@Test
 	public void test1() {
 		employee.setID("abc");
-		assertEquals("abc", employee.getID());	
+		assertFalse("abc".equals(employee.getID()));	
 	}
 	@Test
 	public void test2() {
 		employee.setID("1");
-		assertEquals("1", employee.getID());	
+		assertFalse("1".equals(employee.getID()));	
 	}
 	@Test
 	public void test3() {
 		employee.setID("%!@~");
-		assertEquals("%!@~", employee.getID());	
+		assertFalse("%!@~".equals(employee.getID()));	
 	}
 	@Test
 	public void test4() {
 		employee.setID("0000");
-		assertEquals("0000", employee.getID());	
+		assertFalse("0000".equals(employee.getID()));	
 	}
 	@Test
 	public void test5() {
 		employee.setID("1010101010101010101");
-		assertEquals("1010101010101010101", employee.getID());	
+		assertFalse("1010101010101010101".equals(employee.getID()));	
 	}
 	@Test
 	public void test6() {
 		employee.setID(" ");
-		assertEquals(" ", employee.getID());	
+		assertFalse(" ".equals(employee.getID()));	
 	}
 
 }
