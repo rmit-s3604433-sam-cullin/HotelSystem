@@ -6,6 +6,7 @@ import org.junit.Test;
 import jebs.object.Employee;
 
 public class EmployeeNameTest {
+	
 	Employee employee = new Employee();
 	@Test
 	public void test1() {
@@ -37,6 +38,5 @@ public class EmployeeNameTest {
 		employee.setName("Taspf][';`kfja");
 		assertFalse("Taspf][';`kfja".equals(employee.getName()));
 	}
-
 
 }

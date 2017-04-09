@@ -3,10 +3,11 @@ package test;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-
 import jebs.mainpackage.LoginValidation;
 
+
 public class LoginIDTest {
+  
 	LoginValidation login = new LoginValidation();
 	@Test
 	public void test() {
@@ -39,3 +40,4 @@ public class LoginIDTest {
 	}
 
 }
+

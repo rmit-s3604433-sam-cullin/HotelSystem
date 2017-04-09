@@ -7,6 +7,7 @@ import org.junit.Test;
 import jebs.object.Employee;
 
 public class EmployeeNumberTest {
+	
 	Employee employee = new Employee();
 	@Test
 	public void test1() {

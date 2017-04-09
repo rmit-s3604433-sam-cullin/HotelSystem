@@ -3,8 +3,8 @@ package test;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-
 import jebs.mainpackage.LoginValidation;
+
 
 public class LoginPasswordTest {
 	LoginValidation login = new LoginValidation();
@@ -31,8 +31,7 @@ public class LoginPasswordTest {
 	@Test
 	public void test6() {
 		assertTrue(0 == login.loginPasswordValidation("c01", "abcd1234"));
-	}
-	
-	
+	}	
 
 }
+

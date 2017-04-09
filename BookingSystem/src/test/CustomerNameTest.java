@@ -7,6 +7,7 @@ import org.junit.Test;
 import jebs.object.Customer;
 
 public class CustomerNameTest {
+	
 	Customer customer = new Customer();
 	@Test
 	public void test1() {

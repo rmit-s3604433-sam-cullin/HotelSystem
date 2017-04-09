@@ -3,10 +3,11 @@ package test;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-
 import jebs.object.Customer;
 
+
 public class CustomerIDTest {
+	
 	Customer customer = new Customer();
 	@Test
 	public void test1() {
@@ -38,6 +39,6 @@ public class CustomerIDTest {
 		customer.setID(" ");
 		assertFalse(" ".equals(customer.getID()));	
 	}
-	
 
 }
+
