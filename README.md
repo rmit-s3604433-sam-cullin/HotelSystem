@@ -4,4 +4,4 @@ Nicholas Ooi - s3615864 <br/>
 Khoa Le - s3599741 <br/>
 Sam Cullin - s3604433 <br/>
 <br/>
-A Homy Ash - 4:30pm to 6:30pm
+A Homy Ash - Tuesday 4:30pm to 6:30pm
