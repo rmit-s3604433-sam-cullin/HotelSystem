@@ -34,13 +34,6 @@ public class Login {
 	 * Create the application.
 	 */
 	public Login() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
 		setFrame(new JFrame());
 		getFrame().setBounds(100, 100, 450, 300);
 		((JFrame) getFrame()).setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -88,8 +81,7 @@ public class Login {
 						EventQueue.invokeLater(new Runnable() {
 							public void run() {
 								try {
-									CustomerMenu window = new CustomerMenu();
-									window.getFrame().setVisible(true);
+									new CustomerMenu();
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
@@ -104,8 +96,7 @@ public class Login {
 						EventQueue.invokeLater(new Runnable() {
 							public void run() {
 								try {
-									OwnerMenu window = new OwnerMenu();
-									window.getFrame().setVisible(true);
+									new OwnerMenu();
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
@@ -138,9 +129,7 @@ public class Login {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							RegisterCustomer window = new RegisterCustomer();
-							window.getFrame().setVisible(true);
-							
+							new RegisterCustomer();
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -154,6 +143,9 @@ public class Login {
 		passwordField = new JPasswordField();
 		passwordField.setBounds(173, 122, 148, 23);
 		frame.getContentPane().add(passwordField);
+		
+		frame.setVisible(false);
+		
 	}
 
 	public JFrame getFrame() {

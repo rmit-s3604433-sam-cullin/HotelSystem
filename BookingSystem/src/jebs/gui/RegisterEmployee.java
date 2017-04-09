@@ -175,9 +175,6 @@ public class RegisterEmployee {
 		frame.setVisible(true);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	public Window getFrame() {
 		// TODO Auto-generated method stub
 		return frame;

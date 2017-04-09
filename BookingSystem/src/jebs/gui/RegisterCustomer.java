@@ -202,10 +202,9 @@ public class RegisterCustomer {
 		frame.getContentPane().add(lblCharactersLong);
 		
 		frame.setVisible(true);
+		
 	}
-	/**
-	 * Initialize the contents of the frame.
-	 */
+
 	public Window getFrame() {	
 		return frame;
 	}

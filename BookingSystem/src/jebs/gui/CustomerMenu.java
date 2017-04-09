@@ -21,13 +21,6 @@ public class CustomerMenu {
 	 * Create the application.
 	 */
 	public CustomerMenu() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,6 +59,9 @@ public class CustomerMenu {
 		lblLogout.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblLogout.setBounds(184, 107, 50, 22);
 		frame.getContentPane().add(lblLogout);
+		
+		frame.setVisible(false);
+		
 	}
 
 	public Window getFrame() {
