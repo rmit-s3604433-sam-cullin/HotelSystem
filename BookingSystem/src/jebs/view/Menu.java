@@ -17,7 +17,6 @@ public class Menu {
 	final static Scanner scan = new Scanner(System.in);
 	Customer customer = new Customer();
 	Employee employee = new Employee();
-	Login login = new Login();
 	LoginValidation lv = new LoginValidation();
 	
 	//This is where our program initiates
@@ -26,8 +25,7 @@ public class Menu {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login window = new Login();
-					window.getFrame().setVisible(true);
+					new Login();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

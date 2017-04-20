@@ -47,8 +47,7 @@ public class CustomerMenu {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							Login window = new Login();
-							window.getFrame().setVisible(true);
+							new Login();
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -60,7 +59,7 @@ public class CustomerMenu {
 		lblLogout.setBounds(184, 107, 50, 22);
 		frame.getContentPane().add(lblLogout);
 		
-		frame.setVisible(false);
+		frame.setVisible(true);
 		
 	}
 
