@@ -179,7 +179,7 @@ public class BookingSystem extends Application {
 		regText.setLayoutY(321);
 		regText.setOnAction(e -> {
 			/*
-			 *  Nicky's code goes here
+			 *  Nicky calls his code from here
 			 */
 		});
 		
