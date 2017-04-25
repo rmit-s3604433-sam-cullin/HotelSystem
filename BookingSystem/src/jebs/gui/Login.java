@@ -73,7 +73,7 @@ public class Login {
 				LoginValidation lv = new LoginValidation();
 				lv.loginIDValidation(id);
 				//Check user input if its Owner or Customer
-				if(lv.loginIDValidation(id) == 1){
+				if(lv.loginIDValidation(id)){
 					if(lv.loginPasswordValidation(id, password) == 1){
 						frame.setVisible(false);
 						frame.dispose();

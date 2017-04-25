@@ -1,21 +1,43 @@
 package jebs.mainpackage;
 
-import java.util.Scanner;
-
+import jebs.gui.CustomerMenu;
+import jebs.gui.OwnerMenu;
 import jebs.view.Menu;
 
+import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+
+import java.awt.EventQueue;
 import java.io.*;
 import java.sql.*;
 
-public class BookingSystem {
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+public class BookingSystem extends Application {
 	
 	final static Scanner scan = new Scanner(System.in);
+	Stage window;
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		
 		/* create instance of menu */
-		Menu menu = new Menu();
-		boolean done = false;
+		/* Menu menu = new Menu();
+		boolean done = false; */
 		
 		try {
 			Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
@@ -71,10 +93,128 @@ public class BookingSystem {
 			System.err.println(e);
 		}
 
-		while (!done) {
+		launch(args);
+		/*while (!done) {
 			done = menu.systemMenu();
-			System.out.println("Program has been terminated.");
-		
-		}
+		}*/
+		System.out.println("Program has been terminated.");
 	}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		
+		window = primaryStage;
+		window.setTitle("John's Electrical");
+		
+		Image image = new Image(getClass().getResource("/jebs/resources/jebs_logo.png").toURI().toString());
+		ImageView iv1 = new ImageView(image);
+		iv1.setFitWidth(1);
+		iv1.setFitHeight(1);
+		iv1.setLayoutX(165);
+		iv1.setLayoutY(10);
+		
+		Label title = new Label("Login");
+		title.setStyle("-fx-font-family: 'Gruppo'; -fx-font-weight: 800; -fx-font-size: 60; -fx-text-fill: #D8D8D8;");
+		title.setLayoutX(125);
+		title.setLayoutY(75);
+		
+		TextField userID = new TextField();
+		userID.setPromptText("Enter user ID");
+		userID.setStyle("-fx-font-family: 'Varela Round'; -fx-font-size: 12; -fx-background-color: white; -fx-min-width: 250px; "
+				+ "-fx-max-height: 50px; -fx-effect: innershadow(one-pass-box, gray, 5, 0.3, 1, 1);");
+		userID.setLayoutX(80);
+		userID.setLayoutY(160);
+		//button.setOnAction(e -> LoginFX.display("Authentication", "authenting.."));
+		
+		PasswordField password = new PasswordField();
+		password.setPromptText("Enter password");
+		password.setStyle("-fx-font-family: 'Varela Round'; -fx-font-size: 12; -fx-background-color: white; -fx-min-width: 250px; "
+				+ "-fx-max-height: 50px; -fx-effect: innershadow(one-pass-box, gray, 5, 0.3, 1, 1);");
+		password.setLayoutX(80);
+		password.setLayoutY(200);
+		
+		Button button = new Button("Login");
+		button.setStyle("-fx-font-family: 'Varela Round'; -fx-background-radius: 3; -fx-background-color: #10EE99; "
+				+ "-fx-padding: 6 25 6 25; -fx-effect: innershadow(one-pass-box, #2B443A, 7, 0.3, 0, -1);");
+		button.setLayoutX(163);
+		button.setLayoutY(250);
+		button.setOnAction(e -> {
+			String id = userID.getText();
+			String pass = password.getText();
+			
+			//Input validates user input data with system and database
+			LoginValidation lv = new LoginValidation();
+			//Check user input if its Owner or Customer
+			if(lv.loginIDValidation(id)){
+				if(lv.loginPasswordValidation(id, pass) == 1){
+					window.close();
+					//Customer
+					EventQueue.invokeLater(new Runnable() {
+						public void run() {
+							try {
+								new CustomerMenu();
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+					});
+				} else if(lv.loginPasswordValidation(id, pass) == 2){
+					//Owner
+					System.out.println("Owner");
+					window.close();
+					EventQueue.invokeLater(new Runnable() {
+						public void run() {
+							try {
+								new OwnerMenu();
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+					});
+				} else {
+					//Incorrect user name or password
+					loginError("Login Error","Username or password entered was incorrect.");
+				}
+			} else {
+				//Incorrect user name or password
+				loginError("Login Error","Username or password entered was incorrect.");
+			}
+		});
+		
+		Pane layout = new Pane();
+		layout.setStyle("-fx-background-color: #2B303A");
+		layout.getChildren().addAll(iv1, title, userID, password, button);
+		
+		Scene scene = new Scene(layout, 400, 350);
+		scene.getStylesheets().add("https://fonts.googleapis.com/css?family=Varela+Round");
+		scene.getStylesheets().add("https://fonts.googleapis.com/css?family=Gruppo");
+		window.setScene(scene);
+		window.show();
+		layout.requestFocus();
+		
+	}
+	
+	public static void loginError(String title, String message) {
+	
+		Stage window = new Stage();
+		
+		window.initModality(Modality.APPLICATION_MODAL);
+		window.setTitle(title);
+		window.setMinWidth(50);
+		
+		Label label = new Label();
+		label.setText(message);
+		Button closeButton = new Button("Close");
+		closeButton.setOnAction(e -> window.close());
+		
+		VBox layout = new VBox();
+		layout.getChildren().addAll(label,closeButton);
+		layout.setAlignment(Pos.CENTER);
+		
+		Scene scene = new Scene(layout);
+		window.setScene(scene);
+		window.showAndWait();
+		
+	}
+
 }

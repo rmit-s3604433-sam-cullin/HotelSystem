@@ -76,7 +76,7 @@ public class Menu {
 		while(true){
 			System.out.println("Please enter User ID or 'exit': ");
 			ID = scan.nextLine();
-			if(lv.loginIDValidation(ID) == 1){
+			if(lv.loginIDValidation(ID)){
 				IDCheck = true;
 				break;
 			}						
@@ -92,7 +92,7 @@ public class Menu {
 		
 		while(true){
 			if(IDCheck == true){
-				if(lv.loginIDValidation(ID) == 1){
+				if(lv.loginIDValidation(ID)){
 					System.out.println("Enter the password: ");
 					String password = scan.nextLine();
 					int i = lv.loginPasswordValidation(ID,password);

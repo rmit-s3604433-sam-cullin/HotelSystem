@@ -13,8 +13,8 @@ public class LoginValidation {
 	ResultSet resultSet = null;
 	
 	//Owner ID Validation
-	public int loginIDValidation(String ID){
-		int i = 0;		
+	public boolean loginIDValidation(String ID){
+		boolean id = false;		
 		if(ID.matches("[c][0-9]{3}") | ID.matches("[o][0-9]{3}")){	
 			try{
 				con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
@@ -22,11 +22,8 @@ public class LoginValidation {
 				ResultSet ownerSet = statement.executeQuery("SELECT ownid FROM owner");
 				ResultSet customerSet = statement.executeQuery("SELECT custid FROM customer");		
 				if(customerSet.next() || ownerSet.next()){
-					i = 1;
+					id = true;
 				}
-				else{
-					i = 0;
-				}			
 	
 			}catch (SQLException e1) {
 				e1.printStackTrace();
@@ -43,7 +40,7 @@ public class LoginValidation {
 				} catch (SQLException e1) { }
 			}		
 		}
-		return i;
+		return id;
 	}
 	
 	//Owner Password Validation
