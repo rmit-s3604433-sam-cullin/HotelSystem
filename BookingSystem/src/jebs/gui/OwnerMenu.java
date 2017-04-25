@@ -106,7 +106,8 @@ public class OwnerMenu {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							new Login();
+							// no more login, change the scene instead
+							// new Login();
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

@@ -132,17 +132,17 @@ public class BookingSystem extends Application {
 			//Check user input if its Owner or Customer
 			if(lv.loginIDValidation(id)){
 				if(lv.loginPasswordValidation(id, pass) == 1){
-					window.close();
 					// Customer Menu
-					EventQueue.invokeLater(new Runnable() {
+					window.setScene(CustomerMenu.menu());
+					/*EventQueue.invokeLater(new Runnable() {
 						public void run() {
 							try {
-								new CustomerMenu();
+								
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
 						}
-					});
+					});*/
 				} else if(lv.loginPasswordValidation(id, pass) == 2){
 					// Owner Menu
 					System.out.println("Owner");

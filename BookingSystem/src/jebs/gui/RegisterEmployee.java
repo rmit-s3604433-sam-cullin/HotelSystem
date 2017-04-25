@@ -150,7 +150,8 @@ public class RegisterEmployee {
 					JOptionPane.showMessageDialog(null,"Successfully added new employee!");
 					frame.setVisible(false);
 					frame.dispose();
-					new Login();
+					// no more login, change the scene instead
+					// new Login();
 				}
 			}
 		});

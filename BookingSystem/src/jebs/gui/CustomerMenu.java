@@ -4,6 +4,10 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+
 import java.awt.Font;
 import java.awt.Window;
 import java.awt.event.MouseAdapter;
@@ -47,7 +51,8 @@ public class CustomerMenu {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							new Login();
+							// there is no more login, change the scene instead
+							// new Login();
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -61,6 +66,15 @@ public class CustomerMenu {
 		
 		frame.setVisible(true);
 		
+	}
+	// --------------------------------------> change the scene <---------------------------------
+	public static Scene menu() {
+		
+		Pane layout = new Pane();
+		Scene scene2 = new Scene(layout, 1200, 800);
+		
+		return scene2;
+	
 	}
 
 	public Window getFrame() {
