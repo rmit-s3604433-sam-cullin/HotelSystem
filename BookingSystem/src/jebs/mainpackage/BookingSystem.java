@@ -18,6 +18,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -124,7 +125,6 @@ public class BookingSystem extends Application {
 				+ "-fx-max-height: 50px; -fx-effect: innershadow(one-pass-box, gray, 5, 0.3, 1, 1);");
 		userID.setLayoutX(80);
 		userID.setLayoutY(160);
-		//button.setOnAction(e -> LoginFX.display("Authentication", "authenting.."));
 		
 		PasswordField password = new PasswordField();
 		password.setPromptText("Enter password");
@@ -148,7 +148,7 @@ public class BookingSystem extends Application {
 			if(lv.loginIDValidation(id)){
 				if(lv.loginPasswordValidation(id, pass) == 1){
 					window.close();
-					//Customer
+					// Customer Menu
 					EventQueue.invokeLater(new Runnable() {
 						public void run() {
 							try {
@@ -159,7 +159,7 @@ public class BookingSystem extends Application {
 						}
 					});
 				} else if(lv.loginPasswordValidation(id, pass) == 2){
-					//Owner
+					// Owner Menu
 					System.out.println("Owner");
 					window.close();
 					EventQueue.invokeLater(new Runnable() {
@@ -172,18 +172,35 @@ public class BookingSystem extends Application {
 						}
 					});
 				} else {
-					//Incorrect user name or password
+					// Incorrect user name or password
 					loginError();
 				}
 			} else {
-				//Incorrect user name or password
+				// Incorrect user name or password
 				loginError();
 			}
 		});
 		
+		Label regLabel = new Label();
+		regLabel.setText("Not registered yet?");
+		regLabel.setStyle("-fx-font-family: 'Varela Round'; -fx-font-size: 12; -fx-text-fill: #D8D8D8;");
+		regLabel.setLayoutX(110);
+		regLabel.setLayoutY(325);
+		
+		Hyperlink regText = new Hyperlink();
+		regText.setText("Click here!");
+		regText.setStyle("-fx-font-family: 'Varela Round'; -fx-font-size: 13; -fx-text-fill: #10EE99; -fx-border-color: transparent;");
+		regText.setLayoutX(225);
+		regText.setLayoutY(321);
+		regText.setOnAction(e -> {
+			/*
+			 *  Nicky's code goes here
+			 */
+		});
+		
 		Pane layout = new Pane();
 		layout.setStyle("-fx-background-color: #2B303A");
-		layout.getChildren().addAll(iv1, title, userID, password, button);
+		layout.getChildren().addAll(iv1, title, userID, password, button,regLabel,regText);
 		
 		Scene scene = new Scene(layout, 400, 350);
 		scene.getStylesheets().add("https://fonts.googleapis.com/css?family=Varela+Round");
