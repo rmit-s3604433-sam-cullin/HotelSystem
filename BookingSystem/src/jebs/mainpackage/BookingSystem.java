@@ -2,6 +2,7 @@ package jebs.mainpackage;
 
 import jebs.gui.CustomerMenu;
 import jebs.gui.OwnerMenu;
+import jebs.gui.RegisterCustomer;
 
 import java.util.Scanner;
 import java.awt.EventQueue;
@@ -178,9 +179,8 @@ public class BookingSystem extends Application {
 		regText.setLayoutX(225);
 		regText.setLayoutY(321);
 		regText.setOnAction(e -> {
-			/*
-			 *  Nicky calls his code from here
-			 */
+			window.close();
+			new RegisterCustomer();
 		});
 		
 		Pane layout = new Pane();
