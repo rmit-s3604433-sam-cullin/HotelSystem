@@ -72,5 +72,7 @@ public class CreateBookingCustInfoController {
 				invalidcustaddress.setVisible(false);
 			}
 		}
+		
+		
 	}
 }

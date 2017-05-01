@@ -126,7 +126,7 @@ public class AddTimeDateController {
 						statement = con.createStatement();
 						
 						/* SQL Statement */
-						statement.executeUpdate("INSERT INTO workingTimeDate " + "VALUES ('" + empname + "','" + empday + "','" + emptime + "')");
+						statement.executeUpdate("INSERT INTO workingTimeDate(`EmployeeID`,`Day`,`Time`) VALUES ('" + empname + "','" + empday + "','" + emptime + "')");
 						success.setVisible(true);
 						employee.getSelectionModel().clearSelection();
 						Day.selectToggle(null);
@@ -206,7 +206,7 @@ public class AddTimeDateController {
 			
 			resultSet1 = statement.executeQuery("SELECT * FROM workingTimeDate");
 			while(resultSet1.next()) {
-				if(empname.equals(resultSet1.getString("EmployeeName"))){
+				if(empname.equals(resultSet1.getString("EmployeeID"))){
 					if(empday.equals(resultSet1.getString("Day"))) {
 						if(emptime.equals(resultSet1.getString("Time"))) {
 							i = 1;

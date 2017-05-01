@@ -27,12 +27,12 @@
 	<left>
 		<Pane prefHeight="570.0" prefWidth="289.0" style="-fx-background-color: #2E4053;" BorderPane.alignment="CENTER">
 			<children>
-				<ImageView fitHeight="32.0" fitWidth="32.0" layoutX="32.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true">
+				<ImageView fitHeight="32.0" fitWidth="32.0" layoutX="32.0" layoutY="206.0" onMouseClicked="#showWorkingTimeDate" pickOnBounds="true" preserveRatio="true">
 					<image>
 						<Image url="@../Images/small-calendar.png" />
 					</image>
 				</ImageView>
-				<Label layoutX="85.0" layoutY="210.0" style="-fx-text-fill: white;" text="Employee Availability">
+				<Label layoutX="85.0" layoutY="210.0" onMouseClicked="#showWorkingTimeDate" style="-fx-text-fill: white;" text="Employee Availability">
 					<font>
 						<Font size="16.0" />
 					</font>

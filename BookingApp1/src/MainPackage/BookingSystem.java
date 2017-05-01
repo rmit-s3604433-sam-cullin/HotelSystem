@@ -371,6 +371,12 @@ public static void showLogin() throws IOException {
 		BorderPane AddTimeDate = loader.load();
 		mainlayout.setCenter(AddTimeDate);
 	}
+	public static void showWorkingTimes() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(BookingSystem.class.getResource("Owner/WorkingTimes.fxml"));
+		BorderPane WorkingTimes = loader.load();
+		mainlayout.setCenter(WorkingTimes);
+	}
 	public static void showBusinessActivities() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(BookingSystem.class.getResource("Owner/BusinessActivities.fxml"));
@@ -379,7 +385,13 @@ public static void showLogin() throws IOException {
 	}
 	public static void showWeeklySummary() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(BookingSystem.class.getResource("Owner/WeeklySummary.fxml"));
+		loader.setLocation(BookingSystem.class.getResource("Owner/WeekBookingSummary.fxml"));
+		BorderPane WeeklySummary = loader.load();
+		mainlayout.setCenter(WeeklySummary);
+	}
+	public static void showWeekSummaryCustomer() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(BookingSystem.class.getResource("Customer/CustomerBookingWeekView.fxml"));
 		BorderPane WeeklySummary = loader.load();
 		mainlayout.setCenter(WeeklySummary);
 	}
