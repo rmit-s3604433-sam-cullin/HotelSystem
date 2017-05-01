@@ -17,12 +17,12 @@ import javafx.scene.control.Label;
 
 public class AddTimeDateController {
 
-	ObservableList<String> empList = FXCollections.observableArrayList();
-	Connection con = null;
-	Statement statement = null;
+	static ObservableList<String> empList = FXCollections.observableArrayList();
+	static Connection con = null;
+	static Statement statement = null;
 	
 	@FXML
-	public ComboBox<String> employee = new ComboBox<String>(empList);
+	public static ComboBox<String> cBox = new ComboBox<>();
 	@FXML
 	RadioButton monday;
 	@FXML
@@ -61,15 +61,15 @@ public class AddTimeDateController {
 	ToggleGroup time;
 	
 	@FXML
-	private void initialize() {
+	public static void initialize() {
 		{
 			try {
 				con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 				statement = con.createStatement();
 				ResultSet empSet = statement.executeQuery("SELECT empid, name FROM employee");
 				while(empSet.next()) {
-					empList.add(empSet.getString("name"));
-					employee.setItems(empList);
+					cBox.getItems().add(empSet.getString("name"));
+					//employee.setItems(empList);
 				}
 			} catch (SQLException e1) {
 				e1.printStackTrace();
@@ -93,7 +93,7 @@ public class AddTimeDateController {
 	private void onConfirmation() {
 		
 		success.setVisible(false);
-		String empname = employee.getSelectionModel().getSelectedItem();
+		String empname = cBox.getSelectionModel().getSelectedItem();
 		String empday = HandleDayOptions(monday, tuesday, wednesday, thursday, friday, saturday);
 		String emptime = HandleTimeOptions(first, second, third, fourth);
 		
@@ -126,9 +126,9 @@ public class AddTimeDateController {
 						statement = con.createStatement();
 						
 						/* SQL Statement */
-						statement.executeUpdate("INSERT INTO workingTimeDate(`EmployeeID`,`Day`,`Time`) VALUES ('" + empname + "','" + empday + "','" + emptime + "')");
+						statement.executeUpdate("INSERT INTO workingTimeDate " + "VALUES ('" + empname + "','" + empday + "','" + emptime + "')");
 						success.setVisible(true);
-						employee.getSelectionModel().clearSelection();
+						cBox.getSelectionModel().clearSelection();
 						Day.selectToggle(null);
 						time.selectToggle(null);
 					} catch (Exception e) {
@@ -206,13 +206,42 @@ public class AddTimeDateController {
 			
 			resultSet1 = statement.executeQuery("SELECT * FROM workingTimeDate");
 			while(resultSet1.next()) {
-				if(empname.equals(resultSet1.getString("EmployeeID"))){
+				if(empname.equals(resultSet1.getString("EmployeeName"))){
 					if(empday.equals(resultSet1.getString("Day"))) {
 						if(emptime.equals(resultSet1.getString("Time"))) {
 							i = 1;
 						}
 					}					
 				}
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		} finally {
+			if(statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e1) { }
+			}
+		}
+		if(con != null) {
+			try {
+				con.close();
+			} catch (SQLException e1) { }
+		}
+		return i;
+	}
+	public static int handleCBox() {
+		Connection con = null;
+		Statement statement = null;
+		ResultSet resultSet1 = null;
+		int i = 0;
+		try{
+			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+			statement = con.createStatement();	
+			
+			resultSet1 = statement.executeQuery("SELECT name FROM employee");
+			while(resultSet1.next()) {
+				i=1;
 			}
 		} catch (SQLException e){
 			e.printStackTrace();

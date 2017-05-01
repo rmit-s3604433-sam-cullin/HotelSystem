@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,54 +12,18 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainPackage.Login.LoginController">
+<AnchorPane minHeight="330.0" minWidth="385.0" style="-fx-background-color: #2B303A;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainPackage.Login.LoginController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="424.0" layoutX="334.0" layoutY="173.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: none;" width="334.0" />
-      <TextField id="userid" fx:id="userid" layoutX="392.0" layoutY="267.0" prefHeight="31.0" prefWidth="218.0" promptText="User ID">
-         <font>
-            <Font size="14.0" />
-         </font></TextField>
-      <PasswordField id="userpassword" fx:id="userpassword" layoutX="392.0" layoutY="341.0" prefHeight="31.0" prefWidth="218.0" promptText="Password">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </PasswordField>
-      <Button fx:id="login" layoutX="390.0" layoutY="408.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="31.0" prefWidth="218.0" style="-fx-background-color: gray; -fx-text-fill: white;" text="Login">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
-      <Button layoutX="392.0" layoutY="506.0" mnemonicParsing="false" onAction="#onSignUp" prefHeight="31.0" prefWidth="218.0" style="-fx-background-color: gray; -fx-text-fill: white;" text="Sign-Up">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
-      <Pane prefHeight="96.0" prefWidth="1000.0" style="-fx-background-color: #212F3D;">
+      <Label id="login" fx:id="login" layoutX="115" layoutY="55" style="-fx-font-family: 'Gruppo'; -fx-font-weight: 800; -fx-font-size: 60; -fx-text-fill: #D8D8D8;" text="Login" />
+      <TextField id="userid" fx:id="userid" layoutX="70.0" layoutY="140.0" promptText="Enter user ID" style="-fx-font-family: 'Varela Round'; -fx-font-size: 12; -fx-background-color: white; -fx-min-width: 250px; -fx-max-height: 50px; -fx-effect: innershadow(one-pass-box, gray, 5, 0.3, 1, 1);" />
+      <PasswordField id="userpassword" fx:id="userpassword" layoutX="70.0" layoutY="180.0" promptText="Enter password" style="-fx-font-family: 'Varela Round'; -fx-font-size: 12; -fx-background-color: white; -fx-min-width: 250px; -fx-max-height: 50px; -fx-effect: innershadow(one-pass-box, gray, 5, 0.3, 1, 1);" />
+      <Button id="submit" fx:id="submit" layoutX="153.0" layoutY="230.0" mnemonicParsing="false" onAction="#onLogin" style="-fx-font-family: 'Varela Round'; -fx-background-radius: 3; -fx-background-color: #10EE99; -fx-padding: 6 25 6 25; -fx-effect: innershadow(one-pass-box, #2B443A, 7, 0.3, 0, -1);" text="Login" />
+      <Label id="regLabel" fx:id="regLabel" layoutX="100" layoutY="302" style="-fx-font-family: 'Varela Round'; -fx-font-size: 12; -fx-text-fill: #D8D8D8;" text="Not registered yet?"/>
+      <Hyperlink id="regText" fx:id="regText" layoutX="215" layoutY="298" onAction="#onSignUp" style="-fx-font-family: 'Varela Round'; -fx-font-size: 13; -fx-text-fill: #10EE99; -fx-border-color: transparent;" text="Click here!" />
+      <Pane>
          <children>
-            <ImageView fitHeight="70.0" fitWidth="72.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Images/imageedit_1_5805622596.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="93.0" layoutY="30.0" text="John's Electrician Booking System" textFill="WHITE">
-               <font>
-                  <Font name="System Italic" size="24.0" />
-               </font>
-            </Label>
          </children>
       </Pane>
-      <Label layoutX="460.0" layoutY="192.0" text="Login" underline="true">
-         <font>
-            <Font size="32.0" />
-         </font>
-      </Label>
-      <Label layoutX="400.0" layoutY="479.0" text="Don't have an account? Sign-Up here!" underline="true" />
-      <Label id="invaliduserid" fx:id="invaliduserid" layoutX="394.0" layoutY="312.0" text="Error : Invalid User ID." textFill="#f80000" visible="false" />
-      <Label id="invaliduserpass" fx:id="invaliduserpass" layoutX="394.0" layoutY="372.0" text="Error : Invalid User Password." textFill="RED" visible="false" />
-      <Label layoutX="392.0" layoutY="298.0" text="*Start with c for customer / o for owner*">
-         <font>
-            <Font name="System Italic" size="11.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>
+

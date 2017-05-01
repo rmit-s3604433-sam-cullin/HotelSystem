@@ -1,12 +1,26 @@
 package MainPackage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 
 import MainPackage.Login.LoginController;
+import MainPackage.Owner.AddTimeDateController;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DateCell;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -16,6 +30,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 
 public class BookingSystem extends Application {
@@ -25,6 +40,9 @@ public class BookingSystem extends Application {
 	private static Stage loginStage;
 	private static BorderPane mainlayout;
 	private static AnchorPane startinglayout;
+	
+	static Connection con = null;
+	static Statement statement = null;
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
@@ -32,306 +50,36 @@ public class BookingSystem extends Application {
 		BookingSystem.loginStage.setTitle("Booking App");
 		showLogin();
 	}
-public static void showLogin() throws IOException {
+	public static void showLogin() throws IOException {
 		
-		Label title = new Label("Login");
-		title.setStyle("-fx-font-family: 'Gruppo'; -fx-font-weight: 800; -fx-font-size: 60; -fx-text-fill: #D8D8D8;");
-		title.setLayoutX(125);
-		title.setLayoutY(75);
-		
-		TextField userID = new TextField();
-		userID.setPromptText("Enter user ID");
-		userID.setStyle("-fx-font-family: 'Varela Round'; -fx-font-size: 12; -fx-background-color: white; -fx-min-width: 250px; "
-				+ "-fx-max-height: 50px; -fx-effect: innershadow(one-pass-box, gray, 5, 0.3, 1, 1);");
-		userID.setLayoutX(80);
-		userID.setLayoutY(160);
-		
-		PasswordField password = new PasswordField();
-		password.setPromptText("Enter password");
-		password.setStyle("-fx-font-family: 'Varela Round'; -fx-font-size: 12; -fx-background-color: white; -fx-min-width: 250px; "
-				+ "-fx-max-height: 50px; -fx-effect: innershadow(one-pass-box, gray, 5, 0.3, 1, 1);");
-		password.setLayoutX(80);
-		password.setLayoutY(200);
-		
-		Button button = new Button("Login");
-		button.setStyle("-fx-font-family: 'Varela Round'; -fx-background-radius: 3; -fx-background-color: #10EE99; "
-				+ "-fx-padding: 6 25 6 25; -fx-effect: innershadow(one-pass-box, #2B443A, 7, 0.3, 0, -1);");
-		button.setLayoutX(163);
-		button.setLayoutY(250);
-		button.setOnAction(e -> {
-			String id = userID.getText();
-			String pass = password.getText();
-			
-			//Input validates user input data with system and database
-			LoginController lc = new LoginController();
-			//Check user input if its Owner or Customer
-			if(lc.loginIDValidation(id)){
-				if(lc.loginPasswordValidation(id, pass) == 1){
-					// Customer Menu
-					try {
-						showCustomerMenu();
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-				} else if(lc.loginPasswordValidation(id, pass) == 2){
-					// Owner Menu
-					System.out.println("Owner");
-					try {
-						showOwnerMenu();
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-				} else {
-					// Incorrect user name or password
-					loginError();
-				}
-			} else {
-				// Incorrect user name or password
-				loginError();
-			}
-		});
-		
-		Label regLabel = new Label();
-		regLabel.setText("Not registered yet?");
-		regLabel.setStyle("-fx-font-family: 'Varela Round'; -fx-font-size: 12; -fx-text-fill: #D8D8D8;");
-		regLabel.setLayoutX(110);
-		regLabel.setLayoutY(325);
-		
-		Hyperlink regText = new Hyperlink();
-		regText.setText("Click here!");
-		regText.setStyle("-fx-font-family: 'Varela Round'; -fx-font-size: 13; -fx-text-fill: #10EE99; -fx-border-color: transparent;");
-		regText.setLayoutX(225);
-		regText.setLayoutY(321);
-		regText.setOnAction(e -> {
-			try {
-				showRegisterMenu();
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-		});
-		
-		Pane layout = new Pane();
-		layout.setStyle("-fx-background-color: #2B303A");
-		layout.getChildren().addAll(title, userID, password, button,regLabel,regText);
-		
-		Scene scene = new Scene(layout, 400, 350);
+		FXMLLoader loader = new FXMLLoader(BookingSystem.class.getResource("Login/Login.fxml"));
+		startinglayout = loader.load();
+		Scene scene = new Scene(startinglayout);
 		scene.getStylesheets().add("https://fonts.googleapis.com/css?family=Varela+Round");
 		scene.getStylesheets().add("https://fonts.googleapis.com/css?family=Gruppo");
 		loginStage.setScene(scene);
 		loginStage.show();
-		layout.requestFocus();
-	}
-	
-	public static void loginError() {
-		
-		Stage window = new Stage();
-		
-		window.initModality(Modality.APPLICATION_MODAL);
-		window.setTitle("Access Denied");
-		window.setMinWidth(50);
-		
-		Label label = new Label();
-		label.setText("Username or password entered was incorrect.");
-		label.setStyle("-fx-font-family: 'Varela Round'; -fx-font-size: 12; -fx-text-fill: #E5E5E5;");
-		label.setLayoutX(10);
-		label.setLayoutY(12);
-		
-		Button closeButton = new Button("Close");
-		closeButton.setStyle("-fx-font-family: 'Varela Round'; -fx-background-radius: 3; -fx-background-color: #10EE99; "
-				+ "-fx-padding: 5 15 5 15; -fx-effect: innershadow(one-pass-box, #2B443A, 7, 0.3, 0, -1);");
-		closeButton.setLayoutX(110);
-		closeButton.setLayoutY(37);
-		closeButton.setOnAction(e -> window.close());
-		
-		Pane layout = new Pane();
-		layout.setStyle("-fx-background-color: #2B303A");
-		layout.getChildren().addAll(label,closeButton);
-		//layout.setAlignment(Pos.CENTER);
-		
-		Scene scene = new Scene(layout, 280, 75);
-		scene.getStylesheets().add("https://fonts.googleapis.com/css?family=Varela+Round");
-		window.setScene(scene);
-		window.showAndWait();
-		
 	}
 	
 	public static void showLogin2() throws IOException {
 		registerstage.close();
-		Label title = new Label("Login");
-		title.setStyle("-fx-font-family: 'Gruppo'; -fx-font-weight: 800; -fx-font-size: 60; -fx-text-fill: #D8D8D8;");
-		title.setLayoutX(125);
-		title.setLayoutY(75);
-		
-		TextField userID = new TextField();
-		userID.setPromptText("Enter user ID");
-		userID.setStyle("-fx-font-family: 'Varela Round'; -fx-font-size: 12; -fx-background-color: white; -fx-min-width: 250px; "
-				+ "-fx-max-height: 50px; -fx-effect: innershadow(one-pass-box, gray, 5, 0.3, 1, 1);");
-		userID.setLayoutX(80);
-		userID.setLayoutY(160);
-		
-		PasswordField password = new PasswordField();
-		password.setPromptText("Enter password");
-		password.setStyle("-fx-font-family: 'Varela Round'; -fx-font-size: 12; -fx-background-color: white; -fx-min-width: 250px; "
-				+ "-fx-max-height: 50px; -fx-effect: innershadow(one-pass-box, gray, 5, 0.3, 1, 1);");
-		password.setLayoutX(80);
-		password.setLayoutY(200);
-		
-		Button button = new Button("Login");
-		button.setStyle("-fx-font-family: 'Varela Round'; -fx-background-radius: 3; -fx-background-color: #10EE99; "
-				+ "-fx-padding: 6 25 6 25; -fx-effect: innershadow(one-pass-box, #2B443A, 7, 0.3, 0, -1);");
-		button.setLayoutX(163);
-		button.setLayoutY(250);
-		button.setOnAction(e -> {
-			String id = userID.getText();
-			String pass = password.getText();
-			
-			//Input validates user input data with system and database
-			LoginController lc = new LoginController();
-			//Check user input if its Owner or Customer
-			if(lc.loginIDValidation(id)){
-				if(lc.loginPasswordValidation(id, pass) == 1){
-					// Customer Menu
-					try {
-						showCustomerMenu();
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-				} else if(lc.loginPasswordValidation(id, pass) == 2){
-					// Owner Menu
-					System.out.println("Owner");
-					try {
-						showOwnerMenu();
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-				} else {
-					// Incorrect user name or password
-					loginError();
-				}
-			} else {
-				// Incorrect user name or password
-				loginError();
-			}
-		});
-		
-		Label regLabel = new Label();
-		regLabel.setText("Not registered yet?");
-		regLabel.setStyle("-fx-font-family: 'Varela Round'; -fx-font-size: 12; -fx-text-fill: #D8D8D8;");
-		regLabel.setLayoutX(110);
-		regLabel.setLayoutY(325);
-		
-		Hyperlink regText = new Hyperlink();
-		regText.setText("Click here!");
-		regText.setStyle("-fx-font-family: 'Varela Round'; -fx-font-size: 13; -fx-text-fill: #10EE99; -fx-border-color: transparent;");
-		regText.setLayoutX(225);
-		regText.setLayoutY(321);
-		regText.setOnAction(e -> {
-			try {
-				showRegisterMenu();
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-		});
-		
-		Pane layout = new Pane();
-		layout.setStyle("-fx-background-color: #2B303A");
-		layout.getChildren().addAll(title, userID, password, button,regLabel,regText);
-		
-		Scene scene = new Scene(layout, 400, 350);
+		FXMLLoader loader = new FXMLLoader(BookingSystem.class.getResource("Login/Login.fxml"));
+		startinglayout = loader.load();
+		Scene scene = new Scene(startinglayout);
 		scene.getStylesheets().add("https://fonts.googleapis.com/css?family=Varela+Round");
 		scene.getStylesheets().add("https://fonts.googleapis.com/css?family=Gruppo");
 		loginStage.setScene(scene);
 		loginStage.show();
-		layout.requestFocus();
 	}
 	public static void showLogin3() throws IOException {
 		primaryStage.close();
-		Label title = new Label("Login");
-		title.setStyle("-fx-font-family: 'Gruppo'; -fx-font-weight: 800; -fx-font-size: 60; -fx-text-fill: #D8D8D8;");
-		title.setLayoutX(125);
-		title.setLayoutY(75);
-		
-		TextField userID = new TextField();
-		userID.setPromptText("Enter user ID");
-		userID.setStyle("-fx-font-family: 'Varela Round'; -fx-font-size: 12; -fx-background-color: white; -fx-min-width: 250px; "
-				+ "-fx-max-height: 50px; -fx-effect: innershadow(one-pass-box, gray, 5, 0.3, 1, 1);");
-		userID.setLayoutX(80);
-		userID.setLayoutY(160);
-		
-		PasswordField password = new PasswordField();
-		password.setPromptText("Enter password");
-		password.setStyle("-fx-font-family: 'Varela Round'; -fx-font-size: 12; -fx-background-color: white; -fx-min-width: 250px; "
-				+ "-fx-max-height: 50px; -fx-effect: innershadow(one-pass-box, gray, 5, 0.3, 1, 1);");
-		password.setLayoutX(80);
-		password.setLayoutY(200);
-		
-		Button button = new Button("Login");
-		button.setStyle("-fx-font-family: 'Varela Round'; -fx-background-radius: 3; -fx-background-color: #10EE99; "
-				+ "-fx-padding: 6 25 6 25; -fx-effect: innershadow(one-pass-box, #2B443A, 7, 0.3, 0, -1);");
-		button.setLayoutX(163);
-		button.setLayoutY(250);
-		button.setOnAction(e -> {
-			String id = userID.getText();
-			String pass = password.getText();
-			
-			//Input validates user input data with system and database
-			LoginController lc = new LoginController();
-			//Check user input if its Owner or Customer
-			if(lc.loginIDValidation(id)){
-				if(lc.loginPasswordValidation(id, pass) == 1){
-					// Customer Menu
-					try {
-						showCustomerMenu();
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-				} else if(lc.loginPasswordValidation(id, pass) == 2){
-					// Owner Menu
-					System.out.println("Owner");
-					try {
-						showOwnerMenu();
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-				} else {
-					// Incorrect user name or password
-					loginError();
-				}
-			} else {
-				// Incorrect user name or password
-				loginError();
-			}
-		});
-		
-		Label regLabel = new Label();
-		regLabel.setText("Not registered yet?");
-		regLabel.setStyle("-fx-font-family: 'Varela Round'; -fx-font-size: 12; -fx-text-fill: #D8D8D8;");
-		regLabel.setLayoutX(110);
-		regLabel.setLayoutY(325);
-		
-		Hyperlink regText = new Hyperlink();
-		regText.setText("Click here!");
-		regText.setStyle("-fx-font-family: 'Varela Round'; -fx-font-size: 13; -fx-text-fill: #10EE99; -fx-border-color: transparent;");
-		regText.setLayoutX(225);
-		regText.setLayoutY(321);
-		regText.setOnAction(e -> {
-			try {
-				showRegisterMenu();
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-		});
-		
-		Pane layout = new Pane();
-		layout.setStyle("-fx-background-color: #2B303A");
-		layout.getChildren().addAll(title, userID, password, button,regLabel,regText);
-		
-		Scene scene = new Scene(layout, 400, 350);
+		FXMLLoader loader = new FXMLLoader(BookingSystem.class.getResource("Login/Login.fxml"));
+		startinglayout = loader.load();
+		Scene scene = new Scene(startinglayout);
 		scene.getStylesheets().add("https://fonts.googleapis.com/css?family=Varela+Round");
 		scene.getStylesheets().add("https://fonts.googleapis.com/css?family=Gruppo");
 		loginStage.setScene(scene);
 		loginStage.show();
-		layout.requestFocus();
 	}
 	public static void showRegisterMenu() throws IOException {
 		loginStage.close();
@@ -366,17 +114,219 @@ public static void showLogin() throws IOException {
 		mainlayout.setCenter(AddEmployee);
 	}
 	public static void showAddTimeDate() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
+		/*FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(BookingSystem.class.getResource("Owner/AddTimeDate.fxml"));
 		BorderPane AddTimeDate = loader.load();
-		mainlayout.setCenter(AddTimeDate);
+		mainlayout.setCenter(AddTimeDate);*/
+		
+		Label title = new Label("Add employee shift date/time");
+		title.setStyle("-fx-font-size: 18px; -fx-font-style: italic; -fx-font-weight: bold;");
+		title.setUnderline(true);
+		title.setLayoutX(35);
+		title.setLayoutY(25);
+		
+		Label subTitle = new Label("Please choose an employee : ");
+		subTitle.setStyle("-fx-font-size: 14px;");
+		subTitle.setLayoutX(35);
+		subTitle.setLayoutY(75);
+	
+		ChoiceBox<String> cBox = new ChoiceBox<String>();
+		cBox.setLayoutX(235);
+		cBox.setLayoutY(72);
+		cBox.setMinWidth(190);
+		try {
+			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+			statement = con.createStatement();
+			ResultSet empSet = statement.executeQuery("SELECT empid, name FROM employee");
+			while(empSet.next()) {
+				cBox.getItems().add(empSet.getString("name"));
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		} finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e1) {
+				}
+			}
+		}
+		if (con != null) {
+			try {
+				con.close();
+			} catch (SQLException e1) {
+			}
+		}
+		
+		DatePicker datePicker = new DatePicker();
+		
+		StringConverter<LocalDate> defaultConverter = datePicker.getConverter();
+		
+		datePicker.setConverter(new StringConverter<LocalDate>() {
+			@Override
+			public String toString(LocalDate object) {
+				return defaultConverter.toString(object);
+			}
+			
+			@Override
+			public LocalDate fromString(String string) {
+				LocalDate date = defaultConverter.fromString(string);
+				if(date.getDayOfWeek() == DayOfWeek.MONDAY) {
+					return date;
+				} else {
+					// not a Monday. Revert to previous value.
+					return datePicker.getValue();
+				}
+			}
+		});
+		
+		datePicker.setDayCellFactory(dp -> new DateCell() {
+			@Override
+			public void updateItem(LocalDate item, boolean empty) {
+				super.updateItem(item, empty);
+				setDisable(empty || item.getDayOfWeek() != DayOfWeek.MONDAY);
+			}
+		});
+		// just for dubugging so we only see Mondays
+		datePicker.valueProperty().addListener((obs, oldDate, newDate) -> {
+			if(newDate.getDayOfWeek() != DayOfWeek.MONDAY) {
+				System.out.println("WARNING: date chosen was not a Monay");
+			}
+			System.out.println(newDate + " (" + newDate.getDayOfWeek() + ")");
+		});
+		
+		
+		Label monday = new Label("Monday");
+		monday.setStyle("-fx-font-size: 18px; -fx-font-style: italic; -fx-font-weight: bold;");
+		monday.setUnderline(true);
+		monday.setLayoutX(35);
+		monday.setLayoutY(110);
+		Label subMonday = new Label("Please choose times :");
+		subMonday.setStyle("-fx-font-size: 14px;");
+		subMonday.setLayoutX(35);
+		subMonday.setLayoutY(150);
+		CheckBox mondayBox1 = new CheckBox("9:00 AM - 11:30 PM");
+		mondayBox1.setLayoutX(200);
+		mondayBox1.setLayoutY(151);
+		CheckBox mondayBox2 = new CheckBox("11:30 AM - 2:00 PM");
+		mondayBox2.setLayoutX(350);
+		mondayBox2.setLayoutY(151);
+		CheckBox mondayBox3 = new CheckBox("2:00 PM - 5:00 PM");
+		mondayBox3.setLayoutX(500);
+		mondayBox3.setLayoutY(151);
+		
+		Label tuesday = new Label("Tuesday");
+		tuesday.setStyle("-fx-font-size: 18px; -fx-font-style: italic; -fx-font-weight: bold;");
+		tuesday.setUnderline(true);
+		tuesday.setLayoutX(35);
+		tuesday.setLayoutY(180);
+		Label subTuesday = new Label("Please choose times :");
+		subTuesday.setStyle("-fx-font-size: 14px;");
+		subTuesday.setLayoutX(35);
+		subTuesday.setLayoutY(220);
+		CheckBox tuesdayBox1 = new CheckBox("9:00 AM - 11:30 PM");
+		tuesdayBox1.setLayoutX(200);
+		tuesdayBox1.setLayoutY(221);
+		CheckBox tuesdayBox2 = new CheckBox("11:30 AM - 2:00 PM");
+		tuesdayBox2.setLayoutX(350);
+		tuesdayBox2.setLayoutY(221);
+		CheckBox tuesdayBox3 = new CheckBox("2:00 PM - 5:00 PM");
+		tuesdayBox3.setLayoutX(500);
+		tuesdayBox3.setLayoutY(221);
+		
+		Label wednesday = new Label("Wednesday");
+		wednesday.setStyle("-fx-font-size: 18px; -fx-font-style: italic; -fx-font-weight: bold;");
+		wednesday.setUnderline(true);
+		wednesday.setLayoutX(35);
+		wednesday.setLayoutY(250);
+		Label subWednesday = new Label("Please choose times :");
+		subWednesday.setStyle("-fx-font-size: 14px;");
+		subWednesday.setLayoutX(35);
+		subWednesday.setLayoutY(290);
+		CheckBox wednesdayBox1 = new CheckBox("9:00 AM - 11:30 PM");
+		wednesdayBox1.setLayoutX(200);
+		wednesdayBox1.setLayoutY(291);
+		CheckBox wednesdayBox2 = new CheckBox("11:30 AM - 2:00 PM");
+		wednesdayBox2.setLayoutX(350);
+		wednesdayBox2.setLayoutY(291);
+		CheckBox wednesdayBox3 = new CheckBox("2:00 PM - 5:00 PM");
+		wednesdayBox3.setLayoutX(500);
+		wednesdayBox3.setLayoutY(291);
+		
+		Label thursday = new Label("Thrusday");
+		thursday.setStyle("-fx-font-size: 18px; -fx-font-style: italic; -fx-font-weight: bold;");
+		thursday.setUnderline(true);
+		thursday.setLayoutX(35);
+		thursday.setLayoutY(320);
+		Label subThursday = new Label("Please choose times :");
+		subThursday.setStyle("-fx-font-size: 14px;");
+		subThursday.setLayoutX(35);
+		subThursday.setLayoutY(360);
+		CheckBox thursdayBox1 = new CheckBox("9:00 AM - 11:30 PM");
+		thursdayBox1.setLayoutX(200);
+		thursdayBox1.setLayoutY(361);
+		CheckBox thursdayBox2 = new CheckBox("11:30 AM - 2:00 PM");
+		thursdayBox2.setLayoutX(350);
+		thursdayBox2.setLayoutY(361);
+		CheckBox thursdayBox3 = new CheckBox("2:00 PM - 5:00 PM");
+		thursdayBox3.setLayoutX(500);
+		thursdayBox3.setLayoutY(361);
+		
+		Label friday = new Label("Friday");
+		friday.setStyle("-fx-font-size: 18px; -fx-font-style: italic; -fx-font-weight: bold;");
+		friday.setUnderline(true);
+		friday.setLayoutX(35);
+		friday.setLayoutY(390);
+		Label subFriday = new Label("Please choose times :");
+		subFriday.setStyle("-fx-font-size: 14px;");
+		subFriday.setLayoutX(35);
+		subFriday.setLayoutY(430);
+		CheckBox fridayBox1 = new CheckBox("9:00 AM - 11:30 PM");
+		fridayBox1.setLayoutX(200);
+		fridayBox1.setLayoutY(431);
+		CheckBox fridayBox2 = new CheckBox("11:30 AM - 2:00 PM");
+		fridayBox2.setLayoutX(350);
+		fridayBox2.setLayoutY(431);
+		CheckBox fridayBox3 = new CheckBox("2:00 PM - 5:00 PM");
+		fridayBox3.setLayoutX(500);
+		fridayBox3.setLayoutY(431);
+		
+		/*Label monday = new Label("Monday");
+		monday.setStyle("-fx-font-size: 18px; -fx-font-style: italic; -fx-font-weight: bold;");
+		monday.setUnderline(true);
+		monday.setLayoutX(35);
+		monday.setLayoutY(110);
+		Label subMonday = new Label("Please choose times :");
+		subMonday.setStyle("-fx-font-size: 14px;");
+		subMonday.setLayoutX(35);
+		subMonday.setLayoutY(150);
+		CheckBox mondayBox1 = new CheckBox("9:00 AM - 11:30 PM");
+		mondayBox1.setLayoutX(200);
+		mondayBox1.setLayoutY(151);
+		CheckBox mondayBox2 = new CheckBox("11:30 AM - 2:00 PM");
+		mondayBox2.setLayoutX(350);
+		mondayBox2.setLayoutY(151);
+		CheckBox mondayBox3 = new CheckBox("2:00 PM - 5:00 PM");
+		mondayBox3.setLayoutX(500);
+		mondayBox3.setLayoutY(151);*/
+		
+		Pane layout = new Pane();
+		layout.setStyle("-fx-background-color: #F7F7F7");
+		layout.getChildren().addAll(title,subTitle,cBox,datePicker,monday,subMonday,mondayBox1,mondayBox2,mondayBox3,tuesday,subTuesday,tuesdayBox1,tuesdayBox2,tuesdayBox3,
+				wednesday,subWednesday,wednesdayBox1,wednesdayBox2,wednesdayBox3,thursday,subThursday,thursdayBox1,thursdayBox2,thursdayBox3,friday,subFriday,
+				fridayBox1,fridayBox2,fridayBox3);
+		layout.setMinWidth(1000);
+		layout.setMinHeight(650);
+
+		mainlayout.setCenter(layout);
 	}
-	public static void showWorkingTimes() throws IOException {
+	/* For daniel to implement
+	 * public static void showWorkingTimes() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(BookingSystem.class.getResource("Owner/WorkingTimes.fxml"));
 		BorderPane WorkingTimes = loader.load();
 		mainlayout.setCenter(WorkingTimes);
-	}
+	}*/
 	public static void showBusinessActivities() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(BookingSystem.class.getResource("Owner/BusinessActivities.fxml"));
@@ -385,7 +335,7 @@ public static void showLogin() throws IOException {
 	}
 	public static void showWeeklySummary() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(BookingSystem.class.getResource("Owner/WeekBookingSummary.fxml"));
+		loader.setLocation(BookingSystem.class.getResource("Owner/WeeklySummary.fxml"));
 		BorderPane WeeklySummary = loader.load();
 		mainlayout.setCenter(WeeklySummary);
 	}
