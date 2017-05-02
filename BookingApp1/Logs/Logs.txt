@@ -1,0 +1,3 @@
+13:39:25  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+13:42:07  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+13:51:36  INFO [main] - MainPackage.BookingSystem.main - starting aplication

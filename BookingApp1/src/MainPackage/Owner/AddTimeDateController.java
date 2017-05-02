@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import MainPackage.BookingSystem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -72,12 +73,14 @@ public class AddTimeDateController {
 					employee.setItems(empList);
 				}
 			} catch (SQLException e1) {
+				BookingSystem.log.error(e1.toString());
 				e1.printStackTrace();
 			} finally {
 				if (statement != null) {
 					try {
 						statement.close();
 					} catch (SQLException e1) {
+						BookingSystem.log.error(e1.toString());
 					}
 				}
 			}
@@ -85,6 +88,7 @@ public class AddTimeDateController {
 				try {
 					con.close();
 				} catch (SQLException e1) {
+					BookingSystem.log.error(e1.toString());
 				}
 			}
 		}
@@ -132,18 +136,19 @@ public class AddTimeDateController {
 						Day.selectToggle(null);
 						time.selectToggle(null);
 					} catch (Exception e) {
+						BookingSystem.log.error(e.toString());
 							System.err.println(e);
 					} finally {
 						if(statement != null) {
 							try {
 								statement.close();
-							} catch (SQLException e) { }
+							} catch (SQLException e) { BookingSystem.log.error(e.toString());}
 						}
 					}
 					if(con != null) {
 						try {
 							con.close();
-						} catch (SQLException e) { }
+						} catch (SQLException e) {BookingSystem.log.error(e.toString()); }
 					}
 				}
 			}
@@ -220,13 +225,13 @@ public class AddTimeDateController {
 			if(statement != null) {
 				try {
 					statement.close();
-				} catch (SQLException e1) { }
+				} catch (SQLException e1) {BookingSystem.log.error(e1.toString()); }
 			}
 		}
 		if(con != null) {
 			try {
 				con.close();
-			} catch (SQLException e1) { }
+			} catch (SQLException e1) { BookingSystem.log.error(e1.toString());}
 		}
 		return i;
 	}

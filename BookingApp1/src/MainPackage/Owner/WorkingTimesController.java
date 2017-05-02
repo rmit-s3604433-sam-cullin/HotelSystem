@@ -1,22 +1,16 @@
 package MainPackage.Owner;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.sun.prism.paint.Color;
-
 import MainPackage.BookingSystem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.ComboBox;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 
 
@@ -175,6 +169,7 @@ public class WorkingTimesController {
 				try {
 					statement.close();
 				} catch (SQLException e1) {
+					BookingSystem.log.error(e1.toString());
 				}
 			}
 		}
@@ -191,6 +186,8 @@ public class WorkingTimesController {
 				return 2;
 			case "3pm-5pm":
 				return 3;
+			default:
+				BookingSystem.log.error("time not found");
 		}
 		return 10;
 	}
@@ -209,6 +206,8 @@ public class WorkingTimesController {
 			return 4;
 		case "Saturday":
 			return 5;
+		default:
+			BookingSystem.log.error("day not found");
 			
 	}
 	return 10;

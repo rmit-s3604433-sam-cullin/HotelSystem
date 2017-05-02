@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+import MainPackage.BookingSystem;
+
 public class Employee {
 	final static Scanner scan = new Scanner(System.in);
 	private String ID, name, address, number;
@@ -64,18 +66,19 @@ public class Employee {
 			statement.executeUpdate("INSERT INTO employee values('e" + nE.getID() + "', '" + nE.getName() + "', '" 
 					+ nE.getAddress() + "', '0" + nE.getNumber() + "')");
 		} catch (Exception e) {
+			BookingSystem.log.error(e);
 			System.err.println(e);
 		} finally {
 			if(statement != null) {
 				try {
 					statement.close();
-				} catch (SQLException e) { }
+				} catch (SQLException e) { BookingSystem.log.error(e);}
 			}
 		}
 		if(con != null) {
 			try {
 				con.close();
-			} catch (SQLException e) { }
+			} catch (SQLException e) {BookingSystem.log.error(e); }
 		}
 	}
 }

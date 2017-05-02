@@ -131,18 +131,19 @@ public class RegisterController {
 				}
 			}
 		}catch (SQLException e1) {
+			BookingSystem.log.error(e1);
 			e1.printStackTrace();
 		} finally {
 			if(statement != null) {
 				try {
 					statement.close();
-				} catch (SQLException e1) { }
+				} catch (SQLException e1) {BookingSystem.log.error(e1); }
 			}
 		}
 		if(con != null) {
 			try {
 				con.close();
-			} catch (SQLException e1) { }
+			} catch (SQLException e1) {BookingSystem.log.error(e1); }
 		}		
 		return i;
 	}

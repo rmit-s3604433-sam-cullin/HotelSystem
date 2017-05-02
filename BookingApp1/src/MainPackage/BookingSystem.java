@@ -2,6 +2,8 @@ package MainPackage;
 
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
+
 import MainPackage.Login.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +27,8 @@ public class BookingSystem extends Application {
 	private static Stage loginStage;
 	private static BorderPane mainlayout;
 	private static AnchorPane startinglayout;
+	
+	public final static Logger log = Logger.getLogger(BookingSystem.class);
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
@@ -71,6 +75,7 @@ public static void showLogin() throws IOException {
 					try {
 						showCustomerMenu();
 					} catch (Exception e1) {
+						log.warn(e1);
 						e1.printStackTrace();
 					}
 				} else if(lc.loginPasswordValidation(id, pass) == 2){
@@ -79,6 +84,7 @@ public static void showLogin() throws IOException {
 					try {
 						showOwnerMenu();
 					} catch (Exception e1) {
+						log.warn(e1);
 						e1.printStackTrace();
 					}
 				} else {
@@ -106,6 +112,7 @@ public static void showLogin() throws IOException {
 			try {
 				showRegisterMenu();
 			} catch (Exception e1) {
+				log.warn(e1);
 				e1.printStackTrace();
 			}
 		});
@@ -194,6 +201,7 @@ public static void showLogin() throws IOException {
 					try {
 						showCustomerMenu();
 					} catch (Exception e1) {
+						log.warn(e1);
 						e1.printStackTrace();
 					}
 				} else if(lc.loginPasswordValidation(id, pass) == 2){
@@ -202,6 +210,7 @@ public static void showLogin() throws IOException {
 					try {
 						showOwnerMenu();
 					} catch (Exception e1) {
+						log.warn(e1);
 						e1.printStackTrace();
 					}
 				} else {
@@ -229,6 +238,7 @@ public static void showLogin() throws IOException {
 			try {
 				showRegisterMenu();
 			} catch (Exception e1) {
+				log.warn(e1);
 				e1.printStackTrace();
 			}
 		});
@@ -283,6 +293,7 @@ public static void showLogin() throws IOException {
 					try {
 						showCustomerMenu();
 					} catch (Exception e1) {
+						log.warn(e1);
 						e1.printStackTrace();
 					}
 				} else if(lc.loginPasswordValidation(id, pass) == 2){
@@ -291,6 +302,7 @@ public static void showLogin() throws IOException {
 					try {
 						showOwnerMenu();
 					} catch (Exception e1) {
+						log.warn(e1);
 						e1.printStackTrace();
 					}
 				} else {
@@ -318,6 +330,7 @@ public static void showLogin() throws IOException {
 			try {
 				showRegisterMenu();
 			} catch (Exception e1) {
+				log.warn(e1);
 				e1.printStackTrace();
 			}
 		});
@@ -427,6 +440,7 @@ public static void showLogin() throws IOException {
 		primaryStage.show();
 	}
 	public static void main(String[] args) {
+		log.info("starting aplication");
 		launch(args);
 	}
 }

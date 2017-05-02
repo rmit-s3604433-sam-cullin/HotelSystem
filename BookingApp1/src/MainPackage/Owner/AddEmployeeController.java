@@ -124,18 +124,19 @@ public class AddEmployeeController {
 				}
 			}
 		}catch (SQLException e1) {
+			BookingSystem.log.error(e1.toString());
 			e1.printStackTrace();
 		} finally {
 			if(statement != null) {
 				try {
 					statement.close();
-				} catch (SQLException e1) { }
+				} catch (SQLException e1) { BookingSystem.log.error(e1.toString());}
 			}
 		}
 		if(con != null) {
 			try {
 				con.close();
-			} catch (SQLException e1) { }
+			} catch (SQLException e1) {BookingSystem.log.error(e1.toString()); }
 		}		
 		return i;
 	}
