@@ -10,6 +10,7 @@ import MainPackage.BookingSystem;
 
 public class Customer extends Person {
 	final static Scanner scan = new Scanner(System.in);
+
 	public Customer(){
 		
 	}

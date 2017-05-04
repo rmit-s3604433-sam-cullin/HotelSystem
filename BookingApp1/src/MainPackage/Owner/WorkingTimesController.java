@@ -149,7 +149,7 @@ public class WorkingTimesController {
 		try {
 			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 			statement = con.createStatement();
-			ResultSet empSet = statement.executeQuery("SELECT day , Time FROM workingTimeDate WHERE EmployeeID == '"+empname+"'");
+			ResultSet empSet = statement.executeQuery("SELECT day , Time FROM workingTimeDate WHERE EmployeeName == '"+empname+"'");
 			while(empSet.next()) {
 				int timeNumber = getTimeNumber(empSet.getString("Time"));
 				int	DayNumber = getDayNumber(empSet.getString("day"));

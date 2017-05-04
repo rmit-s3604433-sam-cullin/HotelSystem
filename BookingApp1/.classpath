@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
@@ -8,3 +9,12 @@
 	<classpathentry kind="lib" path="Logs"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Nic/Downloads/sqlite-jdbc-3.16.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
+>>>>>>> origin/OwnerBooking

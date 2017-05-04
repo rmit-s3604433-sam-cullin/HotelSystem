@@ -76,7 +76,7 @@
                </children>
             </Pane>
             <Pane fx:id="oneMonday" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Pane fx:id="oneTuesday" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Pane fx:id="oneTuesday" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Pane fx:id="oneWednesday" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <Pane fx:id="oneThursday" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="1" />
             <Pane fx:id="oneFriday" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" GridPane.columnIndex="5" GridPane.rowIndex="1" />
