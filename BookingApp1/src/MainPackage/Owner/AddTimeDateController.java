@@ -66,7 +66,7 @@ public class AddTimeDateController {
 			try {
 				con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 				statement = con.createStatement();
-				ResultSet empSet = statement.executeQuery("SELECT empid, name FROM employee");
+				ResultSet empSet = statement.executeQuery("SELECT name FROM employee");
 				while(empSet.next()) {
 					empList.add(empSet.getString("name"));
 					employee.setItems(empList);
@@ -90,7 +90,7 @@ public class AddTimeDateController {
 		}
 	}
 	@FXML
-	private void onConfirmation() {
+	public void onConfirmation() {
 		
 		success.setVisible(false);
 		String empname = employee.getSelectionModel().getSelectedItem();
@@ -126,7 +126,7 @@ public class AddTimeDateController {
 						statement = con.createStatement();
 						
 						/* SQL Statement */
-						statement.executeUpdate("INSERT INTO workingTimeDate(`EmployeeID`,`Day`,`Time`) VALUES ('" + empname + "','" + empday + "','" + emptime + "')");
+						statement.executeUpdate("INSERT INTO workingTimeDate(`EmployeeName`, `Day`, `Time`) VALUES ('" + empname + "','" + empday + "','" + emptime + "')");
 						success.setVisible(true);
 						employee.getSelectionModel().clearSelection();
 						Day.selectToggle(null);
@@ -155,22 +155,22 @@ public class AddTimeDateController {
 	private String HandleDayOptions(RadioButton monday, RadioButton tuesday, RadioButton wednesday, RadioButton thursday, RadioButton friday, RadioButton saturday) {
 		
 		if(monday.isSelected()) {
-			return ("Monday");
+			return ("MONDAY");
 		}
 		if(tuesday.isSelected()) {
-			return ("Tuesday");
+			return ("TUESDAY");
 		}
 		if(wednesday.isSelected()) {
-			return ("Wednesday");
+			return ("WEDNESDAY");
 		}
 		if(thursday.isSelected()) {
-			return ("Thursday");
+			return ("THURSDAY");
 		}
 		if(friday.isSelected()) {
-			return ("Friday");
+			return ("FRIDAY");
 		}
 		if(saturday.isSelected()) {
-			return ("Saturday");
+			return ("SATURDAY");
 		}
 		else {
 			return null;
@@ -206,7 +206,7 @@ public class AddTimeDateController {
 			
 			resultSet1 = statement.executeQuery("SELECT * FROM workingTimeDate");
 			while(resultSet1.next()) {
-				if(empname.equals(resultSet1.getString("EmployeeID"))){
+				if(empname.equals(resultSet1.getString("EmployeeName"))){
 					if(empday.equals(resultSet1.getString("Day"))) {
 						if(emptime.equals(resultSet1.getString("Time"))) {
 							i = 1;

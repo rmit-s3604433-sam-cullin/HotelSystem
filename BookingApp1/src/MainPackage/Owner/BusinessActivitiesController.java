@@ -16,23 +16,14 @@ import javafx.scene.control.TextField;
 
 public class BusinessActivitiesController {
 	
-	//Drop down list for services
-	//The list will print services data that reads from the business database
-	ObservableList<String> serviceList = FXCollections.observableArrayList();
 	//Combo box list for duration
 	//Pre-set duration for owner to choose
-	ObservableList<String> durationList = FXCollections.observableArrayList();
-	Connection con = null;
-	Statement statement = null;
+	ObservableList<String> durationList = FXCollections.observableArrayList("30mins", "60mins", "90mins", "120mins");
 	
-	@FXML
-	private ComboBox<String> services = new ComboBox<String>(serviceList);
 	@FXML
 	private ComboBox<String> duration = new ComboBox<String>(durationList);
 	@FXML
 	TextField ADDservices;
-	@FXML
-	TextField ADDduration;
 	@FXML 
 	Button confirmed;
 	@FXML
@@ -44,68 +35,37 @@ public class BusinessActivitiesController {
 	@FXML
 	Label errordatabase;
 	
-	//When the page loads from Owner Menu, this function will run and get ready all
-	//the drop down lists available
+	//When the page loads from Owner Menu, it will automatically initialize the Duration
+	//drop down list
 	@FXML
 	private void initialize() {
-		{
-			//Read data from database and printing it out in the drop down lists
-			try {
-				con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-				statement = con.createStatement();
-				//Services Data
-				ResultSet serviceSet = statement.executeQuery("SELECT DISTINCT Services FROM BusinessActivities");
-				while(serviceSet.next()) {
-					serviceList.add(serviceSet.getString("Services"));
-					services.setItems(serviceList);
-				}
-				//Duration Data
-				ResultSet durationSet = statement.executeQuery("SELECT DISTINCT Duration FROM BusinessActivities");
-				while(durationSet.next()) {
-					durationList.add(durationSet.getString("Duration"));
-					duration.setItems(durationList);
-				}
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			} finally {
-				if (statement != null) {
-					try {
-						statement.close();
-					} catch (SQLException e1) {
-					}
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e1) {
-				}
-			}
-		}
+		duration.setItems(durationList);
 	}
-	//This function was made to add the owner's choice of new business activities into
-	//the business database
+	//The main purpose of this function is to add the owner's choice of new business activities into
+	//the database
 	@FXML
 	private void addNewData() {
 		
+		errordatabase.setVisible(false);
 		success.setVisible(false);
-		String services2 = services.getSelectionModel().getSelectedItem();
 		String duration2 = duration.getSelectionModel().getSelectedItem();
 		
-		if(services2 == null && ADDservices.getText().equals("")) {
+		//Checks if the text field or drop down list is null value or not
+		if(ADDservices.getText().equals("")) {
 			errorservices.setVisible(true);
 		}
 		else{
 			errorservices.setVisible(false);
 		}
-		if(duration2 == null && ADDduration.getText().equals("")) { 
+		if(duration2 == null) { 
 			errorduration.setVisible(true);
 		}
 		else{
 			errorduration.setVisible(false);
 		}
-		if(services2 != null && duration2 != null){
-			if(databasecheck(services2, duration2) == 0) {
+		//If all field is not null, it will error check with the database and enter the new data into it
+		if(!ADDservices.getText().equals("") && ADDservices.getText().matches("[a-zA-Z ]{2,30}") && duration2 != null){
+			if(databasecheck(ADDservices.getText()) == 0) {
 				errordatabase.setVisible(false);
 				Connection con = null;
 				Statement statement = null;
@@ -114,9 +74,9 @@ public class BusinessActivitiesController {
 						con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 						statement = con.createStatement();
 		
-						statement.executeUpdate("INSERT INTO BusinessActivities " + "VALUES ('" + services2 + "','" + duration2 + "')");
+						statement.executeUpdate("INSERT INTO BusinessActivities (`Services`, `Duration`) " + "VALUES ('" + ADDservices.getText() + "','" + duration2 + "')");
 						success.setVisible(true);
-						services.getSelectionModel().clearSelection();
+						ADDservices.setText("");
 						duration.getSelectionModel().clearSelection();
 					} catch (Exception e) {
 						System.err.println(e);
@@ -134,47 +94,17 @@ public class BusinessActivitiesController {
 					}
 				}
 			}
-			else if(databasecheck(services2, duration2) == 1){
+			else if(databasecheck(ADDservices.getText()) == 1){
 				errordatabase.setVisible(true);
 			}
 		}
-		//Reads the services and duration text field 
-		if(!ADDservices.getText().equals("") && !ADDduration.getText().equals("")) {
-			if(databasecheck(ADDservices.getText(), ADDduration.getText()) == 0) {
-				errordatabase.setVisible(false);
-				Connection con = null;
-				Statement statement = null;
-				{
-					try {
-						con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-						statement = con.createStatement();
-						
-						statement.executeUpdate("INSERT INTO BusinessActivities " + "VALUES ('" + ADDservices.getText() + "','" + ADDduration.getText() + "')");
-						success.setVisible(true);
-						ADDservices.setText("");
-						ADDduration.setText("");
-					} catch (Exception e) {
-						System.err.println(e);
-					} finally {
-						if(statement != null) {
-							try {
-								statement.close();
-							} catch (SQLException e) { }
-						}
-					}
-					if(con != null) {
-						try {
-							con.close();
-						} catch (SQLException e) { }
-					}
-				}
-			}
-			else if((databasecheck(ADDservices.getText(), ADDduration.getText()) == 1)) {
-				errordatabase.setVisible(true);
-			}
+		else if(!ADDservices.getText().matches("[a-zA-Z ]{2,30}")) {
+			errordatabase.setVisible(false);
+			errorservices.setVisible(true);
 		}
 	}
-	private int databasecheck(String service, String duration) {
+	//The main purpose of this function is to prevent duplicating of data in the database
+	private int databasecheck(String service) {
 		
 		Connection con = null;
 		Statement statement = null;
@@ -184,12 +114,10 @@ public class BusinessActivitiesController {
 			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 			statement = con.createStatement();	
 			
-			resultSet1 = statement.executeQuery("SELECT * FROM BusinessActivities");
+			resultSet1 = statement.executeQuery("SELECT Services FROM BusinessActivities");
 			while(resultSet1.next()) {
 				if(service.equals(resultSet1.getString("Services"))){
-					if(duration.equals(resultSet1.getString("Duration"))) {
-						i = 1;
-					}
+					i = 1;
 				}
 			}
 		} catch (SQLException e){

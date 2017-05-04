@@ -32,7 +32,7 @@ public class BookingSystem extends Application {
 		BookingSystem.loginStage.setTitle("Booking App");
 		showLogin();
 	}
-public static void showLogin() throws IOException {
+	public static void showLogin() throws IOException {
 		
 		Label title = new Label("Login");
 		title.setStyle("-fx-font-family: 'Gruppo'; -fx-font-weight: 800; -fx-font-size: 60; -fx-text-fill: #D8D8D8;");
@@ -395,23 +395,17 @@ public static void showLogin() throws IOException {
 		BorderPane WeeklySummary = loader.load();
 		mainlayout.setCenter(WeeklySummary);
 	}
-	public static void showCreateBooking() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(BookingSystem.class.getResource("Owner/CreateBooking.fxml"));
-		BorderPane CreateBooking = loader.load();
-		mainlayout.setCenter(CreateBooking);
-	}
-	public static void showCreateBooking1() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(BookingSystem.class.getResource("Owner/CreateBooking1.fxml"));
-		BorderPane CreateBooking1 = loader.load();
-		mainlayout.setCenter(CreateBooking1);
-	}
 	public static void showCreateBookingCustInfo() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(BookingSystem.class.getResource("Owner/CreateBookingCustInfo.fxml"));
 		BorderPane CreateBookingCustInfo = loader.load();
 		mainlayout.setCenter(CreateBookingCustInfo);
+	}
+	public static void showCreateBookingDetails() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(BookingSystem.class.getResource("Owner/CreateBookingDetails.fxml"));
+		BorderPane CreateBookingDetails = loader.load();
+		mainlayout.setCenter(CreateBookingDetails);
 	}
 	public static void showCustomerMenu() throws IOException {
 		loginStage.close();
