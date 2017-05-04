@@ -65,6 +65,7 @@ public class Employee {
 			/* SQL Statement */
 			statement.executeUpdate("INSERT INTO employee values('e" + nE.getID() + "', '" + nE.getName() + "', '" 
 					+ nE.getAddress() + "', '0" + nE.getNumber() + "')");
+			BookingSystem.log.info("Employee Added To DataBase "+ nE.name );
 		} catch (Exception e) {
 			BookingSystem.log.error(e);
 			System.err.println(e);

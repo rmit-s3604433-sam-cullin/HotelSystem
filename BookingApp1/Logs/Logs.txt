@@ -1,3 +1,226 @@
 13:39:25  INFO [main] - MainPackage.BookingSystem.main - starting aplication
 13:42:07  INFO [main] - MainPackage.BookingSystem.main - starting aplication
 13:51:36  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+16:56:14  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+16:56:31 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+16:56:37 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+16:56:37 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+16:56:37 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+16:57:06 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.getDayNumber - day not found
+16:57:06 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.getTimeNumber - time not found
+17:16:13 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.getTimeNumber - time not found
+17:16:15 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.getDayNumber - day not found
+17:16:57 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.getDayNumber - day not found
+17:16:59 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.getTimeNumber - time not found
+17:17:11 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.getTimeNumber - time not found
+17:17:11 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.getDayNumber - day not found
+17:18:41 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+17:18:41 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+11:30:09  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+12:44:59  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+12:45:14 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+12:45:14 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+12:53:55  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+12:54:04 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+12:54:04 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+12:55:52  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+12:56:05 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+12:56:05 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+12:59:31  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+12:59:40 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+12:59:40 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+12:59:40  WARN [JavaFX Application Thread] - MainPackage.BookingSystem.lambda$0 - javafx.fxml.LoadException: Error resolving onMouseClicked='#goWeekSummary2', either the event handler is not in the Namespace or there is an error in the script.
+/zGit/Java/bookingSystem/BookingApp1/bin/MainPackage/Customer/CustomerMenu.fxml:44
+
+13:00:45  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+13:00:54 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+13:00:54 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+13:04:16  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+13:04:55 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+13:04:55 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+13:14:35  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+13:14:52 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+13:14:52 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+13:17:07  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+13:17:16 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+13:17:16 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+13:26:28  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+13:26:36 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+13:26:36 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+13:27:52  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+13:27:59 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+13:27:59 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+13:32:07  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+13:32:15 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+13:32:15 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+13:33:25  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+13:33:33 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+13:33:33 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+13:35:57  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+13:36:10 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+13:36:10 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+13:38:24  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+13:38:45 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+13:38:45 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+13:38:45 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+13:38:54 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.getTimeNumber - time not found
+13:38:54 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.getDayNumber - day not found
+13:38:56 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.getDayNumber - day not found
+13:38:56 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.getTimeNumber - time not found
+13:38:58 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.getDayNumber - day not found
+13:39:00 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.getDayNumber - day not found
+13:39:01 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.getDayNumber - day not found
+13:39:01 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.getTimeNumber - time not found
+13:39:01 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.getDayNumber - day not found
+13:39:25 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+13:39:25 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+13:46:39  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+13:47:19 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+13:47:19 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+13:48:15  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+13:48:25 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+13:48:25 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+13:50:41  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+13:50:51 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+13:50:51 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+13:51:27  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+13:51:35 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+13:51:35 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+13:53:37  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+13:53:49 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+13:53:49 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+13:54:35  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+13:54:46 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+13:54:46 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+13:57:43  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+13:57:53 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+13:57:53 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+13:57:54 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.initialize - java.sql.SQLException: ResultSet closed
+13:59:51  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+14:00:08 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+14:00:08 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+14:00:10 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.initialize - java.sql.SQLException: ResultSet closed
+14:02:43  INFO [main] - MainPackage.BookingSystem.main - starting aplication
+14:02:54 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation - ID found
+14:02:54 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+14:02:55 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.initialize - org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (Connection is closed)
+14:05:28  INFO [main]:443 - MainPackage.BookingSystem.main - starting aplication
+14:05:41 DEBUG [JavaFX Application Thread]:73 - MainPackage.BookingSystem.loginIDValidation - ID found
+14:05:41 DEBUG [JavaFX Application Thread]:120 - MainPackage.BookingSystem.loginPasswordValidation - Correct password
+14:05:42 ERROR [JavaFX Application Thread]:73 - MainPackage.BookingSystem.initialize - org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (Connection is closed)
+14:06:30  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+14:06:45 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+14:06:45 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:120 - Correct password
+14:06:48 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.initialize:73 - org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (Connection is closed)
+14:08:06  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+14:08:17 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+14:08:17 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:120 - Correct password
+14:11:35  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+14:11:36  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+14:11:44 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+14:11:44 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:120 - Correct password
+14:11:45  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.initialize:55 - displaying booking history1
+14:11:45 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.initialize:65 - java.sql.SQLException: no such column: 'Employee'
+14:12:21  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+14:41:57  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+14:42:15 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+14:42:15 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:120 - Correct password
+14:42:18  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.initialize:55 - displaying booking history1
+14:42:18 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.initialize:65 - java.sql.SQLException: no such column: 'serviceID'
+14:42:49  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+14:43:11 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+14:43:11 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:120 - Correct password
+14:43:13  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.initialize:55 - displaying booking history1
+14:54:17  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+15:03:20  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+15:03:26 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+15:03:26 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:120 - Correct password
+15:05:37  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+15:06:06  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+15:07:08 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+15:07:08 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:120 - Correct password
+15:07:09  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.initialize:57 - displaying booking history1
+15:07:09 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.initialize:76 - java.sql.SQLException: no such column: 'serviesID'
+15:08:27  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+15:08:39 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+15:08:39 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:120 - Correct password
+15:08:42  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.initialize:57 - displaying booking history1
+15:08:42 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.initialize:76 - java.sql.SQLException: no such column: 'customerID'
+15:10:26  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+15:10:35 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+15:10:35 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:120 - Correct password
+15:10:37  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.initialize:57 - displaying booking history1
+16:25:50  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+16:26:03 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+16:26:03 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:120 - Correct password
+16:26:05  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history1
+16:26:05  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history2
+16:33:27  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+16:33:38 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+16:33:38 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:120 - Correct password
+16:33:39  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history1
+16:33:39  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history2
+16:35:24  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+16:35:31 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+16:35:31 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:120 - Correct password
+16:35:34  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history1
+16:35:34  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history2
+16:37:01  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+16:37:10 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+16:37:10 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:120 - Correct password
+16:37:12  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history1
+16:37:12  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history2
+16:44:13  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+16:44:26 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+16:44:26 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:120 - Correct password
+16:44:28  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history1
+16:44:28  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history2
+16:46:24  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+16:46:36 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+16:46:36 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:120 - Correct password
+16:46:37  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history1
+16:46:37  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history2
+16:50:19  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+16:50:34 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+16:50:34 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:120 - Correct password
+16:50:37  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history1
+16:50:37  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history2
+16:51:44  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+16:51:57 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+16:51:57 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:120 - Correct password
+16:51:58  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history1
+16:51:58  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history2
+16:52:01  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history1
+16:52:21  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+16:52:30 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+16:52:30 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:120 - Correct password
+16:52:32  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history1
+16:52:32  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history2
+16:52:44  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history1
+16:53:49  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+16:53:59 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+16:53:59 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:120 - Correct password
+16:54:01  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history1
+16:54:01  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history2
+16:54:12  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history2
+16:55:13  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history1
+16:55:13  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history2
+16:55:20  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+16:55:32 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+16:55:32 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:120 - Correct password
+16:56:10  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+16:56:19 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+16:56:19 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:120 - Correct password
+16:56:21  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history1
+16:56:21  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history2
+16:56:27  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history1
+16:56:30  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history1
+16:56:30  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history2
+16:56:45  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history1
+16:56:50  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history1
+16:56:50  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history2
+17:00:32  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+17:00:48 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+17:00:48 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:120 - Correct password
+17:00:50  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history1
+17:00:50  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:63 - displaying booking history2

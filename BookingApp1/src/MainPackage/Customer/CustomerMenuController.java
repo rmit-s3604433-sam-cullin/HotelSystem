@@ -16,7 +16,7 @@ public class CustomerMenuController {
 	}
 	
 	@FXML
-	private void goWeekSummary2() throws IOException{
-		BookingSystem.showWeekSummaryCustomer();
+	private void goBookingHistory() throws IOException{
+		BookingSystem.showBookingHistoryCustomer();
 	}
 }

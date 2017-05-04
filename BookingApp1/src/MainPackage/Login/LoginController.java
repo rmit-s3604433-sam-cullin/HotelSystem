@@ -39,9 +39,11 @@ public class LoginController {
 		if(loginIDValidation(ID) == true){
 			if(loginPasswordValidation(ID, password) == 1){
 				// Launch Customer Menu
+				BookingSystem.log.info("Customer Logged in");
 				BookingSystem.showCustomerMenu();
 			} else if(loginPasswordValidation(ID, password) == 2){
 				// Launch Owner Menu
+				BookingSystem.log.info("Owner Logged in");
 				BookingSystem.showOwnerMenu();
 			} else {
 				invaliduserid.setVisible(true);
@@ -68,9 +70,11 @@ public class LoginController {
 				ResultSet ownerSet = statement.executeQuery("SELECT ownid FROM owner");
 				ResultSet customerSet = statement.executeQuery("SELECT custid FROM customer");		
 				if(customerSet.next() || ownerSet.next()){
+					BookingSystem.log.debug("ID found");
 					id = true;
 				}
 				else {
+					BookingSystem.log.debug("ID not found");
 					id = false;
 				}
 			}catch (SQLException e1) {
@@ -104,6 +108,7 @@ public class LoginController {
 				resultSet = statement.executeQuery("SELECT password FROM owner WHERE ownid='" + ID + "'");		
 				if(resultSet.next()){			
 					if(password.equals(resultSet.getString("password"))) {
+						BookingSystem.log.debug("Correct password");
 						i = 2;
 					}
 				}
@@ -112,6 +117,7 @@ public class LoginController {
 				resultSet = statement.executeQuery("SELECT password FROM customer WHERE custid='" + ID + "'");
 				if(resultSet.next()){
 					if(password.equals(resultSet.getString("password"))) {
+						BookingSystem.log.debug("Correct password");
 						i = 1;
 					}
 				}

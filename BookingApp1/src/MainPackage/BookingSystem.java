@@ -402,9 +402,9 @@ public static void showLogin() throws IOException {
 		BorderPane WeeklySummary = loader.load();
 		mainlayout.setCenter(WeeklySummary);
 	}
-	public static void showWeekSummaryCustomer() throws IOException {
+	public static void showBookingHistoryCustomer() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(BookingSystem.class.getResource("Customer/CustomerBookingWeekView.fxml"));
+		loader.setLocation(BookingSystem.class.getResource("Customer/FullBookingSummaryCustomer.fxml"));
 		BorderPane WeeklySummary = loader.load();
 		mainlayout.setCenter(WeeklySummary);
 	}
