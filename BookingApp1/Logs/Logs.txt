@@ -1361,3 +1361,185 @@
 12:44:22  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:65 - displaying booking history2
 12:44:22  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:65 - displaying booking history3
 12:44:22  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:65 - displaying booking history4
+14:51:10  INFO [main] - MainPackage.BookingSystem.main:437 - starting aplication
+14:51:28 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+14:51:28 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:111 - Correct password
+14:51:28 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:111 - Correct password
+14:51:33  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:65 - displaying booking history1
+14:51:33  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:65 - displaying booking history2
+14:51:33  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:65 - displaying booking history3
+14:51:33  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:65 - displaying booking history4
+14:52:03  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:65 - displaying booking history1
+14:52:03  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:65 - displaying booking history2
+14:52:03  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:65 - displaying booking history3
+14:52:03  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:65 - displaying booking history4
+14:52:20  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+14:52:21  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+14:52:30  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+14:52:31  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+14:52:32  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchEmployee:151 - loading avaliable employees
+14:52:32  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchEmployee:151 - loading avaliable employees
+14:52:33  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+14:52:40  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+14:52:56  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+14:52:56  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+14:52:56  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Wednesday
+14:52:56  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+14:52:56  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Monday
+14:52:57  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+14:52:57  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+14:52:57  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Wednesday
+14:52:57  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+14:52:57  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Monday
+14:52:58  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+14:52:58  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+14:52:58  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Wednesday
+14:52:58  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+14:52:58  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Monday
+14:53:04  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+14:53:04  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+14:53:04  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Wednesday
+14:53:04  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+14:53:04  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Monday
+14:53:05  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+14:53:05  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+14:53:05  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Wednesday
+14:53:05  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+14:53:05  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Monday
+15:29:26  INFO [main] - MainPackage.BookingSystem.main:437 - starting aplication
+15:29:41 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:75 - ID found
+15:29:41 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:122 - Correct password
+15:33:07  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+15:33:18 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:75 - ID found
+15:33:18 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:122 - Correct password
+15:33:45  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+15:33:55 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:75 - ID found
+15:33:55 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:122 - Correct password
+15:34:03  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+15:34:04  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+15:34:05  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+15:34:20  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+15:34:20  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:WEDNESDAY sqlDate:Tuesday
+15:34:20  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:WEDNESDAY sqlDate:Wednesday
+15:34:20  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:WEDNESDAY sqlDate:Tuesday
+15:34:20  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:WEDNESDAY sqlDate:Monday
+15:34:24  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+15:34:24  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:WEDNESDAY sqlDate:Tuesday
+15:34:24  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:WEDNESDAY sqlDate:Wednesday
+15:34:24  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:WEDNESDAY sqlDate:Tuesday
+15:34:24  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:WEDNESDAY sqlDate:Monday
+15:34:24  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchEmployee:151 - loading avaliable employees
+15:34:25  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchEmployee:151 - loading avaliable employees
+15:34:29  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.onSubmit:231 - 1
+15:34:45  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.onSubmit:231 - 1
+15:35:11 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:75 - ID found
+15:35:11 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:113 - Correct password
+15:35:11 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:113 - Correct password
+15:35:22  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+15:35:22  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+15:35:22  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Wednesday
+15:35:22  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+15:35:22  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Monday
+15:35:24  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+15:35:24  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+15:35:24  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Wednesday
+15:35:24  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+15:35:24  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Monday
+15:35:25  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchEmployee:151 - loading avaliable employees
+15:35:25  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchEmployee:151 - loading avaliable employees
+15:35:27  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.onSubmit:231 - 1
+15:35:27  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchEmployee:151 - loading avaliable employees
+15:35:27  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+15:35:27  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+15:35:27  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Wednesday
+15:35:27  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+15:35:27  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Monday
+15:36:26 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.onSubmit:225 - java.sql.SQLException: ResultSet closed
+15:36:26 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.onSubmit:239 - java.sql.SQLException: ResultSet closed
+15:47:27  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+15:47:39 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:75 - ID found
+15:47:39 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:122 - Correct password
+15:52:18  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+15:58:48  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+15:58:59 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:75 - ID found
+15:58:59 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:122 - Correct password
+15:59:04  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+15:59:04  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+15:59:04  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Wednesday
+15:59:04  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+15:59:04  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Monday
+15:59:07  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+15:59:07  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+15:59:07  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Wednesday
+15:59:07  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+15:59:07  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Monday
+15:59:07  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchEmployee:151 - loading avaliable employees
+15:59:08  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchEmployee:151 - loading avaliable employees
+15:59:10  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.onSubmit:231 - 1
+15:59:10 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.onSubmit:296 - java.lang.NullPointerException
+16:08:19  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+16:08:29 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:75 - ID found
+16:08:29 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:122 - Correct password
+16:08:43  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+16:08:43  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:MONDAY sqlDate:Tuesday
+16:08:43  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:MONDAY sqlDate:Wednesday
+16:08:43  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:MONDAY sqlDate:Tuesday
+16:08:43  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:MONDAY sqlDate:Monday
+16:08:45  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+16:08:45  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:MONDAY sqlDate:Tuesday
+16:08:45  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:MONDAY sqlDate:Wednesday
+16:08:45  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:MONDAY sqlDate:Tuesday
+16:08:45  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:MONDAY sqlDate:Monday
+16:08:45  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchEmployee:151 - loading avaliable employees
+16:08:47  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchEmployee:151 - loading avaliable employees
+16:09:06  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.onSubmit:231 - 1
+16:09:06 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.onSubmit:297 - java.lang.NullPointerException
+16:10:03  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+16:10:27 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:75 - ID found
+16:10:27 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:122 - Correct password
+16:10:35  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+16:10:35  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:MONDAY sqlDate:Tuesday
+16:10:35  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:MONDAY sqlDate:Wednesday
+16:10:35  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:MONDAY sqlDate:Tuesday
+16:10:35  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:MONDAY sqlDate:Monday
+16:10:37  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+16:10:37  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:MONDAY sqlDate:Tuesday
+16:10:37  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:MONDAY sqlDate:Wednesday
+16:10:37  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:MONDAY sqlDate:Tuesday
+16:10:37  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:MONDAY sqlDate:Monday
+16:10:38  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchEmployee:151 - loading avaliable employees
+16:10:39  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchEmployee:151 - loading avaliable employees
+16:10:40  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.onSubmit:231 - 1
+16:10:40 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.onSubmit:297 - java.lang.NullPointerException
+16:12:43  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+16:12:54 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:74 - ID found
+16:12:54 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:121 - Correct password
+16:13:07  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+16:13:07  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+16:13:07  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Wednesday
+16:13:07  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+16:13:07  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Monday
+16:13:10  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+16:13:10  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+16:13:10  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Wednesday
+16:13:10  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+16:13:10  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Monday
+16:13:10  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchEmployee:151 - loading avaliable employees
+16:13:11  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchEmployee:151 - loading avaliable employees
+16:13:13  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.onSubmit:231 - 1
+16:13:13  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchEmployee:151 - loading avaliable employees
+16:13:13  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+16:13:13  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+16:13:13  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Wednesday
+16:13:13  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Tuesday
+16:13:13  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:118 - selected day:TUESDAY sqlDate:Monday
+16:13:16 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.onSubmit:225 - java.sql.SQLException: ResultSet closed
+16:13:16 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.onSubmit:239 - java.sql.SQLException: ResultSet closed
+16:18:43  INFO [main] - MainPackage.BookingSystem.main:443 - starting aplication
+16:18:53 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:74 - ID found
+16:18:53 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:112 - Correct password
+16:18:53 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:112 - Correct password
+16:19:33  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+16:19:34  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchTime:100 - loading avaliable times
+16:19:34  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchEmployee:151 - loading avaliable employees
+16:19:35  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.launchEmployee:151 - loading avaliable employees

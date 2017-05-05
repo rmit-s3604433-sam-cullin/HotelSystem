@@ -433,6 +433,12 @@ public class BookingSystem extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
+	public static void showCustCreateBookingDetails() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(BookingSystem.class.getResource("Customer/CustCreateBookingDetails.fxml"));
+		BorderPane CustCreateBookingDetails = loader.load();
+		mainlayout.setCenter(CustCreateBookingDetails);
+	}
 	public static void main(String[] args) {
 		log.info("starting aplication");
 		launch(args);

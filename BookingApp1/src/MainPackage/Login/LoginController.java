@@ -1,5 +1,6 @@
 package MainPackage.Login;
 
+import Object.Person;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -118,6 +119,7 @@ public class LoginController {
 				if(resultSet.next()){
 					if(password.equals(resultSet.getString("password"))) {
 						BookingSystem.log.debug("Correct password");
+						Person.storeID(ID);
 						i = 1;
 					}
 				}

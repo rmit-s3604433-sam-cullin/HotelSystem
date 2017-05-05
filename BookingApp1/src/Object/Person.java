@@ -8,7 +8,8 @@ public abstract class Person {
 	protected String address;
 	protected String number;
 	static String[] customer = new String[2]; 
-	static String[] customer1 = new String[3]; 
+	static String[] customer1 = new String[3];
+	static String[] custID = new String[1];
 
 	public Person(){
 	
@@ -52,6 +53,10 @@ public abstract class Person {
 		customer1[1] = number;
 		customer1[2] = address;
 	}
+	//This function is to store the customer ID when they successfully logged in for the booking purposes.
+	public static void storeID(String ID) {
+		custID[0] = ID;
+	}
 	//These 2 functions is used during booking to retrieve the customer information and insert them
 	//into the database
 	public static String retrieveIDName() {
@@ -81,5 +86,10 @@ public abstract class Person {
 		}
 		return result;
 	}
-
+	//This function is to retrieve the customer ID to search for more information and insert them
+	//into the database
+	public static String retrieveID() {
+		String custid = custID[0];
+		return custid;
+	}
 }

@@ -14,9 +14,12 @@ public class CustomerMenuController {
 	private void goLogout() throws IOException {
 		BookingSystem.showLogin3();
 	}
-	
 	@FXML
 	private void goBookingHistory() throws IOException{
 		BookingSystem.showBookingHistoryCustomer();
+	}
+	@FXML
+	private void goCustCreateBookingDetails() throws IOException {
+		BookingSystem.showCustCreateBookingDetails();
 	}
 }
