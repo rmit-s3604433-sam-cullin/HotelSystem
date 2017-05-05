@@ -57,12 +57,12 @@
 						<Font size="16.0" />
 					</font>
 				</Label>
-				<ImageView fitHeight="32.0" fitWidth="32.0" layoutX="32.0" layoutY="146.0" onMouseClicked="#goWeeklySummary" pickOnBounds="true" preserveRatio="true">
+				<ImageView fitHeight="32.0" fitWidth="32.0" layoutX="32.0" layoutY="146.0" onMouseClicked="#goBookingSummary" pickOnBounds="true" preserveRatio="true">
 					<image>
 						<Image url="@../Images/summary.png" />
 					</image>
 				</ImageView>
-				<Label layoutX="85.0" layoutY="150.0" onMouseClicked="#goWeeklySummary" style="-fx-text-fill: white;" text="Booking Summary">
+				<Label layoutX="85.0" layoutY="150.0" onMouseClicked="#goBookingSummary" style="-fx-text-fill: white;" text="Booking Summary">
 					<font>
 						<Font size="16.0" />
 					</font>

@@ -117,19 +117,20 @@ public class WorkingTimesController {
 					
 				}
 			} catch (SQLException e1) {
+				BookingSystem.log.error(e1.toString());
 				e1.printStackTrace();
 			} finally {
 				if (statement != null) {
 					try {
 						statement.close();
-					} catch (SQLException e1) {
+					} catch (SQLException e1) {BookingSystem.log.error(e1.toString());
 					}
 				}
 			}
 			if (con != null) {
 				try {
 					con.close();
-				} catch (SQLException e1) {
+				} catch (SQLException e1) {BookingSystem.log.error(e1.toString());
 				}
 			}
 		}
@@ -149,7 +150,7 @@ public class WorkingTimesController {
 		try {
 			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 			statement = con.createStatement();
-			ResultSet empSet = statement.executeQuery("SELECT day , Time FROM workingTimeDate WHERE EmployeeName == '"+empname+"'");
+			ResultSet empSet = statement.executeQuery("SELECT day , Time FROM workingTimeDate inner join employee on employee.empid = workingTimeDate.EmployeeID where employee.name = '"+empname+"'");
 			while(empSet.next()) {
 				int timeNumber = getTimeNumber(empSet.getString("Time"));
 				int	DayNumber = getDayNumber(empSet.getString("day"));
@@ -163,6 +164,7 @@ public class WorkingTimesController {
 				employee.setItems(empList);
 			}
 		} catch (SQLException e1) {
+			BookingSystem.log.error(e1.toString());
 			e1.printStackTrace();
 		} finally {
 			if (statement != null) {
@@ -180,7 +182,7 @@ public class WorkingTimesController {
 		switch(x){
 			case "8am-10am":
 				return 0;
-			case "10am-12am":
+			case "10am-12pm":
 				return 1;
 			case "1pm-3pm":
 				return 2;
@@ -195,16 +197,22 @@ public class WorkingTimesController {
 	private int getDayNumber(String x){
 		switch(x){
 		case "Monday":
+			BookingSystem.log.info("wednesday");
 			return 0;
 		case "Tuesday":
+			BookingSystem.log.info("wednesday");
 			return 1;
-		case "Wedneday":
+		case "Wednesday":
+			BookingSystem.log.info("wednesday");
 			return 2;
 		case "Thursday":
+			BookingSystem.log.info("thursday");
 			return 3;
 		case "Friday":
+			BookingSystem.log.info("friday");
 			return 4;
 		case "Saturday":
+			BookingSystem.log.info("saturday");
 			return 5;
 		default:
 			BookingSystem.log.error("day not found");

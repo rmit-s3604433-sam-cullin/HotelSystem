@@ -23,8 +23,8 @@ public class OwnerMenuController {
 		BookingSystem.showBusinessActivities();
 	}
 	@FXML
-	private void goWeeklySummary() throws IOException {
-		BookingSystem.showWeeklySummary();
+	private void goBookingSummary() throws IOException {
+		BookingSystem.showBookingSummaryOwner();
 	}
 	@FXML
 	private void goLogout() throws IOException {

@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import MainPackage.BookingSystem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -40,47 +39,7 @@ public class BusinessActivitiesController {
 	//drop down list
 	@FXML
 	private void initialize() {
-<<<<<<< HEAD
-		{
-			//Read data from database and printing it out in the drop down lists
-			try {
-				con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-				statement = con.createStatement();
-				//Services Data
-				ResultSet serviceSet = statement.executeQuery("SELECT DISTINCT Services FROM BusinessActivities");
-				while(serviceSet.next()) {
-					serviceList.add(serviceSet.getString("Services"));
-					services.setItems(serviceList);
-				}
-				//Duration Data
-				ResultSet durationSet = statement.executeQuery("SELECT DISTINCT Duration FROM BusinessActivities");
-				while(durationSet.next()) {
-					durationList.add(durationSet.getString("Duration"));
-					duration.setItems(durationList);
-				}
-			} catch (SQLException e1) {
-				BookingSystem.log.error(e1.toString());
-				e1.printStackTrace();
-			} finally {
-				if (statement != null) {
-					try {
-						statement.close();
-					} catch (SQLException e1) {
-						BookingSystem.log.error(e1.toString());
-					}
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e1) {
-					BookingSystem.log.error(e1.toString());
-				}
-			}
-		}
-=======
 		duration.setItems(durationList);
->>>>>>> origin/OwnerBooking
 	}
 	//The main purpose of this function is to add the owner's choice of new business activities into
 	//the database
@@ -139,46 +98,9 @@ public class BusinessActivitiesController {
 				errordatabase.setVisible(true);
 			}
 		}
-<<<<<<< HEAD
-		//Reads the services and duration text field 
-		if(!ADDservices.getText().equals("") && !ADDduration.getText().equals("")) {
-			if(databasecheck(ADDservices.getText(), ADDduration.getText()) == 0) {
-				errordatabase.setVisible(false);
-				Connection con = null;
-				Statement statement = null;
-				{
-					try {
-						con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-						statement = con.createStatement();
-						
-						statement.executeUpdate("INSERT INTO BusinessActivities " + "VALUES ('" + ADDservices.getText() + "','" + ADDduration.getText() + "')");
-						success.setVisible(true);
-						ADDservices.setText("");
-						ADDduration.setText("");
-					} catch (Exception e) {
-						System.err.println(e);
-					} finally {
-						if(statement != null) {
-							try {
-								statement.close();
-							} catch (SQLException e) {BookingSystem.log.error(e.toString()); }
-						}
-					}
-					if(con != null) {
-						try {
-							con.close();
-						} catch (SQLException e) {BookingSystem.log.error(e.toString()); }
-					}
-				}
-			}
-			else if((databasecheck(ADDservices.getText(), ADDduration.getText()) == 1)) {
-				errordatabase.setVisible(true);
-			}
-=======
 		else if(!ADDservices.getText().matches("[a-zA-Z ]{2,30}")) {
 			errordatabase.setVisible(false);
 			errorservices.setVisible(true);
->>>>>>> origin/OwnerBooking
 		}
 	}
 	//The main purpose of this function is to prevent duplicating of data in the database
@@ -199,19 +121,18 @@ public class BusinessActivitiesController {
 				}
 			}
 		} catch (SQLException e){
-			BookingSystem.log.error(e.toString());
 			e.printStackTrace();
 		} finally {
 			if(statement != null) {
 				try {
 					statement.close();
-				} catch (SQLException e1) {BookingSystem.log.error(e1.toString()); }
+				} catch (SQLException e1) { }
 			}
 		}
 		if(con != null) {
 			try {
 				con.close();
-			} catch (SQLException e1) { BookingSystem.log.error(e1.toString());}
+			} catch (SQLException e1) { }
 		}
 		return i;
 	}

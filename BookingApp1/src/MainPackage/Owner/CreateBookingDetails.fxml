@@ -44,7 +44,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="employee" layoutX="242.0" layoutY="372.0" prefHeight="25.0" prefWidth="180.0" />
+            <ComboBox fx:id="employee" layoutX="242.0" layoutY="372.0" onMouseClicked="#launchEmployee" prefHeight="25.0" prefWidth="180.0" />
             <Label layoutX="33.0" layoutY="224.0" text="Time" underline="true">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
@@ -55,7 +55,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="time" layoutX="242.0" layoutY="272.0" onAction="#launchEmployee" prefHeight="25.0" prefWidth="180.0" />
+            <ComboBox fx:id="time" layoutX="242.0" layoutY="272.0" onAction="#launchEmployee" onMouseClicked="#launchTime" prefHeight="25.0" prefWidth="180.0" />
             <Button layoutX="595.0" layoutY="502.0" mnemonicParsing="false" onAction="#onSubmit" prefHeight="45.0" prefWidth="80.0" text="Submit">
                <font>
                   <Font size="16.0" />

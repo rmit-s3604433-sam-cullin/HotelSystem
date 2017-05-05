@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
+import MainPackage.BookingSystem;
 import Object.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,6 +24,15 @@ public class CreateBookingDetailsController {
 	ObservableList<String> serviceList = FXCollections.observableArrayList();
 	ObservableList<String> timeList = FXCollections.observableArrayList();
 	ObservableList<String> empList = FXCollections.observableArrayList();
+	
+	
+	private String selectedEmployee = null;
+	private String selectedService = null;
+	private String selectedTime = null;
+	private LocalDate selectedDate = null;
+	private String selectedDay = null;
+	
+	
 	
 	@FXML
 	private DatePicker date;
@@ -50,15 +60,16 @@ public class CreateBookingDetailsController {
 		date.setDayCellFactory(dayCellFactory);
 		Connection con = null;
 		Statement statement = null;
-		{
+		
 			try {
 				con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 				statement = con.createStatement();
-				ResultSet serviceSet = statement.executeQuery("SELECT Services FROM BusinessActivities");
+				ResultSet serviceSet = statement.executeQuery("SELECT Services , duration FROM BusinessActivities");
 				while(serviceSet.next()) {
 					serviceList.add(serviceSet.getString("Services"));
-					service.setItems(serviceList);
 				}
+				service.setItems(serviceList);
+				
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			} finally {
@@ -66,6 +77,7 @@ public class CreateBookingDetailsController {
 					try {
 						statement.close();
 					} catch (SQLException e1) {
+						BookingSystem.log.error(e1.toString());
 					}
 				}
 			}
@@ -73,40 +85,52 @@ public class CreateBookingDetailsController {
 				try {
 					con.close();
 				} catch (SQLException e1) {
+					BookingSystem.log.error(e1.toString());
 				}
 			}
-		}
+			
+		
 	}
+	
 	//This function main idea is that whenever the owner changes the date, it will launch the Time section
 	//according to the chosen date.
 	@FXML
 	public void launchTime() {
 		timeList.clear();
-		time.setItems(timeList);
-		empList.clear();
-		employee.setItems(empList);
-		LocalDate date2 = date.getValue();
-		String date3 = date2.getDayOfWeek().toString();
+		BookingSystem.log.info("loading avaliable times");
+		
+		//empList.clear();
+		//employee.setItems(empList);
+		selectedDate = date.getValue();
+		if(selectedDate != null){
+		selectedDay = selectedDate.getDayOfWeek().toString();
+		}
+		
 		Connection con = null;
 		Statement statement = null;
 		{
 			try {
 				con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 				statement = con.createStatement();
-				ResultSet timeSet = statement.executeQuery("SELECT DISTINCT Day, Time FROM workingTimeDate");
+				ResultSet timeSet = statement.executeQuery("SELECT Day, Time FROM workingTimeDate Group By Time");
 				while(timeSet.next()) {
-					if(date3.equals(timeSet.getString("Day"))) {
+					if(selectedDay != null){
+						BookingSystem.log.info("selected day:"+selectedDay +" sqlDate:"+timeSet.getString("Day") );
+					}
+					if(selectedDay == null || selectedDay.equalsIgnoreCase(timeSet.getString("Day"))) {
 						timeList.add(timeSet.getString("Time"));
-						time.setItems(timeList);
 					}
 				}
+				time.setItems(timeList);
 			} catch (SQLException e1) {
+				BookingSystem.log.error(e1.toString());
 				e1.printStackTrace();
 			} finally {
 				if (statement != null) {
 					try {
 						statement.close();
 					} catch (SQLException e1) {
+						BookingSystem.log.error(e1.toString());
 					}
 				}
 			}
@@ -114,40 +138,53 @@ public class CreateBookingDetailsController {
 				try {
 					con.close();
 				} catch (SQLException e1) {
+					BookingSystem.log.error(e1.toString());
 				}
 			}
 		}
+		  
 	}
+	
 	//This function is to launch the Employee section according to the time chosen at the Time section.
 	@FXML
 	public void launchEmployee() {
+		BookingSystem.log.info("loading avaliable employees");
 		empList.clear();
-		employee.setItems(empList);
-		LocalDate date2 = date.getValue();
-		String date3 = date2.getDayOfWeek().toString();
-		String custtime = time.getSelectionModel().getSelectedItem();
+		
+		
+		selectedDate = date.getValue();
+		if(selectedDate != null){
+			selectedDay = selectedDate.getDayOfWeek().toString();
+		}
+		
+		selectedTime = time.getSelectionModel().getSelectedItem();
+		
 		Connection con = null;
 		Statement statement = null;
-		{
+		
 			try {
 				con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 				statement = con.createStatement();
-				ResultSet empSet = statement.executeQuery("SELECT DISTINCT Time, Day, EmployeeName FROM workingTimeDate");
+				ResultSet empSet = statement.executeQuery("SELECT Time, Day, employee.name FROM workingTimeDate Inner Join employee on workingTimeDate.EmployeeID = employee.empid");
 				while(empSet.next()) {
-					if(custtime.equals(empSet.getString("Time"))) {
-						if(date3.equals(empSet.getString("Day"))) {
-							empList.add(empSet.getString("EmployeeName"));
-							employee.setItems(empList);
+					
+					if(selectedDate != null && selectedTime != null){
+						if((selectedDay.equalsIgnoreCase(empSet.getString("Day")) && selectedTime.equals(empSet.getString("Time")))){
+							empList.add(empSet.getString("name"));
+							
 						}
 					}
 				}
+				employee.setItems(empList);
 			} catch (SQLException e1) {
+				BookingSystem.log.error(e1.toString());
 				e1.printStackTrace();
 			} finally {
 				if (statement != null) {
 					try {
 						statement.close();
 					} catch (SQLException e1) {
+						BookingSystem.log.error(e1.toString());
 					}
 				}
 			}
@@ -155,10 +192,12 @@ public class CreateBookingDetailsController {
 				try {
 					con.close();
 				} catch (SQLException e1) {
+					BookingSystem.log.error(e1.toString());
 				}
 			}
-		}
 	}
+	
+	
 	//This function will initiate when the user clicks on the Submit button.
 	@FXML
 	private void onSubmit() {
@@ -170,38 +209,64 @@ public class CreateBookingDetailsController {
 		invalidtime.setVisible(false);
 		invalidemployee.setVisible(false);
 		//Get value from all menu choice
-		LocalDate date2 = date.getValue();
-		String custservice = service.getSelectionModel().getSelectedItem();
-		String custtime = time.getSelectionModel().getSelectedItem();
-		String custemployee = employee.getSelectionModel().getSelectedItem();
+		selectedDate = date.getValue();
+		selectedService = service.getSelectionModel().getSelectedItem();
+		selectedEmployee = employee.getSelectionModel().getSelectedItem();
+		selectedTime = time.getSelectionModel().getSelectedItem();
+		try{
+			Connection con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+			
+			ResultSet result1 = con.createStatement().executeQuery("select empid from employee where employee.name = '"+selectedEmployee+"'");
+			selectedEmployee = result1.getString("empid");
+			
+			result1.close();
+			con.close();
+		}catch(Exception e){
+			BookingSystem.log.error(e);
+		}
+		try{
+			Connection con2 = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+			
+			ResultSet result2 = con2.createStatement().executeQuery("select servicesID from BusinessActivities where BusinessActivities.Services = '"+selectedService+"'");
+			BookingSystem.log.info(result2.getInt("servicesID")+"");
+			selectedService = result2.getInt("servicesID")+"";
+			
+			result2.close();
+			con2.close();
+			
+			
+		}catch(Exception e){
+			BookingSystem.log.error(e);
+		}
+		
 		
 		//Error validate to check whether does all menu choice has a value in them
-		if(date2 == null) {
+		if(selectedDate == null) {
 			invaliddate.setVisible(true);
 		}
 		else {
 			invaliddate.setVisible(false);
 		}
-		if(custservice == null) {
+		if(selectedService == null) {
 			invalidservice.setVisible(true);
 		}
 		else {
 			invalidservice.setVisible(false);
 		}
-		if(custtime == null) {
+		if(selectedTime == null) {
 			invalidtime.setVisible(true);
 		}
 		else {
 			invalidtime.setVisible(false);
 		}
-		if(custemployee == null) {	
+		if(selectedEmployee == null) {	
 			invalidemployee.setVisible(true);
 		}
 		else {
 			invalidemployee.setVisible(false);
 		}
 		//When all menu choice has a value
-		if(date2 != null && custservice != null && custtime != null && custemployee != null) {
+		if(selectedDate != null && selectedService != null && selectedTime != null && selectedEmployee != null) {
 			//The system will check which function in person does not have an empty data
 			if(Person.retrieveIDName() == null) {
 				if(Person.retrieveNameNumAddress() != null) {
@@ -224,7 +289,7 @@ public class CreateBookingDetailsController {
 								statement = con.createStatement();
 								//SQL query to insert all data into their respective table
 								statement.executeUpdate("INSERT INTO customer(`name`, `address`, `number`) VALUES ('" + name + "','" + address + "','" + number + "')");
-								statement.executeUpdate("INSERT INTO newbooking(`date`, `time`, `customerNumber`, `empName`, `servicesName`) VALUES ('" + date2 + "','" + custtime + "','" + number +  "','" + custemployee + "','" + custservice + "')");
+								statement.executeUpdate("INSERT INTO newbooking(`date`, `startTime`, `customerNumber`, `empID`, `servicesID`) VALUES ('" + selectedDate + "','" + selectedTime + "','" + number +  "','" + selectedEmployee + "','" + selectedService + "')");
 								//If insert success, it will print out a success label and clear all menu choices
 								success.setVisible(true);
 								date.setValue(null);
@@ -232,18 +297,19 @@ public class CreateBookingDetailsController {
 								time.getSelectionModel().clearSelection();
 								employee.getSelectionModel().clearSelection();
 							} catch (Exception e) {
+								BookingSystem.log.error(e.toString());
 									System.err.println(e);
 							} finally {
 								if(statement != null) {
 									try {
 										statement.close();
-									} catch (SQLException e) { }
+									} catch (SQLException e) {BookingSystem.log.error(e.toString()); }
 								}
 							}
 							if(con != null) {
 								try {
 									con.close();
-								} catch (SQLException e) { }
+								} catch (SQLException e) {BookingSystem.log.error(e.toString()); }
 							}
 						}
 					}
@@ -257,7 +323,7 @@ public class CreateBookingDetailsController {
 								con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 								statement = con.createStatement();
 								//SQL query to insert the data only into the booking table
-								statement.executeUpdate("INSERT INTO newbooking(`date`, `time`, `customerNumber`, `empName`, `servicesName`) VALUES ('" + date2 + "','" + custtime + "','" + number +  "','" + custemployee + "','" + custservice + "')");
+								statement.executeUpdate("INSERT INTO newbooking(`date`, `startTime`, `customerNumber`, `empID`, `servicesID`) VALUES ('" + selectedDate + "','" + selectedTime + "','" + number +  "','" + selectedEmployee + "','" + selectedService + "')");
 								//If insert success, it will print out a success label and clear all menu choices
 								success.setVisible(true);
 								date.setValue(null);
@@ -266,18 +332,19 @@ public class CreateBookingDetailsController {
 								employee.getSelectionModel().clearSelection();
 						
 							} catch (Exception e) {
+								BookingSystem.log.error(e.toString());
 									System.err.println(e);
 							} finally {
 								if(statement != null) {
 									try {
 										statement.close();
-									} catch (SQLException e) { }
+									} catch (SQLException e) { BookingSystem.log.error(e.toString());}
 								}
 							}
 							if(con != null) {
 								try {
 									con.close();
-								} catch (SQLException e) { }
+								} catch (SQLException e) {BookingSystem.log.error(e.toString()); }
 							}
 						}
 					}
@@ -302,7 +369,7 @@ public class CreateBookingDetailsController {
 								if(ID.equals(custSet.getString("custid"))) {
 									String custnumber = custSet.getString("number");
 									//SQL statement to insert all data into the booking table
-									statement.executeUpdate("INSERT INTO newbooking(`date`, `time`, `customerNumber`, `empName`, `servicesName`) VALUES ('" + date2 + "','" + custtime + "','" + custnumber +  "','" + custemployee + "','" + custservice + "')");
+									statement.executeUpdate("INSERT INTO newbooking(`date`, `startTime`, `customerNumber`, `empID`, `servicesID`) VALUES ('" + selectedDate + "','" + selectedTime + "','" + custnumber +  "','" + selectedEmployee + "','" + selectedService + "')");
 									//If insert success, it will print out a success label and clear all menu choices
 									success.setVisible(true);
 									date.setValue(null);
@@ -312,24 +379,26 @@ public class CreateBookingDetailsController {
 								}
 							}
 						} catch (Exception e) {
+							BookingSystem.log.error(e.toString());
 								System.err.println(e);
 						} finally {
 							if(statement != null) {
 								try {
 									statement.close();
-								} catch (SQLException e) { }
+								} catch (SQLException e) {BookingSystem.log.error(e.toString()); }
 							}
 						}
 						if(con != null) {
 							try {
 								con.close();
-							} catch (SQLException e) { }
+							} catch (SQLException e) {BookingSystem.log.error(e.toString()); }
 						}
 					}
 				}
 			}
 		}
 	}
+	
 	//This function is created to Duplicate check the input Mobile Number with the business
 	//database customer table number field, if the number exists already, it will return 1, else 0.
 	private int databasecheckMobNo(String number) {
@@ -349,21 +418,23 @@ public class CreateBookingDetailsController {
 				}
 			}
 		} catch (SQLException e){
+			BookingSystem.log.error(e.toString());
 			e.printStackTrace();
 		} finally {
 			if(statement != null) {
 				try {
 					statement.close();
-				} catch (SQLException e1) { }
+				} catch (SQLException e1) {BookingSystem.log.error(e1.toString()); }
 			}
 		}
 		if(con != null) {
 			try {
 				con.close();
-			} catch (SQLException e1) { }
+			} catch (SQLException e1) {BookingSystem.log.error(e1.toString()); }
 		}
 		return i;
 	}
+	
 	//This section is to initialize the Date Picker to disable all past dates from today onwards.
 	Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>() {
 	    public DateCell call(final DatePicker datePicker) {

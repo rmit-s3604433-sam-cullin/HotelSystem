@@ -120,7 +120,7 @@ public class AddTimeDateController {
 			errortime.setVisible(false);
 		}
 		if(empname != null && empday != null && emptime != null) {
-			if(databasecheck(empname, empday, emptime) == 0) {
+			if(databasecheck(empname, empday, emptime) != null) {
 				errordatabase.setVisible(false);
 				Connection con = null;
 				Statement statement = null;
@@ -128,9 +128,10 @@ public class AddTimeDateController {
 					try {
 						con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 						statement = con.createStatement();
-						
+						ResultSet resultSet1 = statement.executeQuery("Select empid from employee where name ='"+empname+"'");
+						String empid = resultSet1.getString("empid");
 						/* SQL Statement */
-						statement.executeUpdate("INSERT INTO workingTimeDate(`EmployeeName`, `Day`, `Time`) VALUES ('" + empname + "','" + empday + "','" + emptime + "')");
+						statement.executeUpdate("INSERT INTO workingTimeDate(`EmployeeID`, `Day`, `Time`) VALUES ('" + empid + "','" + empday + "','" + emptime + "')");
 						success.setVisible(true);
 						employee.getSelectionModel().clearSelection();
 						Day.selectToggle(null);
@@ -151,8 +152,8 @@ public class AddTimeDateController {
 						} catch (SQLException e) {BookingSystem.log.error(e.toString()); }
 					}
 				}
-			}
-			else if(databasecheck(empname, empday, emptime) == 1){
+			}else{
+				BookingSystem.log.info("adding working time failed");
 				errordatabase.setVisible(true);
 			}
 		}
@@ -160,24 +161,25 @@ public class AddTimeDateController {
 	private String HandleDayOptions(RadioButton monday, RadioButton tuesday, RadioButton wednesday, RadioButton thursday, RadioButton friday, RadioButton saturday) {
 		
 		if(monday.isSelected()) {
-			return ("MONDAY");
+			return ("Monday");
 		}
 		if(tuesday.isSelected()) {
-			return ("TUESDAY");
+			return ("Tuesday");
 		}
 		if(wednesday.isSelected()) {
-			return ("WEDNESDAY");
+			return ("Wednesday");
 		}
 		if(thursday.isSelected()) {
-			return ("THURSDAY");
+			return ("Thursday");
 		}
 		if(friday.isSelected()) {
-			return ("FRIDAY");
+			return ("Friday");
 		}
 		if(saturday.isSelected()) {
-			return ("SATURDAY");
+			return ("Saturday");
 		}
 		else {
+			BookingSystem.log.error("selected day failed");
 			return null;
 		}
 	}
@@ -196,30 +198,34 @@ public class AddTimeDateController {
 			return ("3pm-5pm");
 		}
 		else {
+			BookingSystem.log.error("selected time failed");
 			return null;
 		}
 	}
-	private int databasecheck(String empname, String empday, String emptime) {
+	private String databasecheck(String empname, String empday, String emptime) {
 	
 		Connection con = null;
 		Statement statement = null;
 		ResultSet resultSet1 = null;
-		int i = 0;
+		String i = null;
 		try{
 			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 			statement = con.createStatement();	
 			
-			resultSet1 = statement.executeQuery("SELECT * FROM workingTimeDate");
+			resultSet1 = statement.executeQuery("SELECT * FROM workingTimeDate inner join employee on employee.empid = workingTimeDate.EmployeeID where employee.name = '"+empname+"'");
+			
+			i = resultSet1.getString("empid");
 			while(resultSet1.next()) {
-				if(empname.equals(resultSet1.getString("EmployeeName"))){
 					if(empday.equals(resultSet1.getString("Day"))) {
 						if(emptime.equals(resultSet1.getString("Time"))) {
-							i = 1;
+							BookingSystem.log.info("already working at that time");
+							i = null;
 						}
 					}					
-				}
+				
 			}
 		} catch (SQLException e){
+			BookingSystem.log.error(e.toString());
 			e.printStackTrace();
 		} finally {
 			if(statement != null) {

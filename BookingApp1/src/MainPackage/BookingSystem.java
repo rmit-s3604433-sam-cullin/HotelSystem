@@ -396,9 +396,9 @@ public class BookingSystem extends Application {
 		BorderPane BusinessActivities = loader.load();
 		mainlayout.setCenter(BusinessActivities);
 	}
-	public static void showWeeklySummary() throws IOException {
+	public static void showBookingSummaryOwner() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(BookingSystem.class.getResource("Owner/WeekBookingSummary.fxml"));
+		loader.setLocation(BookingSystem.class.getResource("Owner/FullBookingSummaryOwner.fxml"));
 		BorderPane WeeklySummary = loader.load();
 		mainlayout.setCenter(WeeklySummary);
 	}
