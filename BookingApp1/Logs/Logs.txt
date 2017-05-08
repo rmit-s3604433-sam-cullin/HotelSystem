@@ -1361,3 +1361,10 @@
 12:44:22  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:65 - displaying booking history2
 12:44:22  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:65 - displaying booking history3
 12:44:22  INFO [JavaFX Application Thread] - MainPackage.BookingSystem.loadBookings:65 - displaying booking history4
+18:35:34  INFO [main] - MainPackage.BookingSystem.main:437 - starting aplication
+18:35:42 ERROR [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:81 - org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (no such table: owner)
+18:37:52  INFO [main] - MainPackage.BookingSystem.main:437 - starting aplication
+18:38:00 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+18:38:17 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginIDValidation:73 - ID found
+18:38:17 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:111 - Correct password
+18:38:17 DEBUG [JavaFX Application Thread] - MainPackage.BookingSystem.loginPasswordValidation:111 - Correct password
