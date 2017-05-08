@@ -10,25 +10,32 @@ import java.sql.Statement;
 import MainPackage.BookingSystem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class LoginController {
 	
 	@SuppressWarnings("unused")
 	private BookingSystem main;
 	@FXML
+	Label login;
+	@FXML
 	TextField userid;
 	@FXML
 	PasswordField userpassword;
 	@FXML
-	Button login;
+	Button submit;
 	@FXML
-	Label invaliduserid;
+	Label regLabel;
 	@FXML
-	Label invaliduserpass;
+	Hyperlink regText;
 		
 	public void onLogin(ActionEvent event) throws IOException {
 		
@@ -46,15 +53,13 @@ public class LoginController {
 				BookingSystem.log.info("Owner Logged in");
 				BookingSystem.showOwnerMenu();
 			} else {
-				invaliduserid.setVisible(true);
-				invaliduserpass.setVisible(true);
+				loginError();
 				userid.setText("");
 				userpassword.setText("");
 			}
 		} else if (loginIDValidation(ID) == false){
 			// Incorrect user name or password
-			invaliduserid.setVisible(true);
-			invaliduserpass.setVisible(true);
+			loginError();
 			userid.setText("");
 			userpassword.setText("");
 		}
@@ -142,5 +147,37 @@ public class LoginController {
 	}
 	public void onSignUp() throws IOException {
 		BookingSystem.showRegisterMenu();
+	}
+	public static void loginError() {
+		
+		Stage window = new Stage();
+		
+		window.initModality(Modality.APPLICATION_MODAL);
+		window.setTitle("Access Denied");
+		window.setMinWidth(50);
+		
+		Label label = new Label();
+		label.setText("Username or password entered was incorrect.");
+		label.setStyle("-fx-font-family: 'Varela Round'; -fx-font-size: 12; -fx-text-fill: #E5E5E5;");
+		label.setLayoutX(10);
+		label.setLayoutY(12);
+		
+		Button closeButton = new Button("Close");
+		closeButton.setStyle("-fx-font-family: 'Varela Round'; -fx-background-radius: 3; -fx-background-color: #10EE99; "
+				+ "-fx-padding: 5 15 5 15; -fx-effect: innershadow(one-pass-box, #2B443A, 7, 0.3, 0, -1);");
+		closeButton.setLayoutX(110);
+		closeButton.setLayoutY(37);
+		closeButton.setOnAction(e -> window.close());
+		
+		Pane layout = new Pane();
+		layout.setStyle("-fx-background-color: #2B303A");
+		layout.getChildren().addAll(label,closeButton);
+		//layout.setAlignment(Pos.CENTER);
+		
+		Scene scene = new Scene(layout, 280, 75);
+		scene.getStylesheets().add("https://fonts.googleapis.com/css?family=Varela+Round");
+		window.setScene(scene);
+		window.showAndWait();
+		
 	}
 }
