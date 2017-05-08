@@ -8,15 +8,8 @@ import MainPackage.Login.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
@@ -155,7 +148,9 @@ public static void showLogin() throws IOException {
 		primaryStage.show();
 	}
 	public static void main(String[] args) {
+		
 		log.info("starting aplication");
 		launch(args);
+		
 	}
 }
