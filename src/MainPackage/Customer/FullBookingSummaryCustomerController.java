@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import MainPackage.BookingSystem;
+import Object.Person;
 import Object.booking;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
@@ -54,7 +55,15 @@ public class FullBookingSummaryCustomerController {
 		try {
 			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 			statement = con.createStatement();
-			ResultSet bookingSet = statement.executeQuery("SELECT * FROM newbooking");
+			//SQL statement to get the mobile number that matches the logged in customer ID at the 
+			//beginning of the booking
+			
+			ResultSet custSet = statement.executeQuery("SELECT number FROM customer Where customer.custID = '" + Person.retrieveID()+"'");
+			String customerNumber = custSet.getString("number");
+			con.close();
+			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+			statement = con.createStatement();
+			ResultSet bookingSet = statement.executeQuery("SELECT * FROM newbooking where newbooking.customerNumber = '"+customerNumber+"'");
 			if(!search.equals("")){
 				bookingSet = statement.executeQuery("SELECT * FROM newbooking WHERE `bookingID` LIKE '"+search+"' or `date` LIKE '"+search+"' or `startTime` LIKE '"+search+"' or `empID` LIKE '"+search+"' or `servicesID` LIKE '"+search+"'");
 			}
