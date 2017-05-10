@@ -92,4 +92,8 @@ public abstract class Person {
 		String custid = custID[0];
 		return custid;
 	}
+	public void addOwner(Person nO) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -46,6 +46,10 @@ public class LoginController {
 				// Launch Owner Menu
 				BookingSystem.log.info("Owner Logged in");
 				BookingSystem.showOwnerMenu();
+			} else if(loginPasswordValidation(ID, password) == 3){
+				// Launch Super User Menu
+				BookingSystem.log.info("Super User Logged in");
+				BookingSystem.showSuperUserMenu();
 			} else {
 				invaliduserid.setVisible(true);
 				invaliduserpass.setVisible(true);
@@ -64,13 +68,14 @@ public class LoginController {
 		Connection con = null;
 		Statement statement = null;
 		boolean id = false;		
-		if(ID.matches("[c][0-9]{3}") | ID.matches("[o][0-9]{3}")){	
+		if(ID.matches("[c][0-9]{3}") | ID.matches("[o][0-9]{3}") | ID.matches("[s][0-9]{3}")){	
 			try{
 				con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 				statement = con.createStatement();	
 				ResultSet ownerSet = statement.executeQuery("SELECT ownid FROM owner");
-				ResultSet customerSet = statement.executeQuery("SELECT custid FROM customer");		
-				if(customerSet.next() || ownerSet.next()){
+				ResultSet customerSet = statement.executeQuery("SELECT custid FROM customer");
+				ResultSet superuserSet = statement.executeQuery("SELECT supid FROM superuser");
+				if(customerSet.next() || ownerSet.next() || superuserSet.next()){
 					BookingSystem.log.debug("ID found");
 					id = true;
 				}
@@ -121,6 +126,15 @@ public class LoginController {
 						BookingSystem.log.debug("Correct password");
 						Person.storeID(ID);
 						i = 1;
+					}
+				}
+			}
+			else if(ID.contains("s")){
+				resultSet = statement.executeQuery("SELECT password FROM superuser WHERE supid='" + ID + "'");
+				if(resultSet.next()){
+					if(password.equals(resultSet.getString("password"))) {
+						BookingSystem.log.debug("Correct password");
+						i = 3;
 					}
 				}
 			}
