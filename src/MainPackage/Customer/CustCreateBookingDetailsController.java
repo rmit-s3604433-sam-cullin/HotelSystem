@@ -212,8 +212,6 @@ public class CustCreateBookingDetailsController {
 			PreparedStatement ps = con.prepareStatement("SELECT newbooking.empID, employee.name FROM newbooking Inner Join employee on newbooking.empID = employee.empid WHERE Date ='" + selectedDate + "' AND startTime = ?");
 			ps.setString(1, time2.getSelectionModel().getSelectedItem());
 			ResultSet rs = ps.executeQuery();	
-			System.out.println(rs.next());
-			System.out.println(time2.getSelectionModel().getSelectedItem());
 			while(rs.next()) {
 				empList.remove(rs.getString("name"));
 			}
