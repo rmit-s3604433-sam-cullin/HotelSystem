@@ -204,8 +204,6 @@ public class CustCreateBookingDetailsController {
 		Connection con = null;
 		Statement statement = null;
 		LocalDate selectedDate = date2.getValue();
-			
-		System.out.println(selectedDate);
 		
 		try {
 			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
