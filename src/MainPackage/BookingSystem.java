@@ -38,7 +38,6 @@ public class BookingSystem extends Application {
 		loginStage.setScene(scene);
 		loginStage.show();
 	}
-	
 	public static void showLogin2() throws IOException {
 		registerstage.close();
 		FXMLLoader loader = new FXMLLoader(BookingSystem.class.getResource("Login/Login.fxml"));
@@ -134,6 +133,12 @@ public class BookingSystem extends Application {
 		BorderPane CreateBookingDetails = loader.load();
 		mainlayout.setCenter(CreateBookingDetails);
 	}
+	public static void showSettings() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(BookingSystem.class.getResource("Owner/Settings.fxml"));
+		BorderPane Settings = loader.load();
+		mainlayout.setCenter(Settings);
+	}
 	public static void showCustomerMenu() throws IOException {
 		loginStage.close();
 		FXMLLoader loader = new FXMLLoader();
@@ -152,6 +157,26 @@ public class BookingSystem extends Application {
 		loader.setLocation(BookingSystem.class.getResource("Customer/CustCreateBookingDetails.fxml"));
 		BorderPane CustCreateBookingDetails = loader.load();
 		mainlayout.setCenter(CustCreateBookingDetails);
+	}
+	//Function to display Super User Menu
+	public static void showSuperUserMenu() throws IOException {
+		loginStage.close();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(BookingSystem.class.getResource("SuperUser/SuperUserMenu.fxml"));
+		mainlayout = loader.load();
+		
+		primaryStage = new Stage();
+		primaryStage.setTitle("SuperUser Menu");
+		primaryStage.initOwner(loginStage);
+		Scene scene = new Scene(mainlayout);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
+	public static void showAddOwner() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(BookingSystem.class.getResource("SuperUser/AddOwner.fxml"));
+		BorderPane Settings = loader.load();
+		mainlayout.setCenter(Settings);
 	}
 	public static void main(String[] args) {
 		log.info("starting aplication");

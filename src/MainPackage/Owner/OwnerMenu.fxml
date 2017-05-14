@@ -97,6 +97,16 @@
                   <Image url="@../Images/notebook.png" />
                </image>
             </ImageView>
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="32.0" layoutY="387.0" onMouseClicked="#goSettings" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/settings.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="85.0" layoutY="391.0" onMouseClicked="#goSettings" style="-fx-text-fill: white;" text="Settings">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
 			</children>
 		</Pane>
 	</left>

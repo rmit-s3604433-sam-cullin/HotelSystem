@@ -86,5 +86,4 @@ public class Customer extends Person {
 			} catch (SQLException e) {BookingSystem.log.error(e); }
 		}
 	}
-
 }

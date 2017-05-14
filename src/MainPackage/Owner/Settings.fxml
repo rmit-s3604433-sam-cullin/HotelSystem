@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane prefHeight="600.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="33.0" layoutY="25.0" text="Business Name" underline="true">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="34.0" layoutY="81.0" text="Existing Business Name :" />
+            <TextField fx:id="oldbusinessname" layoutX="202.0" layoutY="77.0" />
+            <Label layoutX="50.0" layoutY="130.0" text="New Business Name :" />
+            <TextField fx:id="newbusinessname" layoutX="202.0" layoutY="126.0" />
+            <Label layoutX="33.0" layoutY="182.0" text="Business Logo" underline="true">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="34.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="upload" layoutX="34.0" layoutY="230.0" mnemonicParsing="false" text="Upload Image" />
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

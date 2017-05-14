@@ -38,6 +38,9 @@ public class OwnerMenuController {
 	private void showWorkingTimeDate() throws IOException {
 		BookingSystem.showWorkingTimes();
 	}
-	
+	@FXML
+	private void goSettings() throws IOException {
+		BookingSystem.showSettings();
+	}
 			
 }
