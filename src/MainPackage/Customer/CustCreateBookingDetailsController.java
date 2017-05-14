@@ -198,7 +198,7 @@ public class CustCreateBookingDetailsController {
 			}
 	}
 	
-	//This function will remove the employees that are booked for a specific time slot.
+	//This function will remove the employees that are booked for a specific time slot.a
 	private ObservableList<String> removeEmployee(ObservableList<String> empList) {
 		
 		Connection con = null;
