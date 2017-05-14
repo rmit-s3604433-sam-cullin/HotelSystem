@@ -2,6 +2,7 @@ package MainPackage.Customer;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -170,12 +171,12 @@ public class CustCreateBookingDetailsController {
 					
 					if(selectedDate != null && selectedTime != null){
 						if((selectedDay.equalsIgnoreCase(empSet.getString("Day")) && selectedTime.equals(empSet.getString("Time")))){
-							empList.add(empSet.getString("name"));
-							
+							empList.add(empSet.getString("name"));	
 						}
 					}
 				}
-				employee2.setItems(empList);
+				ObservableList<String> newempList = removeEmployee(empList);
+				employee2.setItems(newempList);
 			} catch (SQLException e1) {
 				BookingSystem.log.error(e1.toString());
 				e1.printStackTrace();
@@ -197,6 +198,42 @@ public class CustCreateBookingDetailsController {
 			}
 	}
 	
+	//This function will remove the employees that are booked for a specific time slot.a
+	private ObservableList<String> removeEmployee(ObservableList<String> empList) {
+		
+		Connection con = null;
+		Statement statement = null;
+		LocalDate selectedDate = date2.getValue();
+		
+		try {
+			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+			PreparedStatement ps = con.prepareStatement("SELECT newbooking.empID, employee.name FROM newbooking Inner Join employee on newbooking.empID = employee.empid WHERE Date ='" + selectedDate + "' AND startTime = ?");
+			ps.setString(1, time2.getSelectionModel().getSelectedItem());
+			ResultSet rs = ps.executeQuery();	
+			while(rs.next()) {
+				empList.remove(rs.getString("name"));
+			}
+		}catch (SQLException e1) {
+			BookingSystem.log.error(e1.toString());
+			e1.printStackTrace();
+		} finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e1) {
+					BookingSystem.log.error(e1.toString());
+				}
+			}
+		}
+		if (con != null) {
+			try {
+				con.close();
+			} catch (SQLException e1) {
+				BookingSystem.log.error(e1.toString());
+			}
+		}
+		return empList;
+	}
 	
 	//This function will initiate when the user clicks on the Submit button.
 	@FXML
