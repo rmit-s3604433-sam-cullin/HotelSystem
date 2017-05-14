@@ -2,6 +2,7 @@ package MainPackage.Owner;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -116,12 +117,17 @@ public class CreateBookingDetailsController {
 				while(timeSet.next()) {
 					if(selectedDay != null){
 						BookingSystem.log.info("selected day:"+selectedDay +" sqlDate:"+timeSet.getString("Day") );
+						
 					}
 					if(selectedDay == null || selectedDay.equalsIgnoreCase(timeSet.getString("Day"))) {
 						timeList.add(timeSet.getString("Time"));
 					}
+					/*do not include the time that has been booked. Variables such as startTime, date, employee
+					 * scan through date, then employee, then startTime */
 				}
 				time.setItems(timeList);
+				
+				//ResultSet bookedtimeSet = statement.executeQuery("SELECT Date, startTime FROM newbooking WHERE " + );
 			} catch (SQLException e1) {
 				BookingSystem.log.error(e1.toString());
 				e1.printStackTrace();
@@ -142,12 +148,11 @@ public class CreateBookingDetailsController {
 				}
 			}
 		}
-		  
 	}
 	
 	//This function is to launch the Employee section according to the time chosen at the Time section.
 	@FXML
-	public void launchEmployee() {
+	public void launchEmployee(LocalDate selectedDate) {
 		BookingSystem.log.info("loading avaliable employees");
 		empList.clear();
 		
@@ -162,6 +167,7 @@ public class CreateBookingDetailsController {
 		Connection con = null;
 		Statement statement = null;
 		
+		
 			try {
 				con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 				statement = con.createStatement();
@@ -175,7 +181,9 @@ public class CreateBookingDetailsController {
 						}
 					}
 				}
-				employee.setItems(empList);
+				ObservableList<String> newempList = removeEmployee(empList);
+				employee.setItems(newempList);
+				
 			} catch (SQLException e1) {
 				BookingSystem.log.error(e1.toString());
 				e1.printStackTrace();
@@ -197,6 +205,46 @@ public class CreateBookingDetailsController {
 			}
 	}
 	
+	//This function will remove the employees that are booked for a specific time slot.
+	private ObservableList<String> removeEmployee(ObservableList<String> empList) {
+		
+		Connection con = null;
+		Statement statement = null;
+		LocalDate selectedDate = date.getValue();
+			
+		System.out.println(selectedDate);
+		
+		try {
+			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+			PreparedStatement ps = con.prepareStatement("SELECT newbooking.empID, employee.name FROM newbooking Inner Join employee on newbooking.empID = employee.empid WHERE Date ='" + selectedDate + "' AND startTime = ?");
+			ps.setString(1, time.getSelectionModel().getSelectedItem());
+			ResultSet rs = ps.executeQuery();	
+			System.out.println(rs.next());
+			System.out.println(time.getSelectionModel().getSelectedItem());
+			while(rs.next()) {
+				empList.remove(rs.getString("name"));
+			}
+		}catch (SQLException e1) {
+			BookingSystem.log.error(e1.toString());
+			e1.printStackTrace();
+		} finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e1) {
+					BookingSystem.log.error(e1.toString());
+				}
+			}
+		}
+		if (con != null) {
+			try {
+				con.close();
+			} catch (SQLException e1) {
+				BookingSystem.log.error(e1.toString());
+			}
+		}
+		return empList;
+	}
 	
 	//This function will initiate when the user clicks on the Submit button.
 	@FXML
