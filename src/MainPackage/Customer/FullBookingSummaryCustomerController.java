@@ -42,6 +42,8 @@ public class FullBookingSummaryCustomerController {
 	private TableColumn<booking,String> Employee;
 	@FXML
 	private TableColumn<booking,String> Service;
+	@FXML
+	private TableColumn<booking,String> Status;
 	
 	private final ObservableList<booking> dta = FXCollections.observableArrayList();
 	
@@ -58,14 +60,14 @@ public class FullBookingSummaryCustomerController {
 			//SQL statement to get the mobile number that matches the logged in customer ID at the 
 			//beginning of the booking
 			
-			ResultSet custSet = statement.executeQuery("SELECT number FROM customer Where customer.custID = '" + Person.retrieveID()+"'");
+			ResultSet custSet = statement.executeQuery("SELECT number FROM customer Where customer.custID = '" + Person.retrieveID()+"' and customer.ownerID = '"+BookingSystem.companyLogin+"'");
 			String customerNumber = custSet.getString("number");
 			con.close();
 			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 			statement = con.createStatement();
 			ResultSet bookingSet = statement.executeQuery("SELECT * FROM newbooking where newbooking.customerNumber = '"+customerNumber+"'");
 			if(!search.equals("")){
-				bookingSet = statement.executeQuery("SELECT * FROM newbooking WHERE `bookingID` LIKE '"+search+"' or `date` LIKE '"+search+"' or `startTime` LIKE '"+search+"' or `empID` LIKE '"+search+"' or `servicesID` LIKE '"+search+"'");
+				bookingSet = statement.executeQuery("SELECT * FROM newbooking WHERE `bookingID` LIKE '"+search+"' or `date` LIKE '"+search+"' or `startTime` LIKE '"+search+"' or `empID` LIKE '"+search+"' or `servicesID` LIKE '"+search+"' and customer.ownerID = '"+BookingSystem.companyLogin+"' and customer.custID = '" + Person.retrieveID()+"'");
 			}
 			while(bookingSet.next()) {
 				System.out.println("loading bookings");
@@ -76,7 +78,8 @@ public class FullBookingSummaryCustomerController {
 				String employee = bookingSet.getString("empID");
 				String servies = bookingSet.getString("servicesID");
 				String customer = bookingSet.getString("customerNumber");
-				booking booking = new booking(id,date,time,customer,employee,servies);
+				String status = bookingSet.getString("status");
+				booking booking = new booking(id,date,time,customer,employee,servies,status);
 				dta.add(booking);
 			}
 			Orders.setItems(dta);
@@ -84,6 +87,7 @@ public class FullBookingSummaryCustomerController {
 			Time.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().startTime));
 			Employee.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().empID));
 			Service.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().serviesID));
+			Status.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().status));
 			bookingSet.close();
 			statement.close();
 			con.close();
@@ -104,5 +108,15 @@ public class FullBookingSummaryCustomerController {
 		this.loadBookings(searchFeild.getText());
 	}
 	
+	@FXML
+	private void removeButtonPressed(){
+		booking selectedOrder = Orders.getSelectionModel().getSelectedItem();
+		try {
+			selectedOrder.updateStatus("c");
+			BookingSystem.log.info(selectedOrder.bookingID +" as been cancelled");
+		} catch (SQLException e) {
+			BookingSystem.log.error(e.toString());
+		}
+	}
 	
 }

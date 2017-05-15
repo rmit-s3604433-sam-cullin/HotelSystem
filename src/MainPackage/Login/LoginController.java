@@ -38,6 +38,7 @@ public class LoginController {
 		
 		
 		if(loginIDValidation(ID) == true){
+			BookingSystem.companyLogin = getCompnayType(ID);
 			if(loginPasswordValidation(ID, password) == 1){
 				// Launch Customer Menu
 				BookingSystem.log.info("Customer Logged in");
@@ -63,6 +64,24 @@ public class LoginController {
 			userid.setText("");
 			userpassword.setText("");
 		}
+	}
+	public String getCompnayType(String id){
+		Connection con = null;
+		Statement statement = null;
+		String ownerid = "";
+		try {
+			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+			statement = con.createStatement();	
+			ResultSet ownerSet = statement.executeQuery("SELECT ownerID FROM customer where custid ='"+id+"'");
+			ownerid = ownerSet.getString("ownerID");
+			con.close();
+			BookingSystem.log.info("customer loged in under company:"+ownerid);
+		} catch (SQLException e) {
+			BookingSystem.log.error(e.toString());
+			e.printStackTrace();
+		}
+		
+		return ownerid;
 	}
 	public boolean loginIDValidation(String ID){
 		Connection con = null;

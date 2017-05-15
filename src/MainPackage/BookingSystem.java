@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 
 public class BookingSystem extends Application {
-
+	public static String companyLogin = "";
 	private static Stage primaryStage;
 	private static Stage registerstage;
 	private static Stage loginStage;
