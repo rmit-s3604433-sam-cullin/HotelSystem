@@ -69,7 +69,8 @@ public class FullBookingSummaryOwnerController {
 				String employee = bookingSet.getString("empID");
 				String servies = bookingSet.getString("servicesID");
 				String customer = bookingSet.getString("customerNumber");
-				booking booking = new booking(id,date,time,customer,employee,servies);
+				String status = bookingSet.getString("status");
+				booking booking = new booking(id,date,time,customer,employee,servies,status);
 				dta.add(booking);
 			}
 			Orders.setItems(dta);
