@@ -68,7 +68,7 @@ public class Customer extends Person {
 			
 			/* SQL Statement */
 			statement.executeUpdate("INSERT INTO customer values('c" + nC.getID() + "', '" + nC.getName() + "', '" 
-					+ nC.getPassword() + "', '" + nC.getAddress() + "', '0" + nC.getNumber() + "')");
+					+ nC.getPassword() + "', '" + nC.getAddress() + "', '0" + nC.getNumber() + BookingSystem.companyLogin + "')");
 			BookingSystem.log.info("Customer Added To DataBase "+ nC.number);
 		} catch (Exception e) {
 			BookingSystem.log.error(e);

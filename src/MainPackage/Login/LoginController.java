@@ -36,9 +36,9 @@ public class LoginController {
 		String ID = userid.getText();
 		String password = userpassword.getText();
 		
-		
+		BookingSystem.companyLogin = getCompnayType(ID);
+		getCompanyInfo(BookingSystem.companyLogin);
 		if(loginIDValidation(ID) == true){
-			BookingSystem.companyLogin = getCompnayType(ID);
 			if(loginPasswordValidation(ID, password) == 1){
 				// Launch Customer Menu
 				BookingSystem.log.info("Customer Logged in");
@@ -46,6 +46,7 @@ public class LoginController {
 			} else if(loginPasswordValidation(ID, password) == 2){
 				// Launch Owner Menu
 				BookingSystem.log.info("Owner Logged in");
+				BookingSystem.companyLogin = ID;
 				BookingSystem.showOwnerMenu();
 			} else if(loginPasswordValidation(ID, password) == 3){
 				// Launch Super User Menu
@@ -63,6 +64,23 @@ public class LoginController {
 			invaliduserpass.setVisible(true);
 			userid.setText("");
 			userpassword.setText("");
+		}
+	}
+	public void getCompanyInfo(String x){
+		Connection con = null;
+		Statement statement = null;
+		String ownerid = "";
+		try {
+			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+			statement = con.createStatement();	
+			ResultSet ownerSet = statement.executeQuery("SELECT businessname FROM owner where ownid ='"+x+"'");
+			ownerid = ownerSet.getString("businessname");
+			con.close();
+			BookingSystem.log.info("customer loged in under company:"+ownerid);
+			BookingSystem.companyname = ownerid;
+		} catch (SQLException e) {
+			BookingSystem.log.error(e.toString());
+			e.printStackTrace();
 		}
 	}
 	public String getCompnayType(String id){

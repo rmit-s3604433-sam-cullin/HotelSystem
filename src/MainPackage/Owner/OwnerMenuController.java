@@ -4,12 +4,24 @@ import java.io.IOException;
 
 import MainPackage.BookingSystem;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 
 public class OwnerMenuController {
 	
+	@FXML
+	private void initialize() {
+		businessname.setText(BookingSystem.companyname);
+	}
 	@SuppressWarnings("unused")
 	private BookingSystem main;
 	
+	@FXML
+	Label businessname;
+	
+	public void updatename() throws IOException{
+		businessname.setVisible(false);
+		BookingSystem.showOwnerMenu();
+	}
 	@FXML
 	private void goAddEmployee() throws IOException {
 		BookingSystem.showAddEmployee();

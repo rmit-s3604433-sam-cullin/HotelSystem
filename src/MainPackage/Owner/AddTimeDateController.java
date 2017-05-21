@@ -131,7 +131,7 @@ public class AddTimeDateController {
 						ResultSet resultSet1 = statement.executeQuery("Select empid from employee where name ='"+empname+"'");
 						String empid = resultSet1.getString("empid");
 						/* SQL Statement */
-						statement.executeUpdate("INSERT INTO workingTimeDate(`EmployeeID`, `Day`, `Time`) VALUES ('" + empid + "','" + empday + "','" + emptime + "')");
+						statement.executeUpdate("INSERT INTO workingTimeDate(`EmployeeID`, `Day`, `Time`, `ownerID`) VALUES ('" + empid + "','" + empday + "','" + emptime + BookingSystem.companyLogin + "')");
 						success.setVisible(true);
 						employee.getSelectionModel().clearSelection();
 						Day.selectToggle(null);

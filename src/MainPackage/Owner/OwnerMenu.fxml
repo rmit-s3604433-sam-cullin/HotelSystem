@@ -16,7 +16,7 @@
 						<Image url="@../Images/imageedit_1_5805622596.png" />
 					</image>
 				</ImageView>
-				<Label layoutX="78.0" layoutY="26.0" style="-fx-text-fill: white;" text="John's Electrician">
+				<Label fx:id="businessname" layoutX="78.0" layoutY="26.0" style="-fx-text-fill: white;">
 					<font>
 						<Font name="HP Simplified Light" size="24.0" />
 					</font>

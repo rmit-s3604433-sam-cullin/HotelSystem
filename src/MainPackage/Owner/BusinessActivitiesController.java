@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import MainPackage.BookingSystem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -74,7 +75,7 @@ public class BusinessActivitiesController {
 						con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 						statement = con.createStatement();
 		
-						statement.executeUpdate("INSERT INTO BusinessActivities (`Services`, `Duration`) " + "VALUES ('" + ADDservices.getText() + "','" + duration2 + "')");
+						statement.executeUpdate("INSERT INTO BusinessActivities (`Services`, `Duration`, `ownerID`) " + "VALUES ('" + ADDservices.getText() + "','" + duration2 + BookingSystem.companyLogin + "')");
 						success.setVisible(true);
 						ADDservices.setText("");
 						duration.getSelectionModel().clearSelection();

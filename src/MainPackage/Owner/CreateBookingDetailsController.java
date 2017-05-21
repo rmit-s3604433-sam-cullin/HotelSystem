@@ -288,8 +288,8 @@ public class CreateBookingDetailsController {
 								con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 								statement = con.createStatement();
 								//SQL query to insert all data into their respective table
-								statement.executeUpdate("INSERT INTO customer(`name`, `address`, `number`) VALUES ('" + name + "','" + address + "','" + number + "')");
-								statement.executeUpdate("INSERT INTO newbooking(`date`, `startTime`, `customerNumber`, `empID`, `servicesID`) VALUES ('" + selectedDate + "','" + selectedTime + "','" + number +  "','" + selectedEmployee + "','" + selectedService + "')");
+								statement.executeUpdate("INSERT INTO customer(`name`, `address`, `number`, `ownerID`) VALUES ('" + name + "','" + address + "','" + number + BookingSystem.companyLogin + "')");
+								statement.executeUpdate("INSERT INTO newbooking(`date`, `startTime`, `customerNumber`, `empID`, `servicesID`, `ownerID`) VALUES ('" + selectedDate + "','" + selectedTime + "','" + number +  "','" + selectedEmployee + "','" + selectedService + BookingSystem.companyLogin + "')");
 								//If insert success, it will print out a success label and clear all menu choices
 								success.setVisible(true);
 								date.setValue(null);
@@ -323,7 +323,7 @@ public class CreateBookingDetailsController {
 								con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 								statement = con.createStatement();
 								//SQL query to insert the data only into the booking table
-								statement.executeUpdate("INSERT INTO newbooking(`date`, `startTime`, `customerNumber`, `empID`, `servicesID`) VALUES ('" + selectedDate + "','" + selectedTime + "','" + number +  "','" + selectedEmployee + "','" + selectedService + "')");
+								statement.executeUpdate("INSERT INTO newbooking(`date`, `startTime`, `customerNumber`, `empID`, `servicesID`, `ownerID`) VALUES ('" + selectedDate + "','" + selectedTime + "','" + number +  "','" + selectedEmployee + "','" + selectedService + BookingSystem.companyLogin + "')");
 								//If insert success, it will print out a success label and clear all menu choices
 								success.setVisible(true);
 								date.setValue(null);
@@ -369,7 +369,7 @@ public class CreateBookingDetailsController {
 								if(ID.equals(custSet.getString("custid"))) {
 									String custnumber = custSet.getString("number");
 									//SQL statement to insert all data into the booking table
-									statement.executeUpdate("INSERT INTO newbooking(`date`, `startTime`, `customerNumber`, `empID`, `servicesID`) VALUES ('" + selectedDate + "','" + selectedTime + "','" + custnumber +  "','" + selectedEmployee + "','" + selectedService + "')");
+									statement.executeUpdate("INSERT INTO newbooking(`date`, `startTime`, `customerNumber`, `empID`, `servicesID`, `ownerID`) VALUES ('" + selectedDate + "','" + selectedTime + "','" + custnumber +  "','" + selectedEmployee + "','" + selectedService + BookingSystem.companyLogin + "')");
 									//If insert success, it will print out a success label and clear all menu choices
 									success.setVisible(true);
 									date.setValue(null);
