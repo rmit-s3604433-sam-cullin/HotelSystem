@@ -10,6 +10,7 @@ public abstract class Person {
 	static String[] customer = new String[2]; 
 	static String[] customer1 = new String[3];
 	static String[] custID = new String[1];
+	String companyID = null;
 
 	public Person(){
 	
@@ -91,5 +92,15 @@ public abstract class Person {
 	public static String retrieveID() {
 		String custid = custID[0];
 		return custid;
+	}
+	public void addOwner(Person nO) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void setcompanyID(String companyID) {
+		this.companyID = companyID;			
+	}
+	public String retreivecompID(){
+		return companyID;
 	}
 }

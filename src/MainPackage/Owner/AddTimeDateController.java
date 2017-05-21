@@ -5,18 +5,21 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import MainPackage.BookingSystem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 
 public class AddTimeDateController {
+	
+	ArrayList<String[]> employees = new ArrayList<String[]>();
 
 	ObservableList<String> empList = FXCollections.observableArrayList();
 	Connection con = null;
@@ -66,42 +69,38 @@ public class AddTimeDateController {
 		{
 			try {
 				con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-				statement = con.createStatement();
-				ResultSet empSet = statement.executeQuery("SELECT name FROM employee");
+			
+				ResultSet empSet =  con.createStatement().executeQuery("SELECT name , empid FROM employee WHERE ownerID = '"+ BookingSystem.companyLogin + "'");
 				while(empSet.next()) {
 					empList.add(empSet.getString("name"));
 					employee.setItems(empList);
+					String[] empData = {empSet.getString("name"),empSet.getString("empid")};
+					employees.add(empData);
 				}
+				con.close();
 			} catch (SQLException e1) {
 				BookingSystem.log.error(e1.toString());
 				e1.printStackTrace();
-			} finally {
-				if (statement != null) {
-					try {
-						statement.close();
-					} catch (SQLException e1) {
-						BookingSystem.log.error(e1.toString());
-					}
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e1) {
-					BookingSystem.log.error(e1.toString());
-				}
+			} 
+		}
+	}
+	public String getEmployeeID(String b){
+		for(String[] x: employees){
+			if(x[0].equals(b)){
+				return x[1];
 			}
 		}
+		return null;
 	}
 	@FXML
 	public void onConfirmation() {
 		
 		success.setVisible(false);
-		String empname = employee.getSelectionModel().getSelectedItem();
+		String empID = getEmployeeID(employee.getSelectionModel().getSelectedItem());
 		String empday = HandleDayOptions(monday, tuesday, wednesday, thursday, friday, saturday);
 		String emptime = HandleTimeOptions(first, second, third, fourth);
 		
-		if(empname == null) {
+		if(employee.getSelectionModel().getSelectedItem() == null) {
 			erroremp.setVisible(true);
 		}
 		else {
@@ -119,37 +118,25 @@ public class AddTimeDateController {
 		else {
 			errortime.setVisible(false);
 		}
-		if(empname != null && empday != null && emptime != null) {
-			if(databasecheck(empname, empday, emptime) != null) {
+		if(empID != null && empday != null && emptime != null) {
+			if(databasecheck(empID, empday, emptime) != null) {
 				errordatabase.setVisible(false);
 				Connection con = null;
-				Statement statement = null;
+				
 				{
 					try {
 						con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-						statement = con.createStatement();
-						ResultSet resultSet1 = statement.executeQuery("Select empid from employee where name ='"+empname+"'");
-						String empid = resultSet1.getString("empid");
-						/* SQL Statement */
-						statement.executeUpdate("INSERT INTO workingTimeDate(`EmployeeID`, `Day`, `Time`) VALUES ('" + empid + "','" + empday + "','" + emptime + "')");
+						
+						
+						con.createStatement().executeUpdate("INSERT INTO workingTimeDate(`EmployeeID`, `Day`, `Time`, `ownerID`) VALUES ('" + empID + "','" + empday + "','" + emptime + "','" + BookingSystem.companyLogin + "')");
 						success.setVisible(true);
 						employee.getSelectionModel().clearSelection();
 						Day.selectToggle(null);
 						time.selectToggle(null);
+						con.close();
 					} catch (Exception e) {
 						BookingSystem.log.error(e.toString());
 							System.err.println(e);
-					} finally {
-						if(statement != null) {
-							try {
-								statement.close();
-							} catch (SQLException e) { BookingSystem.log.error(e.toString());}
-						}
-					}
-					if(con != null) {
-						try {
-							con.close();
-						} catch (SQLException e) {BookingSystem.log.error(e.toString()); }
 					}
 				}
 			}else{
@@ -202,43 +189,33 @@ public class AddTimeDateController {
 			return null;
 		}
 	}
-	private String databasecheck(String empname, String empday, String emptime) {
+	private String databasecheck(String empID, String empday, String emptime) {
 	
 		Connection con = null;
-		Statement statement = null;
-		ResultSet resultSet1 = null;
-		String i = null;
+		
+		
+		
 		try{
 			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-			statement = con.createStatement();	
 			
-			resultSet1 = statement.executeQuery("SELECT * FROM workingTimeDate inner join employee on employee.empid = workingTimeDate.EmployeeID where employee.name = '"+empname+"'");
 			
-			i = resultSet1.getString("empid");
+			ResultSet resultSet1 = con.createStatement().executeQuery("SELECT * FROM workingTimeDate Where EmployeeID = '"+empID+"'");
+			
+			
 			while(resultSet1.next()) {
 					if(empday.equals(resultSet1.getString("Day"))) {
 						if(emptime.equals(resultSet1.getString("Time"))) {
 							BookingSystem.log.info("already working at that time");
-							i = null;
+							return null;
 						}
 					}					
 				
 			}
+			con.close();
 		} catch (SQLException e){
 			BookingSystem.log.error(e.toString());
 			e.printStackTrace();
-		} finally {
-			if(statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e1) {BookingSystem.log.error(e1.toString()); }
-			}
-		}
-		if(con != null) {
-			try {
-				con.close();
-			} catch (SQLException e1) { BookingSystem.log.error(e1.toString());}
-		}
-		return i;
+		} 
+		return empID;
 	}
 }

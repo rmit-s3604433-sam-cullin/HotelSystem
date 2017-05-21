@@ -110,7 +110,7 @@ public class WorkingTimesController {
 			try {
 				con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 				statement = con.createStatement();
-				ResultSet empSet = statement.executeQuery("SELECT empid, name FROM employee");
+				ResultSet empSet = statement.executeQuery("SELECT empid, name FROM employee WHERE ownerID = '"+ BookingSystem.companyLogin +"'");
 				while(empSet.next()) {
 					empList.add(empSet.getString("name"));
 					employee.setItems(empList);
