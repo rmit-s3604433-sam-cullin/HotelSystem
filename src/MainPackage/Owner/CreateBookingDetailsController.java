@@ -113,7 +113,7 @@ public class CreateBookingDetailsController {
 			try {
 				con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 				statement = con.createStatement();
-				ResultSet timeSet = statement.executeQuery("SELECT Day, Time FROM workingTimeDate Group By Time");
+				ResultSet timeSet = statement.executeQuery("SELECT DISTINCT Day, Time FROM workingTimeDate");
 				while(timeSet.next()) {
 					if(selectedDay != null){
 						BookingSystem.log.info("selected day:"+selectedDay +" sqlDate:"+timeSet.getString("Day") );
