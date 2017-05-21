@@ -121,14 +121,14 @@ public class FullBookingSummaryCustomerController {
 	//This function is to get the serviceID and search for a service name that matches it.
 	private String getServiceName(String serviceID){
 		Connection con = null;
-		Statement statement = null;
+		
 		ResultSet resultSet1 = null;
 		String servicename = null;
 		try{
 			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-			statement = con.createStatement();	
+				
 			
-			resultSet1 = statement.executeQuery("SELECT servicesID, Services FROM BusinessActivities");
+			resultSet1 = con.createStatement().executeQuery("SELECT servicesID, Services FROM BusinessActivities");
 			while(resultSet1.next()) {
 				if(serviceID.equals(resultSet1.getString("servicesID"))) {
 					servicename = resultSet1.getString("Services");

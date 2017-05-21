@@ -2,6 +2,7 @@ package MainPackage.Owner;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -139,7 +140,8 @@ public class CreateBookingDetailsController {
 						}
 					}
 				}
-				employee.setItems(empList);
+				ObservableList<String> newempList = removeEmployee(empList);
+				employee.setItems(newempList);
 				con.close();
 			} catch (SQLException e1) {
 				BookingSystem.log.error(e1.toString());
@@ -147,7 +149,41 @@ public class CreateBookingDetailsController {
 			}
 	}
 	
-	
+	private ObservableList<String> removeEmployee(ObservableList<String> empList) {
+		
+		Connection con = null;
+		Statement statement = null;
+		LocalDate selectedDate = date.getValue();
+		
+		try {
+			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+			PreparedStatement ps = con.prepareStatement("SELECT newbooking.empID, employee.name FROM newbooking Inner Join employee on newbooking.empID = employee.empid WHERE Date ='" + selectedDate + "' AND startTime = ?");
+			ps.setString(1, time.getSelectionModel().getSelectedItem());
+			ResultSet rs = ps.executeQuery();	
+			while(rs.next()) {
+				empList.remove(rs.getString("name"));
+			}
+		}catch (SQLException e1) {
+			BookingSystem.log.error(e1.toString());
+			e1.printStackTrace();
+		} finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e1) {
+					BookingSystem.log.error(e1.toString());
+				}
+			}
+		}
+		if (con != null) {
+			try {
+				con.close();
+			} catch (SQLException e1) {
+				BookingSystem.log.error(e1.toString());
+			}
+		}
+		return empList;
+	}
 	//This function will initiate when the user clicks on the Submit button.
 	@FXML
 	private void onSubmit() {
