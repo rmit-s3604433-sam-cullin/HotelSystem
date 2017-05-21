@@ -2,7 +2,6 @@ package MainPackage.Customer;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -156,36 +155,25 @@ public class CustCreateBookingDetailsController {
 	private ObservableList<String> removeEmployee(ObservableList<String> empList) {
 		
 		Connection con = null;
-		Statement statement = null;
-		LocalDate selectedDate = date2.getValue();
-		
+		String selectedDate = "";
+		String time = "";
+		if(date2.getValue() != null && time2.getValue() != null){
+			selectedDate = date2.getValue().toString();
+			time = time2.getValue();
+		}
+		System.out.println(time+"  "+selectedDate);
 		try {
 			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-			PreparedStatement ps = con.prepareStatement("SELECT newbooking.empID, employee.name FROM newbooking Inner Join employee on newbooking.empID = employee.empid WHERE Date ='" + selectedDate + "' AND startTime = ?");
-			ps.setString(1, time2.getSelectionModel().getSelectedItem());
-			ResultSet rs = ps.executeQuery();	
+			ResultSet rs = con.createStatement().executeQuery("SELECT newbooking.empID, employee.name FROM newbooking Inner Join employee on newbooking.empID = employee.empid WHERE Date ='" + selectedDate + "' AND startTime = '"+time+"'");
+				
 			while(rs.next()) {
 				empList.remove(rs.getString("name"));
 			}
+			con.close();
 		}catch (SQLException e1) {
 			BookingSystem.log.error(e1.toString());
 			e1.printStackTrace();
-		} finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e1) {
-					BookingSystem.log.error(e1.toString());
-				}
-			}
-		}
-		if (con != null) {
-			try {
-				con.close();
-			} catch (SQLException e1) {
-				BookingSystem.log.error(e1.toString());
-			}
-		}
+		} 
 		return empList;
 	}
 	
@@ -213,7 +201,7 @@ public class CustCreateBookingDetailsController {
 			result1.close();
 			con.close();
 		}catch(Exception e){
-			BookingSystem.log.error(e);
+			BookingSystem.log.error(e.toString());
 		}
 		try{
 			Connection con2 = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
@@ -227,7 +215,7 @@ public class CustCreateBookingDetailsController {
 			
 			
 		}catch(Exception e){
-			BookingSystem.log.error(e);
+			BookingSystem.log.error(e.toString());
 		}
 		
 		
@@ -274,7 +262,7 @@ public class CustCreateBookingDetailsController {
 						if(ID.equals(custSet.getString("custid"))) {
 							String custnumber = custSet.getString("number");
 							//SQL statement to insert all data into the booking table
-							statement.executeUpdate("INSERT INTO newbooking(`date`, `startTime`, `customerNumber`, `empID`, `servicesID`,`ownerID`,`status`) VALUES ('" + selectedDate + "','" + selectedTime + "','" + custnumber +  "','" + selectedEmployee + "','" + selectedService + "','"+BookingSystem.companyLogin+"','"+'w'+"')");
+							statement.executeUpdate("INSERT INTO newbooking(`date`, `startTime`, `customerNumber`, `empID`, `servicesID`,`ownerID`,`status`) VALUES ('" + selectedDate + "','" + selectedTime + "','" + custnumber +  "','" + selectedEmployee + "','" + selectedService + "','"+BookingSystem.companyLogin+"','"+"booked"+"')");
 							//If insert success, it will print out a success label and clear all menu choices
 							success2.setVisible(true);
 							date2.setValue(null);
