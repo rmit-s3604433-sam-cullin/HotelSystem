@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import MainPackage.BookingSystem;
 import Object.Person;
@@ -75,10 +76,10 @@ public class FullBookingSummaryCustomerController {
 				String id = bookingSet.getString("bookingID");
 				String date = bookingSet.getString("date");
 				String time = bookingSet.getString("startTime");
-				String employee = bookingSet.getString("empID");
+				String employee = getEmpName(bookingSet.getString("empID"));
 				String servies = getServiceName(bookingSet.getString("servicesID"));
 				String customer = bookingSet.getString("customerNumber");
-				String status = bookingSet.getString("status");
+				String status = getStatus(bookingSet.getString("status"));
 				booking booking = new booking(id,date,time,customer,employee,servies,status);
 				dta.add(booking);
 			}
@@ -117,7 +118,7 @@ public class FullBookingSummaryCustomerController {
 			BookingSystem.log.error(e.toString());
 		}
 	}
-	
+	//This function is to get the serviceID and search for a service name that matches it.
 	private String getServiceName(String serviceID){
 		Connection con = null;
 		Statement statement = null;
@@ -137,5 +138,37 @@ public class FullBookingSummaryCustomerController {
 			e.printStackTrace();
 		}
 		return servicename;
+	}
+	//This function is to get the ID and search for the employee name that matches it.
+	private String getEmpName(String empID){
+		Connection con = null;
+		Statement statement = null;
+		ResultSet resultSet1 = null;
+		String empname = null;
+		try{
+			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+			statement = con.createStatement();	
+			
+			resultSet1 = statement.executeQuery("SELECT empid, name FROM employee");
+			while(resultSet1.next()) {
+				if(empID.equals(resultSet1.getString("empid"))) {
+					empname = resultSet1.getString("name");
+				}					
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		return empname;
+	}
+	//This function is to get the character and change it to a complete word.
+	private String getStatus(String status){
+		String stat = null;
+		if(status.equals("w")){
+			stat = "Booked";
+		}
+		else if(status.equals("c")){
+			stat = "Cancelled";
+		}
+		return stat;
 	}
 }
