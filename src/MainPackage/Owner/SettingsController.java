@@ -16,7 +16,7 @@ import javafx.stage.FileChooser;
 
 public class SettingsController {
 
-	
+	public Image logo;
 	@FXML
 	TextField newbusinessname;
 	@FXML
@@ -42,19 +42,21 @@ public class SettingsController {
 		FileChooser filechooser = new FileChooser();
 		//Set extension filter
         FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
-        FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
-        filechooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+        filechooser.getExtensionFilters().addAll(extFilterJPG);
           
         //Show open file dialog
         File file = filechooser.showOpenDialog(null);
         if(file != null){
         	imageFile = file.toURI().toString();
-        	Image image = new Image(imageFile);
-        	uploadimage.setImage(image);
+        	logo = new Image(imageFile);
+        	uploadimage.setImage(logo);
         	uploadlabel.setVisible(false);
-        	BookingSystem.companylogo = image;
-        	OwnerMenuController.connector1.setImage(image);
+        	BookingSystem.companylogo = logo;
         }
+	}
+	@FXML
+	public void setImage(){
+		OwnerMenuController.connector1.setImage(logo);
 	}
 	@FXML
 	public void onUpdateBusinessName() throws IOException{

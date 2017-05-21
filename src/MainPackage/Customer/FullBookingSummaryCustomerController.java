@@ -76,7 +76,7 @@ public class FullBookingSummaryCustomerController {
 				String date = bookingSet.getString("date");
 				String time = bookingSet.getString("startTime");
 				String employee = bookingSet.getString("empID");
-				String servies = bookingSet.getString("servicesID");
+				String servies = getServiceName(bookingSet.getString("servicesID"));
 				String customer = bookingSet.getString("customerNumber");
 				String status = bookingSet.getString("status");
 				booking booking = new booking(id,date,time,customer,employee,servies,status);
@@ -119,4 +119,24 @@ public class FullBookingSummaryCustomerController {
 		}
 	}
 	
+	private String getServiceName(String serviceID){
+		Connection con = null;
+		Statement statement = null;
+		ResultSet resultSet1 = null;
+		String servicename = null;
+		try{
+			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+			statement = con.createStatement();	
+			
+			resultSet1 = statement.executeQuery("SELECT servicesID, Services FROM BusinessActivities");
+			while(resultSet1.next()) {
+				if(serviceID.equals(resultSet1.getString("servicesID"))) {
+					servicename = resultSet1.getString("Services");
+				}					
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		return servicename;
+	}
 }
