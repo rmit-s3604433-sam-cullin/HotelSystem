@@ -10,7 +10,7 @@ import MainPackage.BookingSystem;
 
 public class Customer extends Person {
 	final static Scanner scan = new Scanner(System.in);
-
+	
 	public Customer(){
 		
 	}
@@ -54,12 +54,17 @@ public class Customer extends Person {
 		}
 	}
 	@Override
+	public void setcompanyID(String companyID) {
+			this.companyID = companyID;			
+	}
+	@Override
 	public String toString(){
 		return ID + "," + name + "," + password + "," + address + "," + number;
 	}
 	@Override
 	//Function to add new customer into the system database
 	public void addCustomer(Person nC){
+		String ownerid = nC.retreivecompID();
 		Connection con = null;
 		Statement statement = null;
 		try {
@@ -68,7 +73,7 @@ public class Customer extends Person {
 			
 			/* SQL Statement */
 			statement.executeUpdate("INSERT INTO customer values('c" + nC.getID() + "', '" + nC.getName() + "', '" 
-					+ nC.getPassword() + "', '" + nC.getAddress() + "', '0" + nC.getNumber() + BookingSystem.companyLogin + "')");
+					+ nC.getPassword() + "', '" + nC.getAddress() + "', '0" + nC.getNumber() + "','" + ownerid + "')");
 			BookingSystem.log.info("Customer Added To DataBase "+ nC.number);
 		} catch (Exception e) {
 			BookingSystem.log.error(e);
