@@ -58,7 +58,7 @@ public class FullBookingSummaryOwnerController {
 			statement = con.createStatement();
 			ResultSet bookingSet = statement.executeQuery("SELECT * FROM newbooking WHERE ownerID = '" + BookingSystem.companyLogin + "'");
 			if(!search.equals("")){
-				bookingSet = statement.executeQuery("SELECT * FROM newbooking WHERE `bookingID` LIKE '"+search+"' or `date` LIKE '"+search+"' or `startTime` LIKE '"+search+"' or `empID` LIKE '"+search+"' or `servicesID` LIKE '"+search+"' AND ownerID = '" + BookingSystem.companyLogin + "'");
+				bookingSet = statement.executeQuery("SELECT * FROM newbooking WHERE `bookingID` LIKE '"+search+"' or `date` LIKE '"+search+"' or `startTime` LIKE '"+search+"' or `empID` LIKE '"+search+"' or `servicesID` LIKE '"+search+"'");
 			}
 			while(bookingSet.next()) {
 				System.out.println("loading bookings");
@@ -66,9 +66,9 @@ public class FullBookingSummaryOwnerController {
 				String id = bookingSet.getString("bookingID");
 				String date = bookingSet.getString("date");
 				String time = bookingSet.getString("startTime");
-				String employee = bookingSet.getString("empID");
+				String employee = getEmpName(bookingSet.getString("empID"));
 				String servies = bookingSet.getString("servicesID");
-				String customer = bookingSet.getString("customerNumber");
+				String customer = getCustName(bookingSet.getString("customerNumber"));
 				String status = bookingSet.getString("status");
 				booking booking = new booking(id,date,time,customer,employee,servies,status);
 				dta.add(booking);
@@ -99,5 +99,45 @@ public class FullBookingSummaryOwnerController {
 		this.loadBookings(searchFeild.getText());
 	}
 	
+	private String getEmpName(String id){
+		Connection con = null;
+		Statement statement = null;
+		ResultSet resultSet1 = null;
+		String empname = null;
+		try{
+			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+			statement = con.createStatement();	
+			
+			resultSet1 = statement.executeQuery("SELECT empid, name FROM employee");
+			while(resultSet1.next()) {
+				if(id.equals(resultSet1.getString("empid"))) {
+					empname = resultSet1.getString("name");
+				}					
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		return empname;
+	}
 	
+	private String getCustName(String number){
+		Connection con = null;
+		Statement statement = null;
+		ResultSet resultSet1 = null;
+		String custname = null;
+		try{
+			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+			statement = con.createStatement();	
+			
+			resultSet1 = statement.executeQuery("SELECT number, name FROM customer");
+			while(resultSet1.next()) {
+				if(number.equals(resultSet1.getString("number"))) {
+					custname = resultSet1.getString("name");
+				}					
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		return custname;
+	}
 }

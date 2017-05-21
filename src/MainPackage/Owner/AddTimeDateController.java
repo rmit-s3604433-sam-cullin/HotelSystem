@@ -219,6 +219,7 @@ public class AddTimeDateController {
 					if(empday.equals(resultSet1.getString("Day"))) {
 						if(emptime.equals(resultSet1.getString("Time"))) {
 							BookingSystem.log.info("already working at that time");
+							con.close();
 							i = null;
 						}
 					}					

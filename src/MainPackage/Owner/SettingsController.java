@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
+import MainPackage.BookingSystem;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -51,7 +51,9 @@ public class SettingsController {
         	imageFile = file.toURI().toString();
         	Image image = new Image(imageFile);
         	uploadimage.setImage(image);
-        	
+        	uploadlabel.setVisible(false);
+        	BookingSystem.companylogo = image;
+        	OwnerMenuController.connector1.setImage(image);
         }
 	}
 	@FXML
