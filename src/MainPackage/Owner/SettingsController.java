@@ -2,6 +2,10 @@ package MainPackage.Owner;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import MainPackage.BookingSystem;
 import javafx.fxml.FXML;
@@ -13,20 +17,23 @@ import javafx.stage.FileChooser;
 
 public class SettingsController {
 
-	@FXML
-	TextField oldbusinessname;
+	
 	@FXML
 	TextField newbusinessname;
 	@FXML
 	ImageView uploadimage;
 	@FXML
-	Label invalidbname1;
-	@FXML
-	Label invalidbname2;
-	@FXML
 	Label uploadlabel;
 	
+	@FXML
+	Label invalidbname2;
+	
+	@FXML
+	Label currentName;
+	
 	private String imageFile;
+	
+	
 	
 	@FXML
 	public void onUploadImage() throws IOException {
@@ -42,31 +49,37 @@ public class SettingsController {
         	imageFile = file.toURI().toString();
         	Image image = new Image(imageFile);
         	uploadimage.setImage(image);
-        	uploadlabel.setVisible(false);	
+        	
         }
 	}
 	@FXML
 	public void onUpdateBusinessName() throws IOException{
+		if(this.newbusinessname.getText().equals("")){
+			
+		}else{
+			BookingSystem.companyname = this.newbusinessname.getText();
+			OwnerMenuController.connector.setText(this.newbusinessname.getText());
+			updateDataBase();
+		}
+		
+	}
 	
-		String oldbname = oldbusinessname.getText();
-		String newbname = newbusinessname.getText();
-		if(oldbname.equals("")){
-			invalidbname1.setVisible(true);
+	@FXML
+	private void updateDataBase(){
+		Connection con = null;
+		Statement statement = null;
+		
+		try {
+			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+			statement = con.createStatement();	
+			statement.executeQuery("UPDATE owner SET companyname ='"+this.newbusinessname.getText()+"' Where ownerid = '"+BookingSystem.companyLogin+"'");
+			
+			con.close();
+			BookingSystem.log.info("Updated companyname"+this.newbusinessname.getText());
+		} catch (SQLException e) {
+			BookingSystem.log.error(e.toString());
+			e.printStackTrace();
 		}
-		else{
-			invalidbname1.setVisible(false);
-		}
-		if(newbname.equals("")){
-			invalidbname2.setVisible(true);
-		}
-		else{
-			invalidbname2.setVisible(false);
-		}
-		if(!oldbname.equals("") && !newbname.equals("")){
-			OwnerMenuController nc = new OwnerMenuController();
-			nc.updatename();
-			/*nc.businessname.setVisible(false);*/
-			/*BookingSystem.showOwnerMenu();*/
-		}
+		
 	}
 }

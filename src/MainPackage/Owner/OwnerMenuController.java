@@ -7,20 +7,27 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 public class OwnerMenuController {
+	static Label connector;
 	
 	@FXML
 	private void initialize() {
-		businessname.setText(BookingSystem.companyname);
+		connector = new Label();
+		connector.setText(BookingSystem.companyname);
+		businessname.textProperty().bindBidirectional(connector.textProperty());
 	}
 	@SuppressWarnings("unused")
 	private BookingSystem main;
 	
+	
 	@FXML
 	Label businessname;
 	
+	@FXML
+	Label businessname1;
+	
+	@FXML
 	public void updatename() throws IOException{
-		businessname.setVisible(false);
-		BookingSystem.showOwnerMenu();
+		
 	}
 	@FXML
 	private void goAddEmployee() throws IOException {

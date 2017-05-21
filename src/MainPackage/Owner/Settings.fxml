@@ -10,7 +10,7 @@
 
 <BorderPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainPackage.Owner.SettingsController">
    <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <Pane fx:id="currentName" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="33.0" layoutY="25.0" text="Business Name" underline="true">
                <font>
@@ -18,7 +18,6 @@
                </font>
             </Label>
             <Label layoutX="34.0" layoutY="81.0" text="Existing Business Name :" />
-            <TextField fx:id="oldbusinessname" layoutX="202.0" layoutY="77.0" />
             <Label layoutX="33.0" layoutY="130.0" text="New Business Name :" />
             <TextField fx:id="newbusinessname" layoutX="202.0" layoutY="126.0" />
             <Label layoutX="33.0" layoutY="182.0" text="Business Logo" underline="true">
@@ -26,6 +25,7 @@
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </Label>
+            <Label fx:id="currentName" layoutX="205.0" layoutY="81.0" prefHeight="17.0" prefWidth="143.0" text="Label" />
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="34.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true" />
             <Button layoutX="387.0" layoutY="77.0" mnemonicParsing="false" onAction="#onUpdateBusinessName" prefHeight="76.0" prefWidth="66.0" text="Submit">
                <font>
@@ -47,7 +47,6 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Label fx:id="invalidbname1" layoutX="202.0" layoutY="101.0" text="Error : Invalid." textFill="RED" visible="false" />
             <Label fx:id="invalidbname2" layoutX="202.0" layoutY="151.0" text="Error : Invalid." textFill="RED" visible="false" />
          </children>
       </Pane>

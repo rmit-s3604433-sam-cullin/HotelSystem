@@ -21,6 +21,11 @@
 						<Font name="HP Simplified Light" size="24.0" />
 					</font>
 				</Label>
+            <Label fx:id="businessname1" layoutX="88.0" layoutY="36.0" style="-fx-text-fill: white;">
+               <font>
+                  <Font name="HP Simplified Light" size="24.0" />
+               </font>
+            </Label>
 			</children>
 		</Pane>
 	</top>
