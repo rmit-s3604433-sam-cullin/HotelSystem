@@ -262,7 +262,7 @@ public class CustCreateBookingDetailsController {
 						if(ID.equals(custSet.getString("custid"))) {
 							String custnumber = custSet.getString("number");
 							//SQL statement to insert all data into the booking table
-							statement.executeUpdate("INSERT INTO newbooking(`date`, `startTime`, `customerNumber`, `empID`, `servicesID`,`ownerID`,`status`) VALUES ('" + selectedDate + "','" + selectedTime + "','" + custnumber +  "','" + selectedEmployee + "','" + selectedService + "','"+BookingSystem.companyLogin+"','"+"booked"+"')");
+							statement.executeUpdate("INSERT INTO newbooking(`date`, `startTime`, `customerNumber`, `empID`, `servicesID`,`ownerID`,`status`) VALUES ('" + selectedDate + "','" + selectedTime + "','" + custnumber +  "','" + selectedEmployee + "','" + selectedService + "','"+BookingSystem.companyLogin+"','"+"w"+"')");
 							//If insert success, it will print out a success label and clear all menu choices
 							success2.setVisible(true);
 							date2.setValue(null);

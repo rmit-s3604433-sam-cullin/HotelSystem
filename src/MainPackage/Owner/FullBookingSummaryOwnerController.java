@@ -72,7 +72,7 @@ public class FullBookingSummaryOwnerController {
 				String employee = getEmpName(bookingSet.getString("empID"));
 				String servies = bookingSet.getString("servicesID");
 				String customer = getCustName(bookingSet.getString("customerNumber"));
-				String status = bookingSet.getString("status");
+				String status = getStatus(bookingSet.getString("status"));
 				booking booking = new booking(id,date,time,customer,employee,servies,status);
 				dta.add(booking);
 			}
@@ -145,5 +145,15 @@ public class FullBookingSummaryOwnerController {
 			e.printStackTrace();
 		}
 		return custname;
+	}
+	private String getStatus(String status){
+		String stat = null;
+		if(status.equals("w")){
+			stat = "Booked";
+		}
+		else if(status.equals("c")){
+			stat = "Cancelled";
+		}
+		return stat;
 	}
 }
