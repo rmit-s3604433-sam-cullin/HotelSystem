@@ -42,12 +42,14 @@ public class LoginController {
 			if(loginPasswordValidation(ID, password) == 1){
 				// Launch Customer Menu
 				BookingSystem.companyLogin = getCompnayType(ID);
+				getCompanyInfo(BookingSystem.companyLogin);
 				BookingSystem.log.info("Customer Logged in");
 				BookingSystem.showCustomerMenu();
 			} else if(loginPasswordValidation(ID, password) == 2){
 				// Launch Owner Menu
 				BookingSystem.log.info("Owner Logged in");
 				BookingSystem.companyLogin = ID;
+				getCompanyInfo(BookingSystem.companyLogin);
 				BookingSystem.showOwnerMenu();
 			} else if(loginPasswordValidation(ID, password) == 3){
 				// Launch Super User Menu
@@ -59,7 +61,7 @@ public class LoginController {
 				userid.setText("");
 				userpassword.setText("");
 			}
-			getCompanyInfo(BookingSystem.companyLogin);
+			
 		} else if (loginIDValidation(ID) == false){
 			// Incorrect user name or password
 			invaliduserid.setVisible(true);
@@ -77,10 +79,9 @@ public class LoginController {
 			
 			ResultSet ownerSet = con.createStatement().executeQuery("SELECT businessname FROM owner WHERE ownid ='"+x+"'");
 			ownerid = ownerSet.getString("businessname");
-			
 			BookingSystem.log.info("customer loged in under company:"+ownerid);
-			BookingSystem.companyname = ownerid;
 			con.close();
+			BookingSystem.companyname = ownerid;
 		} catch (SQLException e) {
 			BookingSystem.log.error(e.toString());
 			e.printStackTrace();

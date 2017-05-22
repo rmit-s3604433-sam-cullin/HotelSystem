@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.apache.log4j.Logger;
 
 import javafx.application.Application;
-import javafx.beans.property.StringProperty;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -22,8 +22,8 @@ public class BookingSystem extends Application {
 	private static AnchorPane startinglayout;
 	
 	public final static Logger log = Logger.getLogger(BookingSystem.class);
-	public static StringProperty companynameLabel;
-	public static String companyname = "Test";
+	
+	public static String companyname = "";
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		BookingSystem.loginStage = primaryStage;

@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
+
 
 import MainPackage.BookingSystem;
 import javafx.fxml.FXML;
@@ -33,7 +33,10 @@ public class SettingsController {
 	
 	private String imageFile;
 	
-	
+	@FXML
+	private void initialize() {
+		currentName.setText(BookingSystem.companyname);
+	}
 	
 	@FXML
 	public void onUploadImage() throws IOException {
@@ -57,29 +60,24 @@ public class SettingsController {
 		if(this.newbusinessname.getText().equals("")){
 			
 		}else{
-			BookingSystem.companyname = this.newbusinessname.getText();
-			OwnerMenuController.connector.setText(this.newbusinessname.getText());
-			updateDataBase();
+			Connection con = null;
+			
+			try {
+				con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
+				
+				con.createStatement().execute("UPDATE owner SET businessname ='"+this.newbusinessname.getText()+"' Where ownid = '"+BookingSystem.companyLogin+"'");
+				con.close();
+				BookingSystem.companyname = this.newbusinessname.getText();
+				OwnerMenuController.connector.setText(this.newbusinessname.getText());
+				this.currentName.setText(this.newbusinessname.getText());
+				BookingSystem.log.info("Updated companyname"+this.newbusinessname.getText());
+			} catch (SQLException e) {
+				BookingSystem.log.error(e.toString());
+				e.printStackTrace();
+			}
 		}
 		
 	}
 	
-	@FXML
-	private void updateDataBase(){
-		Connection con = null;
-		Statement statement = null;
-		
-		try {
-			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-			statement = con.createStatement();	
-			statement.executeQuery("UPDATE owner SET companyname ='"+this.newbusinessname.getText()+"' Where ownerid = '"+BookingSystem.companyLogin+"'");
-			
-			con.close();
-			BookingSystem.log.info("Updated companyname"+this.newbusinessname.getText());
-		} catch (SQLException e) {
-			BookingSystem.log.error(e.toString());
-			e.printStackTrace();
-		}
-		
-	}
+	
 }

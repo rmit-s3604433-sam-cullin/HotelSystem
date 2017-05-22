@@ -10,7 +10,7 @@
 
 <BorderPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainPackage.Owner.SettingsController">
    <center>
-      <Pane fx:id="currentName" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="33.0" layoutY="25.0" text="Business Name" underline="true">
                <font>
@@ -25,7 +25,7 @@
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="currentName" layoutX="205.0" layoutY="81.0" prefHeight="17.0" prefWidth="143.0" text="Label" />
+            <Label fx:id="currentName" layoutX="205.0" layoutY="81.0" prefHeight="17.0" prefWidth="143.0" text="test" />
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="34.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true" />
             <Button layoutX="387.0" layoutY="77.0" mnemonicParsing="false" onAction="#onUpdateBusinessName" prefHeight="76.0" prefWidth="66.0" text="Submit">
                <font>
