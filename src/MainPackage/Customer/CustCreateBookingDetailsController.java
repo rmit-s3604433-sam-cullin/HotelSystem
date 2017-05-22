@@ -69,24 +69,10 @@ public class CustCreateBookingDetailsController {
 					serviceList.add(serviceSet.getString("Services"));
 				}
 				service2.setItems(serviceList);
-				
+				con.close();
 			} catch (SQLException e1) {
+				BookingSystem.log.error(e1.toString());
 				e1.printStackTrace();
-			} finally {
-				if (statement != null) {
-					try {
-						statement.close();
-					} catch (SQLException e1) {
-						BookingSystem.log.error(e1.toString());
-					}
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e1) {
-					BookingSystem.log.error(e1.toString());
-				}
 			}
 			
 		
@@ -108,7 +94,7 @@ public class CustCreateBookingDetailsController {
 		
 		Connection con = null;
 		Statement statement = null;
-		{
+		
 			try {
 				con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 				statement = con.createStatement();
@@ -122,28 +108,14 @@ public class CustCreateBookingDetailsController {
 					}
 				}
 				time2.setItems(timeList);
+				con.close();
 			} catch (SQLException e1) {
 				BookingSystem.log.error(e1.toString());
 				e1.printStackTrace();
-			} finally {
-				if (statement != null) {
-					try {
-						statement.close();
-					} catch (SQLException e1) {
-						BookingSystem.log.error(e1.toString());
-					}
-				}
 			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e1) {
-					BookingSystem.log.error(e1.toString());
-				}
-			}
-		}
-		  
 	}
+		  
+	
 	
 	//This function is to launch the Employee section according to the time chosen at the Time section.
 	@FXML
@@ -176,24 +148,10 @@ public class CustCreateBookingDetailsController {
 					}
 				}
 				employee2.setItems(empList);
+				con.close();
 			} catch (SQLException e1) {
 				BookingSystem.log.error(e1.toString());
 				e1.printStackTrace();
-			} finally {
-				if (statement != null) {
-					try {
-						statement.close();
-					} catch (SQLException e1) {
-						BookingSystem.log.error(e1.toString());
-					}
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e1) {
-					BookingSystem.log.error(e1.toString());
-				}
 			}
 	}
 	
