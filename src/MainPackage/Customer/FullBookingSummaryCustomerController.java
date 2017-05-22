@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import MainPackage.BookingSystem;
 import Object.Person;
@@ -23,7 +22,7 @@ import javafx.scene.control.TextField;
 public class FullBookingSummaryCustomerController {
 	
 	private Connection con = null;
-	private Statement statement = null;
+
 	
 	@FXML
 	private TableView<booking> Orders;
@@ -56,18 +55,19 @@ public class FullBookingSummaryCustomerController {
 	private void loadBookings(String search){
 		try {
 			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-			statement = con.createStatement();
+			
 			//SQL statement to get the mobile number that matches the logged in customer ID at the 
 			//beginning of the booking
 			
-			ResultSet custSet = statement.executeQuery("SELECT number FROM customer Where customer.custID = '" + Person.retrieveID()+"' and customer.ownerID = '"+BookingSystem.companyLogin+"'");
+			ResultSet custSet = con.createStatement().executeQuery("SELECT number FROM customer Where customer.custID = '" + Person.retrieveID()+"' and customer.ownerID = '"+BookingSystem.companyLogin+"'");
 			String customerNumber = custSet.getString("number");
-			con.close();
-			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-			statement = con.createStatement();
-			ResultSet bookingSet = statement.executeQuery("SELECT * FROM newbooking where newbooking.customerNumber = '"+customerNumber+"'");
+			custSet.close();
+			
+			
+			
+			ResultSet bookingSet = con.createStatement().executeQuery("SELECT * FROM newbooking where newbooking.customerNumber = '"+customerNumber+"'");
 			if(!search.equals("")){
-				bookingSet = statement.executeQuery("SELECT * FROM newbooking WHERE `bookingID` LIKE '"+search+"' or `date` LIKE '"+search+"' or `startTime` LIKE '"+search+"' or `empID` LIKE '"+search+"' or `servicesID` LIKE '"+search+"' and customer.ownerID = '"+BookingSystem.companyLogin+"' and customer.custID = '" + Person.retrieveID()+"'");
+				bookingSet = con.createStatement().executeQuery("SELECT * FROM newbooking WHERE `bookingID` LIKE '"+search+"' or `date` LIKE '"+search+"' or `startTime` LIKE '"+search+"' or `empID` LIKE '"+search+"' or `servicesID` LIKE '"+search+"' or `status` LIKE '"+search+"'  and newbooking.customerNumber = '" + customerNumber+"'");
 			}
 			while(bookingSet.next()) {
 				System.out.println("loading bookings");
@@ -89,7 +89,6 @@ public class FullBookingSummaryCustomerController {
 			Service.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().serviesID));
 			Status.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().status));
 			bookingSet.close();
-			statement.close();
 			con.close();
 		} catch (SQLException e1) {
 			BookingSystem.log.error(e1);

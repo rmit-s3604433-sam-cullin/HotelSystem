@@ -64,7 +64,7 @@ public class CustCreateBookingDetailsController {
 			try {
 				con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 				statement = con.createStatement();
-				ResultSet serviceSet = statement.executeQuery("SELECT Services , duration FROM BusinessActivities");
+				ResultSet serviceSet = statement.executeQuery("SELECT Services , duration FROM BusinessActivities Where ownerid = '"+BookingSystem.companyLogin+"'");
 				while(serviceSet.next()) {
 					serviceList.add(serviceSet.getString("Services"));
 				}
@@ -89,7 +89,7 @@ public class CustCreateBookingDetailsController {
 		//employee.setItems(empList);
 		selectedDate = date2.getValue();
 		if(selectedDate != null){
-		selectedDay = selectedDate.getDayOfWeek().toString();
+			selectedDay = selectedDate.getDayOfWeek().toString();
 		}
 		
 		Connection con = null;
@@ -98,14 +98,9 @@ public class CustCreateBookingDetailsController {
 			try {
 				con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 				statement = con.createStatement();
-				ResultSet timeSet = statement.executeQuery("SELECT Day, Time FROM workingTimeDate Group By Time");
+				ResultSet timeSet = statement.executeQuery("SELECT Time FROM workingTimeDate WHERE Day LIKE '"+selectedDay+"' AND ownerid = '"+BookingSystem.companyLogin+"'");
 				while(timeSet.next()) {
-					if(selectedDay != null){
-						BookingSystem.log.info("selected day:"+selectedDay +" sqlDate:"+timeSet.getString("Day") );
-					}
-					if(selectedDay == null || selectedDay.equalsIgnoreCase(timeSet.getString("Day"))) {
-						timeList.add(timeSet.getString("Time"));
-					}
+					timeList.add(timeSet.getString("Time"));
 				}
 				time2.setItems(timeList);
 				con.close();
@@ -137,7 +132,7 @@ public class CustCreateBookingDetailsController {
 			try {
 				con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 				statement = con.createStatement();
-				ResultSet empSet = statement.executeQuery("SELECT Time, Day, employee.name FROM workingTimeDate Inner Join employee on workingTimeDate.EmployeeID = employee.empid");
+				ResultSet empSet = statement.executeQuery("SELECT Time, Day, employee.name FROM workingTimeDate Inner Join employee on workingTimeDate.EmployeeID = employee.empid Where workingTimeDate.ownerID = '"+BookingSystem.companyLogin+"'");
 				while(empSet.next()) {
 					
 					if(selectedDate != null && selectedTime != null){
@@ -241,7 +236,7 @@ public class CustCreateBookingDetailsController {
 						if(ID.equals(custSet.getString("custid"))) {
 							String custnumber = custSet.getString("number");
 							//SQL statement to insert all data into the booking table
-							statement.executeUpdate("INSERT INTO newbooking(`date`, `startTime`, `customerNumber`, `empID`, `servicesID`) VALUES ('" + selectedDate + "','" + selectedTime + "','" + custnumber +  "','" + selectedEmployee + "','" + selectedService + "')");
+							statement.executeUpdate("INSERT INTO newbooking(`date`, `startTime`, `customerNumber`, `empID`, `servicesID`,`ownerID`,`status`) VALUES ('" + selectedDate + "','" + selectedTime + "','" + custnumber +  "','" + selectedEmployee + "','" + selectedService + "','"+BookingSystem.companyLogin+"','"+'w'+"')");
 							//If insert success, it will print out a success label and clear all menu choices
 							success2.setVisible(true);
 							date2.setValue(null);
