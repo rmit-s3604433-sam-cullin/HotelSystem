@@ -142,9 +142,10 @@ public class CustCreateBookingDetailsController {
 						}
 					}
 				}
-<<<<<<< HEAD
+
 				ObservableList<String> newempList = removeEmployee(empList);
 				employee2.setItems(newempList);
+				con.close();
 			} catch (SQLException e1) {
 				BookingSystem.log.error(e1.toString());
 				e1.printStackTrace();
