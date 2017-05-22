@@ -64,31 +64,16 @@ public class CreateBookingDetailsController {
 			try {
 				con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 				statement = con.createStatement();
-				ResultSet serviceSet = statement.executeQuery("SELECT Services , duration FROM BusinessActivities");
+				ResultSet serviceSet = statement.executeQuery("SELECT Services , duration FROM BusinessActivities Where ownerid = '"+BookingSystem.companyLogin+"'");
 				while(serviceSet.next()) {
 					serviceList.add(serviceSet.getString("Services"));
 				}
 				service.setItems(serviceList);
-				
+				con.close();
 			} catch (SQLException e1) {
+				BookingSystem.log.error(e1.toString());
 				e1.printStackTrace();
-			} finally {
-				if (statement != null) {
-					try {
-						statement.close();
-					} catch (SQLException e1) {
-						BookingSystem.log.error(e1.toString());
-					}
-				}
 			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e1) {
-					BookingSystem.log.error(e1.toString());
-				}
-			}
-			
 		
 	}
 	
@@ -103,46 +88,25 @@ public class CreateBookingDetailsController {
 		//employee.setItems(empList);
 		selectedDate = date.getValue();
 		if(selectedDate != null){
-		selectedDay = selectedDate.getDayOfWeek().toString();
+			selectedDay = selectedDate.getDayOfWeek().toString();
 		}
 		
 		Connection con = null;
 		Statement statement = null;
-		{
+		
 			try {
 				con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 				statement = con.createStatement();
-				ResultSet timeSet = statement.executeQuery("SELECT Day, Time FROM workingTimeDate Group By Time");
+				ResultSet timeSet = statement.executeQuery("SELECT Time FROM workingTimeDate WHERE Day LIKE '"+selectedDay+"' AND ownerid = '"+BookingSystem.companyLogin+"'");
 				while(timeSet.next()) {
-					if(selectedDay != null){
-						BookingSystem.log.info("selected day:"+selectedDay +" sqlDate:"+timeSet.getString("Day") );
-					}
-					if(selectedDay == null || selectedDay.equalsIgnoreCase(timeSet.getString("Day"))) {
-						timeList.add(timeSet.getString("Time"));
-					}
+					timeList.add(timeSet.getString("Time"));
 				}
 				time.setItems(timeList);
+				con.close();
 			} catch (SQLException e1) {
 				BookingSystem.log.error(e1.toString());
 				e1.printStackTrace();
-			} finally {
-				if (statement != null) {
-					try {
-						statement.close();
-					} catch (SQLException e1) {
-						BookingSystem.log.error(e1.toString());
-					}
-				}
 			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e1) {
-					BookingSystem.log.error(e1.toString());
-				}
-			}
-		}
-		  
 	}
 	
 	//This function is to launch the Employee section according to the time chosen at the Time section.
@@ -165,7 +129,7 @@ public class CreateBookingDetailsController {
 			try {
 				con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 				statement = con.createStatement();
-				ResultSet empSet = statement.executeQuery("SELECT Time, Day, employee.name FROM workingTimeDate Inner Join employee on workingTimeDate.EmployeeID = employee.empid");
+				ResultSet empSet = statement.executeQuery("SELECT Time, Day, employee.name FROM workingTimeDate Inner Join employee on workingTimeDate.EmployeeID = employee.empid Where ownerid = '"+BookingSystem.companyLogin+"'");
 				while(empSet.next()) {
 					
 					if(selectedDate != null && selectedTime != null){
@@ -176,24 +140,10 @@ public class CreateBookingDetailsController {
 					}
 				}
 				employee.setItems(empList);
+				con.close();
 			} catch (SQLException e1) {
 				BookingSystem.log.error(e1.toString());
 				e1.printStackTrace();
-			} finally {
-				if (statement != null) {
-					try {
-						statement.close();
-					} catch (SQLException e1) {
-						BookingSystem.log.error(e1.toString());
-					}
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e1) {
-					BookingSystem.log.error(e1.toString());
-				}
 			}
 	}
 	
