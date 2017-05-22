@@ -67,7 +67,7 @@ public class AddTimeDateController {
 			try {
 				con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 				statement = con.createStatement();
-				ResultSet empSet = statement.executeQuery("SELECT name FROM employee");
+				ResultSet empSet = statement.executeQuery("SELECT name FROM employee WHERE ownerID = '"+ BookingSystem.companyLogin + "'");
 				while(empSet.next()) {
 					empList.add(empSet.getString("name"));
 					employee.setItems(empList);
@@ -131,7 +131,7 @@ public class AddTimeDateController {
 						ResultSet resultSet1 = statement.executeQuery("Select empid from employee where name ='"+empname+"'");
 						String empid = resultSet1.getString("empid");
 						/* SQL Statement */
-						statement.executeUpdate("INSERT INTO workingTimeDate(`EmployeeID`, `Day`, `Time`, `ownerID`) VALUES ('" + empid + "','" + empday + "','" + emptime + BookingSystem.companyLogin + "')");
+						statement.executeUpdate("INSERT INTO workingTimeDate(`EmployeeID`, `Day`, `Time`, `ownerID`) VALUES ('" + empid + "','" + empday + "','" + emptime + "','" + BookingSystem.companyLogin + "')");
 						success.setVisible(true);
 						employee.getSelectionModel().clearSelection();
 						Day.selectToggle(null);

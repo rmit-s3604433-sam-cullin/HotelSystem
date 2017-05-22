@@ -75,7 +75,7 @@ public class BusinessActivitiesController {
 						con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 						statement = con.createStatement();
 		
-						statement.executeUpdate("INSERT INTO BusinessActivities (`Services`, `Duration`, `ownerID`) " + "VALUES ('" + ADDservices.getText() + "','" + duration2 + BookingSystem.companyLogin + "')");
+						statement.executeUpdate("INSERT INTO BusinessActivities (`Services`, `Duration`, `ownerID`) " + "VALUES ('" + ADDservices.getText() + "','" + duration2 + "','" + BookingSystem.companyLogin + "')");
 						success.setVisible(true);
 						ADDservices.setText("");
 						duration.getSelectionModel().clearSelection();

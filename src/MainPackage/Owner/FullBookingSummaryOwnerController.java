@@ -56,9 +56,9 @@ public class FullBookingSummaryOwnerController {
 		try {
 			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
 			statement = con.createStatement();
-			ResultSet bookingSet = statement.executeQuery("SELECT * FROM newbooking");
+			ResultSet bookingSet = statement.executeQuery("SELECT * FROM newbooking WHERE ownerID = '" + BookingSystem.companyLogin + "'");
 			if(!search.equals("")){
-				bookingSet = statement.executeQuery("SELECT * FROM newbooking WHERE `bookingID` LIKE '"+search+"' or `date` LIKE '"+search+"' or `startTime` LIKE '"+search+"' or `empID` LIKE '"+search+"' or `servicesID` LIKE '"+search+"'");
+				bookingSet = statement.executeQuery("SELECT * FROM newbooking WHERE `bookingID` LIKE '"+search+"' or `date` LIKE '"+search+"' or `startTime` LIKE '"+search+"' or `empID` LIKE '"+search+"' or `servicesID` LIKE '"+search+"' AND ownerID = '" + BookingSystem.companyLogin + "'");
 			}
 			while(bookingSet.next()) {
 				System.out.println("loading bookings");
