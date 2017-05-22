@@ -2,7 +2,6 @@ package MainPackage.Owner;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -149,39 +148,28 @@ public class CreateBookingDetailsController {
 			}
 	}
 	
-	private ObservableList<String> removeEmployee(ObservableList<String> empList) {
+private ObservableList<String> removeEmployee(ObservableList<String> empList) {
 		
 		Connection con = null;
-		Statement statement = null;
-		LocalDate selectedDate = date.getValue();
-		
+		String selectedDate = "";
+		String timef = "";
+		if(date.getValue() != null && time.getValue() != null){
+			selectedDate = date.getValue().toString();
+			timef = time.getValue();
+		}
+		System.out.println(timef+"  "+selectedDate);
 		try {
 			con = DriverManager.getConnection("jdbc:sqlite:BookingSystem.db");
-			PreparedStatement ps = con.prepareStatement("SELECT newbooking.empID, employee.name FROM newbooking Inner Join employee on newbooking.empID = employee.empid WHERE Date ='" + selectedDate + "' AND startTime = ?");
-			ps.setString(1, time.getSelectionModel().getSelectedItem());
-			ResultSet rs = ps.executeQuery();	
+			ResultSet rs = con.createStatement().executeQuery("SELECT newbooking.empID, employee.name FROM newbooking Inner Join employee on newbooking.empID = employee.empid WHERE Date ='" + selectedDate + "' AND startTime = '"+timef+"'");
+				
 			while(rs.next()) {
 				empList.remove(rs.getString("name"));
 			}
+			con.close();
 		}catch (SQLException e1) {
 			BookingSystem.log.error(e1.toString());
 			e1.printStackTrace();
-		} finally {
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException e1) {
-					BookingSystem.log.error(e1.toString());
-				}
-			}
-		}
-		if (con != null) {
-			try {
-				con.close();
-			} catch (SQLException e1) {
-				BookingSystem.log.error(e1.toString());
-			}
-		}
+		} 
 		return empList;
 	}
 	//This function will initiate when the user clicks on the Submit button.
