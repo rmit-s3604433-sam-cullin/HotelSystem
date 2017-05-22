@@ -88,7 +88,6 @@ public class LoginController {
 		}
 	}
 	public String getCompnayType(String id){
-		System.out.println(id);
 		Connection con = null;
 		ResultSet ownerSet = null;
 		String ownerid = "";

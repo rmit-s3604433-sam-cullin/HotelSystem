@@ -14,7 +14,7 @@
 
 <AnchorPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainPackage.Register.RegisterController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="507.0" layoutX="187.0" layoutY="121.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: none;" width="643.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="507.0" layoutX="192.0" layoutY="124.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: none;" width="643.0" />
       <TextField id="newuserid" fx:id="newuserid" layoutX="242.0" layoutY="237.0" prefHeight="31.0" prefWidth="226.0" promptText="User ID">
          <font>
             <Font size="14.0" />
@@ -108,6 +108,11 @@
       <Label fx:id="invalidusercompany" layoutX="552.0" layoutY="437.0" text="Error : Invalid Company." textFill="RED" visible="false">
          <font>
             <Font size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="486.0" layoutY="567.0" onMouseClicked="#onGoBack" text="Go Back" underline="true">
+         <font>
+            <Font size="15.0" />
          </font>
       </Label>
    </children>

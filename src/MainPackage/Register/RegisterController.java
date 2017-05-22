@@ -69,7 +69,6 @@ public class RegisterController {
 					companyList.add(empSet.getString("businessname"));
 					newusercompanychoice.setItems(companyList);
 					String[]x ={empSet.getString("businessname"),empSet.getString("ownid")};
-					System.out.println(x[0]+x[1]);
 					companyname.add(x);
 				}
 			} catch (SQLException e1) {
@@ -205,5 +204,9 @@ public class RegisterController {
 			} catch (SQLException e1) {BookingSystem.log.error(e1); }
 		}		
 		return i;
+	}
+	@FXML
+	public void onGoBack() throws IOException{
+		BookingSystem.showLogin2();
 	}
 }
